@@ -22,7 +22,7 @@ Command to clean the NFV and SDN application -> make clean. It should be run fro
 
 The output log(s) are generated in </var/log> directory :
 	- pox.log 	-> pox log
-	- idsclick.log	-> ids log
+	- ipsclick.log	-> ips log
 	- dnsclick.log	-> dns lb (lb1) log
 	- wwwclick.log	-> www lb (lb2) log
 	- natclick.log	-> napt log
@@ -64,7 +64,7 @@ Services test can be done by running service.sh. It will test the following :
 1. DNS server functionality
 2. WWW server functionality
 3. Round robin functionality of load balancer
-4. IDS functionality, contains 5 tests
+4. ips functionality, contains 5 tests
 
 Files :
 resultservice.log 	-> Contains result summary of the whole service test (either PASS or FAIL)
@@ -75,22 +75,22 @@ servicewww.log		-> Contains result of curl command in test 2 (WWW server functio
 servdnschecker.py 		-> Contains analyzer script to determine whether test 1 (DNS functionality test) is succesful or not.
 servwwwchecker.py		-> Contains analyzer script to determine whether test 2 (WWW functionality test) is succesful or not.
 rrdnschecker.py			-> Contains analyzer script to determine whether test 3 (Round robin functionality test) is succesful or not.
-analyzer1.py to analyzer5.py	-> Contains analyzer script to determine whether IDS functionality test is succesful or not. There are 5 files, one for each test inside IDS functionality test.
+analyzer1.py to analyzer5.py	-> Contains analyzer script to determine whether ips functionality test is succesful or not. There are 5 files, one for each test inside ips functionality test.
 
-61.pcap		-> Contains tcpdump capture file of s6-eth1 (IDS, interface facing SW2)	-> this file would always reloaded every ids test is run
-62.pcap		-> Contains tcpdump capture file of s6-eth2 (IDS, interface facing LB2)	-> this file would always reloaded every ids test is run
-63.pcap		-> Contains tcpdump capture file of s6-eth3 (IDS, interface facing INSP) -> this file would always reloaded every ids test is run
-71.pcap		-> Contains tcpdump capture file of s7-eth1 (LB2, interface facing IDS)
+61.pcap		-> Contains tcpdump capture file of s6-eth1 (ips, interface facing SW2)	-> this file would always reloaded every ips test is run
+62.pcap		-> Contains tcpdump capture file of s6-eth2 (ips, interface facing LB2)	-> this file would always reloaded every ips test is run
+63.pcap		-> Contains tcpdump capture file of s6-eth3 (ips, interface facing INSP) -> this file would always reloaded every ips test is run
+71.pcap		-> Contains tcpdump capture file of s7-eth1 (LB2, interface facing ips)
 72.pcap		-> Contains tcpdump capture file of s7-eth2 (LB2, interface facing SW4)
-insptest1.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during IDS test 1
-insptest2.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during IDS test 2
-insptest3.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during IDS test 3
-insptest4.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during IDS test 4
-insptest5.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during IDS test 5
+insptest1.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 1
+insptest2.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 2
+insptest3.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 3
+insptest4.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 4
+insptest5.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 5
 
 3d. Task4
 =============
-a set of files that assess the performance of each of Click­based network function. Basically, all of this are implemented along with the click configuration itself, in each entity (ids, lb1, lb2, napt). There are two kind of files :
+a set of files that assess the performance of each of Click­based network function. Basically, all of this are implemented along with the click configuration itself, in each entity (ips, lb1, lb2, napt). There are two kind of files :
 	- <service>.report -> sample report of each entity
 	- <service>.click -> click configuration of each entity
 As requested in the document, report file is generated once the click module terminates.

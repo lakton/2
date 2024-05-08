@@ -76,9 +76,9 @@ python $test_dir/rrdnschecker.py
 sleep 20
 
 #============================================================================
-#IDS TEST
+#ips TEST
 
-echo "IDS TEST : Allowed packets" >> /var/log/service.log 2>&1
+echo "ips TEST : Allowed packets" >> /var/log/service.log 2>&1
 echo "1. ARP & PING" >> /var/log/service.log 2>&1
 $m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
 $m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &
@@ -111,7 +111,7 @@ pkill tcp
 python $test_dir/analyzer3.py
 sleep 5
 
-echo "IDS TEST : Blocked packets" >> /var/log/service.log 2>&1
+echo "ips TEST : Blocked packets" >> /var/log/service.log 2>&1
 echo "4. HTTP PUT injection" >> /var/log/service.log 2>&1
 $m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
 $m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &

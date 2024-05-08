@@ -1,12 +1,12 @@
 // ==================================
-// ids click
+// ips click
 // Intrusion Detection System
 // IK2220 SDN and NFV Assignment
 // Team 9
 // {atiiq,suryas,purwidi,mnde}@kth.se
 // ==================================
 
-// Source code for IDS
+// Source code for ips
 
 // AverageCounter
 out_eth1 :: AverageCounter;
@@ -89,20 +89,20 @@ packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_net.count) $(pack_re
 // arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in.count)))
 
 DriverManager(wait,
-                print > ids.report "===============IDS Report=================",
-                print >> ids.report "Input Packet rate (pps) : " $(inrate.run),
-                print >> ids.report "Output Packet rate (pps) : " $(outrate.run),
-                print >> ids.report " ",
-                print >> ids.report "Total # of input packets : " $(packreq_sum.run),
-                print >> ids.report "Total # of output packets : "$(packres_sum.run),
-                print >> ids.report " ",
-                print >> ids.report "Total # of ARP requests : " $(arp_req_ex.count),
-                print >> ids.report "Total # of ARP response : " $(arp_res_ex.count),
-                print >> ids.report " ",
-                print >> ids.report "Total # of service packets : "$(service_count.count),
-                print >> ids.report "Total # of ICMP packets : "$(icmp_count.count),
-                print >> ids.report "Total # of dropped packets : No dropped packets, malicious packets sent to insp",
-                print >> ids.report "=========================================",
+                print > ips.report "===============ips Report=================",
+                print >> ips.report "Input Packet rate (pps) : " $(inrate.run),
+                print >> ips.report "Output Packet rate (pps) : " $(outrate.run),
+                print >> ips.report " ",
+                print >> ips.report "Total # of input packets : " $(packreq_sum.run),
+                print >> ips.report "Total # of output packets : "$(packres_sum.run),
+                print >> ips.report " ",
+                print >> ips.report "Total # of ARP requests : " $(arp_req_ex.count),
+                print >> ips.report "Total # of ARP response : " $(arp_res_ex.count),
+                print >> ips.report " ",
+                print >> ips.report "Total # of service packets : "$(service_count.count),
+                print >> ips.report "Total # of ICMP packets : "$(icmp_count.count),
+                print >> ips.report "Total # of dropped packets : No dropped packets, malicious packets sent to insp",
+                print >> ips.report "=========================================",
                 stop);
 
 //FORWARDER FROM INSIDE NETWORK

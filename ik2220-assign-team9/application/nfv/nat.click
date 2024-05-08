@@ -1,9 +1,6 @@
 // ==================================
 // napt click
 // Network address and Port Translation
-// IK2220 SDN and NFV Assignment
-// Team 9
-// {atiiq,suryas,purwidi,mnde}@kth.se
 // ==================================
 
 // AverageCounter

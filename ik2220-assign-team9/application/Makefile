@@ -1,9 +1,9 @@
 app:
-	sudo /home/click/pox/pox.py log.level --DEBUG sdn/controller.py >> /var/log/pox.log 2>&1 &
-	sudo click nfv/ids.click >> /var/log/idsclick.log 2>&1 &
-	sudo click nfv/dns.click >> /var/log/dnsclick.log 2>&1 &
-	sudo click nfv/www.click >> /var/log/wwwclick.log 2>&1 &
-	sudo click nfv/nat.click >> /var/log/natclick.log 2>&1 &
+	sudo /home/sdn/Desktop/SDN-NFV/pox/pox.py samples.pretty_log log.level --DEBUG /home/sdn/Desktop/2/ik2220-assign-team9/application/sdn/controller.py >> /var/log/pox.log 2>&1 &
+	sudo /home/sdn/Desktop/fastclick/bin/click -f nfv/ips.click >> /var/log/ipsclick.log 2>&1 &
+	sudo /home/sdn/Desktop/fastclick/bin/click -f nfv/dns.click >> /var/log/dnsclick.log 2>&1 &
+	sudo /home/sdn/Desktop/fastclick/bin/click -f nfv/www.click >> /var/log/wwwclick.log 2>&1 &
+	sudo /home/sdn/Desktop/fastclick/bin/click -f nfv/nat.click >> /var/log/natclick.log 2>&1 &
 
 clean:
 	sudo pkill pox

@@ -1,7 +1,7 @@
 #click_dir="/home/mininet/click/userlevel"
 click_conf="/home/atiiq/run"
-touch /var/log/idsclick.log
-chmod 755 /var/log/idsclick.log
+touch /var/log/ipsclick.log
+chmod 755 /var/log/ipsclick.log
 touch /var/log/dnsclick.log
 chmod 755 /var/log/dnsclick.log
 touch /var/log/wwwclick.log
@@ -14,7 +14,7 @@ chmod 755 /var/log/natclick.log
 pkill click
 
 #Run every click instances
-sudo click $click_conf/ids.click >> /var/log/idsclick.log 2>&1 &
+sudo click $click_conf/ips.click >> /var/log/ipsclick.log 2>&1 &
 sudo click $click_conf/dns.click >> /var/log/dnsclick.log 2>&1 &
 sudo click $click_conf/www.click >> /var/log/click.log 2>&1 &
 sudo click $click_conf/nat.click >> /var/log/click.log 2>&1 &

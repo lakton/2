@@ -1,4 +1,4 @@
-m_util="/home/click/mininet/util/m"
+m_util="/home/sdn/Desktop/mininet/util/m"
 
 
 # emptying ping.log before further processing
