@@ -1,8 +1,8 @@
 app:
-		@cd /home/sdn/Desktop/2/ik2220-assign-team9/application/sdn && sudo make app
+		@cd /home/sdn/Desktop/2/ik2220-assign-team9/application/ && sudo make app
 
 topo:
-		@cd /home/sdn/Desktop/2/ik2220-assign-team9/topology && sudo make topo
+		@cd /home/sdn/Desktop/2/ik2220-assign-team9/topology/ && sudo make topo
 
 clean:
 	sudo mn -c
