@@ -7,4 +7,4 @@ app:
 
 clean:
 	sudo pkill pox
-	sudo killall click	
+	sudo killall click
