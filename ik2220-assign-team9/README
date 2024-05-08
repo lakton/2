@@ -7,8 +7,8 @@ Disclaimer : All command should be run in root privilege.
 
 1. Mininet
 ==========================
-Command to build the topology -> make topo. It should be run from inside directory </home/ik2220-assign-team9/topology>
-To clean the topology -> make clean. It should be run from inside directory </home/ik2220-assign-team9/topology>
+Command to build the topology -> make topo. It should be run from inside directory
+To clean the topology -> make clean. It should be run from inside directory
 
 2. SDN and NFV Application
 ===========================
@@ -17,7 +17,7 @@ Disclaimer : We consider the path or directory environment is exactly the same a
 	- pox.py location is at /home/click/pox/pox.py
 	- click binary file can be acessed from anywhere 
 
-Command to run the NFV and SDN application -> make app. It should be run from inside directory </home/ik2220-assign-team9/application>
+Command to run the NFV and SDN application -> make app. It should be run from inside directory
 Command to clean the NFV and SDN application -> make clean. It should be run from inside directory </home/ik2220-assign-team9/application>
 
 The output log(s) are generated in </var/log> directory :
@@ -29,21 +29,6 @@ The output log(s) are generated in </var/log> directory :
 
 3. Result
 ============================
-
-3a. Task1
-===========
-Contains three files :
-	- topology.py -> file topology for task1
-	- task1.log -> output from stdout of task1
-	- task1.pcap -> dump file for task1
-	- task1.question -> the answer of task1 question from requirements document
-
-3b. Task2
-============
-Contains two files :
-	- topology.py -> file topology for task2
-	- learning_switch_task2.py -> the firewall implementation for task2
-	- task2.log -> stdout log
 
 3c. Task3
 =============
