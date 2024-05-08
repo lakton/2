@@ -1,4 +1,4 @@
-app:
+app:werf
 		@cd /home/sdn/Desktop/2/ik2220-assign-team9/application/sdn && sudo make app
 
 topo:
