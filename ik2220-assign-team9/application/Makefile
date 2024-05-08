@@ -6,6 +6,8 @@ app:
 	@sudo /home/sdn/Desktop/fastclick/bin/click -f nfv/nat.click >> /var/log/natclick.log 2>&1 
 
 clean:
-	@sudo pkill pox
-	@sudo killall click
+	@echo -n "[MAKE] Killing POX..      " 
+	@(sudo kill -s SIGINT $$(ps aux | grep pox | grep root | head -n 1 | awk '{print $$2}') 2>/dev/null  && echo "OK") || echo "POX not running!"
+	@echo -n "[MAKE] Killing Click..    "
+	@sudo pkill --signal SIGINT click && echo "OK" || echo "Click not running!"
 	@sudo mn -c
