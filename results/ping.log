@@ -1,0 +1,1190 @@
+h1(100.0.0.10) ping h2(100.0.0.11)
+PING 100.0.0.11 (100.0.0.11) 56(84) bytes of data.
+64 bytes from 100.0.0.11: icmp_seq=3 ttl=64 time=0.372 ms
+64 bytes from 100.0.0.11: icmp_seq=4 ttl=64 time=0.053 ms
+64 bytes from 100.0.0.11: icmp_seq=5 ttl=64 time=0.034 ms
+
+--- 100.0.0.11 ping statistics ---
+5 packets transmitted, 3 received, 40% packet loss, time 4100ms
+rtt min/avg/max/mdev = 0.034/0.153/0.372/0.155 ms
+h1(100.0.0.10) ping dnslb(100.0.0.25)
+PING 100.0.0.25 (100.0.0.25) 56(84) bytes of data.
+From 100.0.0.10 icmp_seq=1 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=2 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=3 Destination Host Unreachable
+
+--- 100.0.0.25 ping statistics ---
+5 packets transmitted, 0 received, +3 errors, 100% packet loss, time 4075ms
+pipe 4
+h1(100.0.0.10) ping wwwlb(100.0.0.45)
+PING 100.0.0.45 (100.0.0.45) 56(84) bytes of data.
+64 bytes from 100.0.0.45: icmp_seq=6 ttl=255 time=16.2 ms
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=0.871 ms
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=0.844 ms
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=1.33 ms
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=0.584 ms
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=0.462 ms
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=0.491 ms
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=0.605 ms
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=0.469 ms
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=0.468 ms
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=0.474 ms
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=0.602 ms
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=0.446 ms
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=0.448 ms
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=0.454 ms
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=0.928 ms
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=2.29 ms
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=0.680 ms
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=1.01 ms
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=0.461 ms
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=0.748 ms
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=0.459 ms
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=0.470 ms
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=0.462 ms
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=0.439 ms
+
+--- 100.0.0.45 ping statistics ---
+30 packets transmitted, 25 received, 16.6667% packet loss, time 29335ms
+rtt min/avg/max/mdev = 0.439/1.306/16.179/3.061 ms
+h1(100.0.0.10) ping napt(100.0.0.1)
+PING 100.0.0.1 (100.0.0.1) 56(84) bytes of data.
+
+--- 100.0.0.1 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4091ms
+
+h1(100.0.0.10) ping h3(10.0.0.50)
+ping: connect: Network is unreachable
+h1(100.0.0.10) ping h4(10.0.0.51)
+ping: connect: Network is unreachable
+h1(100.0.0.10) ping ds1(100.0.0.20)
+PING 100.0.0.20 (100.0.0.20) 56(84) bytes of data.
+From 100.0.0.10 icmp_seq=1 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=2 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=3 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=4 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=5 Destination Host Unreachable
+
+--- 100.0.0.20 ping statistics ---
+5 packets transmitted, 0 received, +5 errors, 100% packet loss, time 4100ms
+pipe 4
+h1(100.0.0.10) ping ws1(100.0.0.40)
+PING 100.0.0.40 (100.0.0.40) 56(84) bytes of data.
+From 100.0.0.10 icmp_seq=1 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=2 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=3 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=4 Destination Host Unreachable
+From 100.0.0.10 icmp_seq=5 Destination Host Unreachable
+
+--- 100.0.0.40 ping statistics ---
+5 packets transmitted, 0 received, +5 errors, 100% packet loss, time 4091ms
+pipe 4
+h2(100.0.0.11) ping h1(100.0.0.10)
+PING 100.0.0.10 (100.0.0.10) 56(84) bytes of data.
+64 bytes from 100.0.0.10: icmp_seq=3 ttl=64 time=0.052 ms
+64 bytes from 100.0.0.10: icmp_seq=4 ttl=64 time=0.053 ms
+64 bytes from 100.0.0.10: icmp_seq=5 ttl=64 time=0.052 ms
+
+--- 100.0.0.10 ping statistics ---
+5 packets transmitted, 3 received, 40% packet loss, time 4092ms
+rtt min/avg/max/mdev = 0.052/0.052/0.053/0.000 ms
+h2(100.0.0.11) ping dnslb(100.0.0.25)
+PING 100.0.0.25 (100.0.0.25) 56(84) bytes of data.
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=15.3 ms
+
+--- 100.0.0.25 ping statistics ---
+5 packets transmitted, 1 received, 80% packet loss, time 4111ms
+rtt min/avg/max/mdev = 15.336/15.336/15.336/0.000 ms
+h2(100.0.0.11) ping wwwlb(100.0.0.45)
+PING 100.0.0.45 (100.0.0.45) 56(84) bytes of data.
+64 bytes from 100.0.0.45: icmp_seq=5 ttl=255 time=15.5 ms
+64 bytes from 100.0.0.45: icmp_seq=6 ttl=255 time=0.471 ms
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=0.547 ms
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=0.921 ms
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=1.46 ms
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=0.638 ms
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=0.605 ms
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=0.563 ms
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=0.454 ms
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=0.463 ms
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=0.716 ms
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=0.654 ms
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=0.601 ms
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=0.685 ms
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=1.23 ms
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=0.606 ms
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=0.598 ms
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=0.787 ms
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=2.12 ms
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=0.470 ms
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=0.554 ms
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=0.448 ms
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=0.439 ms
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=0.442 ms
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=0.499 ms
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=0.534 ms
+
+--- 100.0.0.45 ping statistics ---
+30 packets transmitted, 26 received, 13.3333% packet loss, time 29463ms
+rtt min/avg/max/mdev = 0.439/1.268/15.481/2.866 ms
+h2(100.0.0.11) ping napt(100.0.0.1)
+PING 100.0.0.1 (100.0.0.1) 56(84) bytes of data.
+From 100.0.0.11 icmp_seq=1 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=2 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=3 Destination Host Unreachable
+
+--- 100.0.0.1 ping statistics ---
+5 packets transmitted, 0 received, +3 errors, 100% packet loss, time 4094ms
+pipe 4
+h2(100.0.0.11) ping h3(10.0.0.50)
+ping: connect: Network is unreachable
+h2(100.0.0.11) ping h4(10.0.0.51)
+ping: connect: Network is unreachable
+h2(100.0.0.11) ping ds1(100.0.0.20)
+PING 100.0.0.20 (100.0.0.20) 56(84) bytes of data.
+From 100.0.0.11 icmp_seq=1 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=2 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=3 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=4 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=5 Destination Host Unreachable
+
+--- 100.0.0.20 ping statistics ---
+5 packets transmitted, 0 received, +5 errors, 100% packet loss, time 4102ms
+pipe 4
+h2(100.0.0.11) ping ws1(100.0.0.40)
+PING 100.0.0.40 (100.0.0.40) 56(84) bytes of data.
+From 100.0.0.11 icmp_seq=1 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=2 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=3 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=4 Destination Host Unreachable
+From 100.0.0.11 icmp_seq=5 Destination Host Unreachable
+
+--- 100.0.0.40 ping statistics ---
+5 packets transmitted, 0 received, +5 errors, 100% packet loss, time 4091ms
+pipe 4
+h3(10.0.0.50) ping h4(10.0.0.51)
+PING 10.0.0.51 (10.0.0.51) 56(84) bytes of data.
+64 bytes from 10.0.0.51: icmp_seq=3 ttl=64 time=0.454 ms
+64 bytes from 10.0.0.51: icmp_seq=4 ttl=64 time=0.057 ms
+64 bytes from 10.0.0.51: icmp_seq=5 ttl=64 time=0.050 ms
+
+--- 10.0.0.51 ping statistics ---
+5 packets transmitted, 3 received, 40% packet loss, time 4091ms
+rtt min/avg/max/mdev = 0.050/0.187/0.454/0.188 ms
+h3(10.0.0.50) ping h1(100.0.0.10)
+PING 100.0.0.10 (100.0.0.10) 56(84) bytes of data.
+
+--- 100.0.0.10 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4084ms
+
+h3(10.0.0.50) ping h2(100.0.0.11)
+PING 100.0.0.11 (100.0.0.11) 56(84) bytes of data.
+
+--- 100.0.0.11 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4075ms
+
+h3(10.0.0.50) ping dnslb(100.0.0.25)
+PING 100.0.0.25 (100.0.0.25) 56(84) bytes of data.
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=72.7 ms
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=91.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=156 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=156 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=156 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=157 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=157 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=157 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=160 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=160 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=161 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=161 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=6 ttl=255 time=161 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=0.568 ms
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=114 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=115 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=117 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=117 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=118 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=119 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=119 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=120 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=120 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=122 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=125 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=7 ttl=255 time=127 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=0.987 ms
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=26.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=27.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=28.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=28.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=29.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=30.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=30.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=30.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=31.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=31.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=32.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=8 ttl=255 time=33.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=0.743 ms
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=13.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=15.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=17.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=60.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=60.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=61.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=62.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=62.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=64.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=64.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=65.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=9 ttl=255 time=65.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=0.913 ms
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=24.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=24.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=27.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=27.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=27.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=27.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=28.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=28.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=33.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=33.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=10 ttl=255 time=33.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=1.26 ms
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=18.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=19.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=23.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=23.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=24.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=24.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=25.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=26.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=11 ttl=255 time=26.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=1.01 ms
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=36.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=37.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=37.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=37.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=37.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=37.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=38.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=38.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=38.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=39.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=39.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=12 ttl=255 time=39.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=0.574 ms
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=22.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=22.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=22.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=22.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=13 ttl=255 time=23.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=0.923 ms
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=12.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=13.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=15.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=16.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=18.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=19.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=21.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=23.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=95.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=96.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=98.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=14 ttl=255 time=99.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=0.666 ms
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=27.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=31.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=31.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=32.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=32.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=32.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=33.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=34.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=35.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=36.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=36.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=15 ttl=255 time=37.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=2.08 ms
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=15.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=15.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=16.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=16.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=17.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=17.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=18.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=18.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=19.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=20.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=16 ttl=255 time=20.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=1.35 ms
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=21.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=25.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=26.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=27.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=80.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=82.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=82.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=82.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=17 ttl=255 time=82.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=0.490 ms
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=16.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=17.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=17.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=17.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=17.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=17.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=18.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=19.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=19.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=19.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=60.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=18 ttl=255 time=61.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=0.634 ms
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=21.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=21.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=22.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=22.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=23.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=31.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=31.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=31.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=31.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=31.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=19 ttl=255 time=31.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=0.549 ms
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=15.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=16.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=17.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=17.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=17.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=19.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=20.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=20 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=0.923 ms
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=18.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=19.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=19.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=19.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=20.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=20.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=20.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=70.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=113 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=113 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=21 ttl=255 time=114 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=0.614 ms
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=12.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=13.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=13.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=14.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=14.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=15.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=38.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=77.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=78.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=78.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=79.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=22 ttl=255 time=79.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=0.755 ms
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=19.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=20.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=21.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=23.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=24.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=25.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=25.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=26.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=26.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=27.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=23 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=0.596 ms
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=24.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=25.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=27.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=35.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=36.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=36.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=37.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=37.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=38.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=38.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=39.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=24 ttl=255 time=39.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=0.566 ms
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=17.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=17.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=18.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=18.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=19.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=19.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=20.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=20.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=20.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=25 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=1.05 ms
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=16.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=17.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=18.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=27.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=28.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=28.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=28.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=29.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=29.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=29.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=26 ttl=255 time=29.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=0.527 ms
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=21.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=21.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=22.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=25.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=27.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=28.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=28.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=28.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=29.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=31.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=27 ttl=255 time=31.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=0.478 ms
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=15.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=15.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=15.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=16.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=16.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=47.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=47.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=126 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=158 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=158 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=28 ttl=255 time=159 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=0.762 ms
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=22.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=24.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=24.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=26.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=28.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=28.4 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=31.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=33.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=33.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=35.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=36.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=29 ttl=255 time=37.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=1.05 ms
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=18.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=19.8 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=20.6 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=21.0 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=21.5 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=22.3 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=22.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=23.2 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=23.7 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=30 ttl=255 time=24.1 ms (DUP!)
+
+--- 100.0.0.25 ping statistics ---
+30 packets transmitted, 25 received, +300 duplicates, 16.6667% packet loss, time 29154ms
+rtt min/avg/max/mdev = 0.478/37.831/161.433/36.762 ms
+h3(10.0.0.50) ping wwwlb(100.0.0.45)
+PING 100.0.0.45 (100.0.0.45) 56(84) bytes of data.
+64 bytes from 100.0.0.45: icmp_seq=6 ttl=255 time=1.85 ms
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=0.994 ms
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=14.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=14.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=16.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=22.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=65.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=65.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=66.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=66.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=66.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=67.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=67.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=0.792 ms
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=10.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=10.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=13.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=13.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=14.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=18.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=19.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=19.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=22.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=23.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=0.803 ms
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=25.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=26.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=27.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=28.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=29.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=30.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=31.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=31.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=32.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=33.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=0.790 ms
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=18.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=18.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=18.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=18.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=20.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=21.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=22.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=23.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=2.49 ms
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=16.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=17.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=23.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=23.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=24.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=26.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=26.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=26.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=27.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=1.06 ms
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=10.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=11.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=11.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=15.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=15.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=19.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=21.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=24.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=25.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=25.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=0.766 ms
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=13.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=13.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=14.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=14.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=17.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=18.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=18.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=19.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=19.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=20.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=21.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=21.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=0.803 ms
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=12.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=13.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=15.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=58.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=59.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=62.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=62.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=63.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=63.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=63.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=63.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=63.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=0.914 ms
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=9.34 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=11.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=11.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=12.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=12.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=13.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=14.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=70.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=72.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=74.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=75.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=77.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=1.74 ms
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=14.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=14.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=17.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=58.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=58.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=59.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=59.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=60.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=61.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=62.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=63.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=63.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=3.00 ms
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=14.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=14.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=15.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=15.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=20.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=22.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=23.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=25.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=27.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=27.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=28.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=3.24 ms
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=11.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=13.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=13.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=13.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=19.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=19.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=19.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=19.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=20.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=20.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=20.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=1.04 ms
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=13.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=14.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=15.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=15.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=16.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=17.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=17.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=18.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=18.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=56.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=57.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=59.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=1.24 ms
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=15.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=19.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=27.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=28.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=28.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=29.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=29.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=30.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=1.18 ms
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=9.18 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=9.62 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=10.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=10.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=14.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=15.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=16.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=17.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=17.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=18.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=20.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=0.684 ms
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=7.25 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=8.32 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=9.40 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=50.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=52.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=52.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=54.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=55.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=56.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=58.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=59.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=60.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=0.821 ms
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=12.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=12.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=17.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=18.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=18.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=19.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=19.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=20.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=21.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=0.730 ms
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=10.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=11.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=12.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=13.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=14.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=15.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=16.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=17.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=20.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=21.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=0.770 ms
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=11.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=13.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=13.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=56.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=57.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=1.22 ms
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=14.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=19.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=20.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=1.09 ms
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=13.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=13.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=13.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=58.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=58.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=58.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=58.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=58.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=59.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=59.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=59.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=59.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=1.32 ms
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=17.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=17.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=17.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=18.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=18.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=18.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=18.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=18.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=71.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=109 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=109 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=109 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=0.847 ms
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=13.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=14.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=16.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=17.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=18.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=18.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=30.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=72.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=73.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=74.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=75.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=76.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=1.01 ms
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=16.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=18.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=20.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=24.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=26.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=26.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=29.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=29.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=29.5 ms (DUP!)
+
+--- 100.0.0.45 ping statistics ---
+30 packets transmitted, 25 received, +288 duplicates, 16.6667% packet loss, time 29142ms
+rtt min/avg/max/mdev = 0.684/27.546/108.947/21.197 ms
+h3(10.0.0.50) ping ds1(100.0.0.20)
+PING 100.0.0.20 (100.0.0.20) 56(84) bytes of data.
+
+--- 100.0.0.20 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4095ms
+
+h3(10.0.0.50) ping ws1(100.0.0.40)
+PING 100.0.0.40 (100.0.0.40) 56(84) bytes of data.
+
+--- 100.0.0.40 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4080ms
+
+h4(10.0.0.51) ping h3(10.0.0.50)
+PING 10.0.0.50 (10.0.0.50) 56(84) bytes of data.
+64 bytes from 10.0.0.50: icmp_seq=3 ttl=64 time=0.053 ms
+64 bytes from 10.0.0.50: icmp_seq=4 ttl=64 time=0.052 ms
+64 bytes from 10.0.0.50: icmp_seq=5 ttl=64 time=0.054 ms
+
+--- 10.0.0.50 ping statistics ---
+5 packets transmitted, 3 received, 40% packet loss, time 4101ms
+rtt min/avg/max/mdev = 0.052/0.053/0.054/0.000 ms
+h4(10.0.0.51) ping h1(100.0.0.10)
+PING 100.0.0.10 (100.0.0.10) 56(84) bytes of data.
+
+--- 100.0.0.10 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4084ms
+
+h4(10.0.0.51) ping h2(100.0.0.11)
+PING 100.0.0.11 (100.0.0.11) 56(84) bytes of data.
+
+--- 100.0.0.11 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4074ms
+
+h4(10.0.0.51) ping dnslb(100.0.0.25)
+PING 100.0.0.25 (100.0.0.25) 56(84) bytes of data.
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=60.8 ms
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=100 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=101 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=101 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=102 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=102 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=102 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=103 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=103 ms (DUP!)
+64 bytes from 100.0.0.25: icmp_seq=5 ttl=255 time=103 ms (DUP!)
+
+--- 100.0.0.25 ping statistics ---
+5 packets transmitted, 1 received, +9 duplicates, 80% packet loss, time 4074ms
+rtt min/avg/max/mdev = 60.811/97.767/103.310/12.350 ms
+h4(10.0.0.51) ping wwwlb(100.0.0.45)
+PING 100.0.0.45 (100.0.0.45) 56(84) bytes of data.
+64 bytes from 100.0.0.45: icmp_seq=7 ttl=255 time=0.784 ms
+64 bytes from 100.0.0.45: icmp_seq=8 ttl=255 time=0.838 ms
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=0.862 ms
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=13.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=13.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=13.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=13.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=14.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=14.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=53.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=54.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=68.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=108 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=109 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=9 ttl=255 time=110 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=0.914 ms
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=12.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=14.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=14.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=14.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=17.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=17.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=17.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=17.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=65.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=70.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=70.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=10 ttl=255 time=70.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=0.755 ms
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=10.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=10.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=11.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=11.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=13.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=14.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=18.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=18.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=23.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=27.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=11 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=1.48 ms
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=21.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=22.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=22.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=23.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=24.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=25.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=25.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=26.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=26.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=12 ttl=255 time=27.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=1.45 ms
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=22.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=22.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=22.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=23.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=23.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=23.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=24.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=24.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=24.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=25.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=13 ttl=255 time=25.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=1.18 ms
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=15.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=15.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=16.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=16.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=24.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=81.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=81.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=82.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=82.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=82.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=82.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=14 ttl=255 time=82.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=1.62 ms
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=6.61 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=7.55 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=8.37 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=57.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=58.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=15 ttl=255 time=58.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=1.05 ms
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=16.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=17.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=17.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=17.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=17.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=17.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=18.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=19.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=20.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=16 ttl=255 time=20.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=1.10 ms
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=17.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=19.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=19.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=20.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=20.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=21.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=21.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=21.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=22.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=22.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=17 ttl=255 time=22.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=1.30 ms
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=15.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=15.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=20.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=21.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=22.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=22.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=23.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=25.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=27.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=28.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=18 ttl=255 time=29.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=1.33 ms
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=21.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=22.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=23.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=24.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=25.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=28.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=29.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=30.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=31.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=32.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=19 ttl=255 time=33.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=0.746 ms
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=21.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=21.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=21.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=24.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=27.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=27.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=28.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=28.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=28.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=29.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=33.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=20 ttl=255 time=33.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=0.708 ms
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=8.39 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=9.17 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=10.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=11.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=12.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=13.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=13.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=14.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=14.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=14.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=14.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=21 ttl=255 time=15.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=1.13 ms
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=14.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=17.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=18.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=19.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=21.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=23.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=26.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=26.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=28.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=30.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=32.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=22 ttl=255 time=34.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=1.23 ms
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=12.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=13.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=14.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=14.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=16.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=16.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=16.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=23.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=24.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=25.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=26.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=23 ttl=255 time=27.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=1.73 ms
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=7.77 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=7.93 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=8.19 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=8.33 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=57.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=64.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=66.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=67.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=67.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=69.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=69.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=24 ttl=255 time=70.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=1.61 ms
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=17.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=21.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=24.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=25.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=26.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=28.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=29.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=30.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=30.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=25 ttl=255 time=31.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=1.14 ms
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=10.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=10.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=11.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=57.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=57.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=59.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=59.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=59.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=61.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=61.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=61.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=26 ttl=255 time=61.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=0.845 ms
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=16.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=16.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=17.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=19.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=19.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=22.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=23.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=23.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=24.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=24.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=25.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=27 ttl=255 time=27.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=0.768 ms
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=11.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=12.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=12.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=12.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=12.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=13.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=53.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=53.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=72.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=121 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=121 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=28 ttl=255 time=121 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=1.57 ms
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=19.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=20.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=20.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=20.7 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=21.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=21.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=21.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=22.1 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=22.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=22.9 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=29 ttl=255 time=23.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=0.775 ms
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=18.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=18.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=18.5 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=18.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=19.0 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=19.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=19.4 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=19.6 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=20.3 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=23.2 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=57.8 ms (DUP!)
+64 bytes from 100.0.0.45: icmp_seq=30 ttl=255 time=64.9 ms (DUP!)
+
+--- 100.0.0.45 ping statistics ---
+30 packets transmitted, 24 received, +264 duplicates, 20% packet loss, time 29214ms
+rtt min/avg/max/mdev = 0.708/27.671/121.053/22.683 ms
+h4(10.0.0.51) ping ds1(100.0.0.20)
+PING 100.0.0.20 (100.0.0.20) 56(84) bytes of data.
+
+--- 100.0.0.20 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4079ms
+
+h4(10.0.0.51) ping ws1(100.0.0.40)
+PING 100.0.0.40 (100.0.0.40) 56(84) bytes of data.
+
+--- 100.0.0.40 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4074ms
+
