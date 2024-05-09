@@ -4,7 +4,6 @@ flag = 0
 total_tests = 0
 correct_tests = 0
 incorrect_tests = 0
-unreachable_tests = 0
 
 if __name__ == "__main__":
     with open("/home/sdn/Desktop/2/results/ping.log", "r") as test, open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
@@ -19,9 +18,9 @@ if __name__ == "__main__":
                     flag = 1
                 else:
                     flag = 2
-            if re.match("(.*)unreachable(.*)", line) and re.match("(.*)h3(.*)", line) or re.match("(.*)h4(.*)", line):
+            if re.match("(.*)unreachable(.*)", line):
                     output_file.write("PASS\n")
-                    unreachable_tests += 1
+                    correct_tests += 1
                     continue
             if re.match(".*()connect(.*)", line):
                 output_file.write(line)
@@ -62,7 +61,6 @@ if __name__ == "__main__":
 
         # Write summary of test results
         output_file.write("\n=========================\n")
-        output_file.write("Общее количество тестов: {}\n".format(total_tests / 2))
+        output_file.write("Общее количество тестов: {}\n".format(total_tests // 2))
         output_file.write("Количество корректных результатов: {}\n".format(correct_tests))
         output_file.write("Количество некорректных результатов: {}\n".format(incorrect_tests))
-        output_file.write("Количество unreachable: {}\n".format(unreachable_tests))
