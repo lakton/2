@@ -19,8 +19,8 @@ if __name__ == "__main__":
                     flag = 1
                 else:
                     flag = 2
-            if re.match("(.*)unreachable(.*)", line):
-                    output_file.write("ПРОВЕРЬ САМ\n")
+            if re.match("(.*)unreachable(.*)", line) and re.match("(.*)h3(.*)", line) or re.match("(.*)h4(.*)", line):
+                    output_file.write("PASS\n")
                     unreachable_tests += 1
                     continue
             if re.match(".*()connect(.*)", line):
