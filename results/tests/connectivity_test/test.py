@@ -3,7 +3,7 @@ import re
 flag = 0
 
 if __name__ == "__main__":
-    with open("ping.log", "r") as test, open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
+    with open("/home/sdn/Desktop/2/results/ping.log", "r") as test, open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
         for line in test:
             if re.match("(.*)ping(.*)", line):
                 output_file.write("=========================\n")
