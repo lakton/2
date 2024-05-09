@@ -1,17 +1,10 @@
 click_conf="/home/sdn/Desktop/2/application/nfv"
 echo "reloading nfv log file"
-touch /home/sdn/Desktop/2/results/ipsclick.log
-chmod 755 /home/sdn/Desktop/2/results/ipsclick.log
-cat /dev/null > /home/sdn/Desktop/2/results/ipsclick.log
-touch /home/sdn/Desktop/2/results/dnsclick.log
-chmod 755 /home/sdn/Desktop/2/results/dnsclick.log
-cat /dev/null > /home/sdn/Desktop/2/results/dnsclick.log
-touch /home/sdn/Desktop/2/results/wwwclick.log
-chmod 755 /home/sdn/Desktop/2/results/wwwclick.log
-cat /dev/null > /home/sdn/Desktop/2/results/wwwclick.log
-touch /home/sdn/Desktop/2/results/natclick.log
-chmod 755 /home/sdn/Desktop/2/results/natclick.log
-cat /dev/null > /home/sdn/Desktop/2/results/natclick.log
+# Очистка выводных файлов перед запуском скриптов
+echo "" > /home/sdn/Desktop/2/results/ipsclick.log
+echo "" > /home/sdn/Desktop/2/results/dnsclick.log
+echo "" > /home/sdn/Desktop/2/results/wwwclick.log
+echo "" > /home/sdn/Desktop/2/results/natclick.log
 
 #Kill all first
 echo "kill all click script"
