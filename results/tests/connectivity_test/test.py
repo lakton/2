@@ -14,6 +14,8 @@ if __name__ == "__main__":
                 total_tests += 1
                 output_file.write(f"====ТЕСТ №{test_number}====\n")
                 output_file.write(line)
+            else:
+                output_file.write(line)
                 
             if re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
                 if re.match("(.*)h1(.*)", line) or re.match("(.*)h2(.*)", line):
