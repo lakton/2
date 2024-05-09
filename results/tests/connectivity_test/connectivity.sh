@@ -108,4 +108,4 @@ sleep 5
 $m_util h4 ping -c 5 100.0.0.40 >> /home/sdn/Desktop/2/results/ping.log 2>&1
 sleep 5
 echo "Тесты завершены. Запускаю 'test.py' для формирования результатов"
-python3 test.py
+python3 /home/sdn/Desktop/2/results/tests/connectivity_test/test.py

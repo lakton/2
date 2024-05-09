@@ -1,5 +1,5 @@
 import os
-# print('ANALYZER 4')
+print('ANALYZER 4')
 
 file = open("/home/sdn/Desktop/2/results/resultservice.log", "a")
 file.write("\nips тест для заблокированных пакетов")

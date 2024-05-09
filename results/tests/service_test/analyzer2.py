@@ -1,5 +1,5 @@
 import os
-# print('ANALYZER 2')
+print('ANALYZER 2')
 
 file = open("/home/sdn/Desktop/2/results/resultservice.log", "a")
 
