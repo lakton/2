@@ -1,5 +1,5 @@
 app:
-	@sudo python3 pox.py controller samples.pretty_log log.level --DEBUG >> /var/log/pox.log 2>&1 &
+	@sudo python3 ./pox.py controller samples.pretty_log log.level --DEBUG >> /var/log/pox.log 2>&1 &
 	@sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/ik2220-assign-team9/application/nfv/ips.click >> /var/log/ipsclick.log 2>&1 
 	@sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/ik2220-assign-team9/application/nfv/dns.click >> /var/log/dnsclick.log 2>&1 
 	@sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/ik2220-assign-team9/application/nfv/www.click >> /var/log/wwwclick.log 2>&1 
