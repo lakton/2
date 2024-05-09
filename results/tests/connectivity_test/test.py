@@ -26,23 +26,23 @@ if __name__ == "__main__":
                     if flag == 1:
                         flag = 0
                         ping_data.append("packet loss percent = " + number[7])
-                        if number[7] == "100%":
+                        if number[7] == "100%" and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
                     elif flag == 2:
                         flag = 0
                         ping_data.append("packet loss percent = " + number[5])
-                        if number[5] == "100%":
+                        if number[5] == "100%" and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
                     else:
                         ping_data.append("packet loss percent = " + number[5])
-                        if number[5] == "100%":
-                            ping_data.append("FAIL")
-                        else:
+                        if number[5] == "100%" and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
+                        else:
+                            ping_data.append("FAIL")
             else:
                 ping_data.append("packet loss percent = " + number[5])
                 if number[5] == "100%":
