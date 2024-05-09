@@ -11,16 +11,23 @@ if __name__ == "__main__":
         if re.match("(.*)ping(.*)", line):
             print("Matched 'ping' pattern")  # Добавлено отладочное сообщение
             results.append("=========================")
+        # Убираем строки с пакетами DUP!
+        if "DUP!" in line:
+            print("Skipping line with DUP!")  # Добавлено отладочное сообщение
+            continue
         results.append(line.strip())  # Удаление символа новой строки для избежания лишних переносов строк
         if re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
+            print("Matched 'ws1' or 'ds1' pattern")  # Добавлено отладочное сообщение
             if re.match("(.*)h1(.*)", line) or re.match("(.*)h2(.*)", line):
                 flag = 1
             else:
                 flag = 2
 
         if re.match(".*connect.*", line):
+            print("Matched 'connect' pattern")  # Добавлено отладочное сообщение
             results.append(line.strip())
             if re.match("(.*)packet(.*)", line):
+                print("Matched 'packet' pattern")  # Добавлено отладочное сообщение
                 work = line
                 number = work.split()
                 results.append("передано = " + number[0])
