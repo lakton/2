@@ -1,48 +1,45 @@
-#!/usr/bin/env python
-
 import re
 
-if __name__ == "__main__":
-    node_flags = {"ws1": 0, "ds1": 0}
-    test = open("/home/sdn/Desktop/2/results/ping.log", "r")
-    results = []
-    ping_data = []
-    for line in test:
-        if re.match("(.*)ping(.*)", line):
-            if ping_data:
-                results.extend(ping_data)
-                ping_data = []
-            results.append("=========================")
-            results.append(line.strip())
-        elif re.match(".*connect.*", line):
-            results.append(line.strip())
-        elif re.match("(.*)packet(.*)", line):
-            work = line
-            number = work.split()
-            ping_data.append("transmitted = " + number[0])
-            ping_data.append("received = " + number[3])
-            transmitted = int(number[0])
-            received = int(number[3])
-            packet_loss_percent = (1 - received / transmitted) * 100
-            ping_data.append("packet loss percent = " + f"{packet_loss_percent:.2f}%")
-            if any(node_flags.values()):
-                for node, flag in node_flags.items():
-                     if flag == 1 or flag == 2 or flag == 3:
-                        flag = 0
-                        if 0 <= packet_loss_percent < 100 and node not in ["ws1", "ds1"]:
-                            ping_data.append("FAIL")
-                        else:
-                            ping_data.append("PASS")
-            else:
-                if 0 <= packet_loss_percent < 100 and "ws1" not in line and "ds1" not in line:
-                    ping_data.append("FAIL")
-                else:
-                    ping_data.append("PASS")
-                    #if 0 <= packet_loss_percent < 100 and ("dnslb" in line or "wwwlb" in line or "napt" in line):
-                        #ping_data.pop()  # Если пакет потерян, но не на всех узлах, применяем FAIL только в этом случае
-    if ping_data:
-        results.extend(ping_data)
+flag = 0
 
-    with open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
-        for result in results:
-            output_file.write(result + '\n')
+if __name__ == "__main__":
+    with open("ping.log", "r") as test, open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
+        for line in test:
+            if re.match("(.*)ping(.*)", line):
+                output_file.write("=========================\n")
+                output_file.write(line)
+                
+            if re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
+                if re.match("(.*)h1(.*)", line) or re.match("(.*)h2(.*)", line):
+                    flag = 1
+                else:
+                    flag = 2
+
+            if re.match(".*()connect(.*)", line):
+                output_file.write(line)
+                
+            if re.match("(.*)packet(.*)", line):
+                work = line
+                number = work.split()
+                output_file.write("получено = " + number[0] + "\n")
+                output_file.write("принято = " + number[3] + "\n")
+                if flag == 1:
+                    flag = 0
+                    output_file.write("packet loss percent = " + number[7] + "\n")
+                    if number[7] == "100%":
+                        output_file.write("PASS\n")
+                    else:
+                        output_file.write("FAIL\n")
+                elif flag == 2:
+                    flag = 0
+                    output_file.write("packet loss percent = " + number[5] + "\n")
+                    if number[5] == "100%":
+                        output_file.write("PASS\n")
+                    else:
+                        output_file.write("FAIL\n")
+                else:
+                    output_file.write("packet loss percent = " + number[5] + "\n")
+                    if number[5] == "100%":
+                        output_file.write("FAIL\n")
+                    else:
+                        output_file.write("PASS\n")
