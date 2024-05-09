@@ -3,9 +3,9 @@ h4 route add default gw 10.0.0.1 h4-eth0
 h5 route add default gw 100.0.0.25 h5-eth0
 h6 route add default gw 100.0.0.25 h6-eth0
 h7 route add default gw 100.0.0.25 h7-eth0
-h5 python3 /home/sdn/Desktop/2/ik2220-assign-team9/application/sdn/ext/dns_server20.py &
-h6 python3 /home/sdn/Desktop/2/ik2220-assign-team9/application/sdn/ext/dns_server21.py &
-h7 python3 /home/sdn/Desktop/2/ik2220-assign-team9/application/sdn/ext/dns_server22.py &
+h5 python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server20.py &
+h6 python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server21.py &
+h7 python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server22.py &
 h8 route add default gw 100.0.0.45 h8-eth0
 h9 route add default gw 100.0.0.45 h9-eth0
 h10 route add default gw 100.0.0.45 h10-eth0
