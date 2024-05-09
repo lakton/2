@@ -1,9 +1,6 @@
 // ==================================
 // ips click
-// Intrusion Detection System
-// IK2220 SDN and NFV Assignment
-// Team 9
-// {atiiq,suryas,purwidi,mnde}@kth.se
+// Intrusion Prevention System
 // ==================================
 
 // Source code for ips

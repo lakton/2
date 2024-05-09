@@ -1,11 +1,7 @@
 """
-learning switch and firewall
-References Used :
-For Switch, 
-1) the l2_learning-switch module in pox
-For Firewall (in addition to the above),  
-1) https://www.coursera.org/course/sdn1
-2) http://kickstartsdn.com/
+learning switch and firewall 
+https://www.coursera.org/course/sdn1
+http://kickstartsdn.com/
 """
 
 from pox.core import core

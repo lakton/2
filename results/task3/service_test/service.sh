@@ -1,5 +1,5 @@
 m_util="/home/click/mininet/util/m"
-test_dir="/home/atiiq/run"
+test_dir="/home/sdn/Desktop/2/results/task3/service_test"
 
 touch /var/log/resultservice.log
 chmod 755 /var/log/resultservice.log
@@ -36,7 +36,7 @@ sleep 5
 echo "h4 digging 100.0.0.25 for sdncourse.se" >> /var/log/service.log 2>&1
 $m_util h4 timeout 20 dig @100.0.0.25 sdncourse.se >> /var/log/servicedns.log 2>&1
 sleep 10
-python $test_dir/servdnschecker.py
+python3 $test_dir/servdnschecker.py
 
 #============================================================================
 #WWW SERVER TEST
@@ -52,7 +52,7 @@ sleep 5
 echo "h4 curl sdncourse.se" >> /var/log/service.log 2>&1
 $m_util h4 timeout 20 curl sdncourse.se -s -X POST -v >> /var/log/servicewww.log 2>&1
 sleep 10
-python $test_dir/servwwwchecker.py
+python3 $test_dir/servwwwchecker.py
 
 
 #============================================================================
