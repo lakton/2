@@ -306,7 +306,21 @@ class LearningSwitch1 (EventMixin):
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
                 print("Destination Host Unreachable")
                 return
-
+        def flood(message=None):
+            msg = of.ofp_packet_out()
+            if time.time() - self.connection.connect_time >= flood_delay:
+                if self.hold_down_expired is False:
+                    self.hold_down_expired = True
+                    log.info("%s: Истек срок удержания флуда - флудим", event.dpid)
+                if message is not None:
+                    log.debug(message)
+                msg.actions.append(of.ofp_action_output(port=of.OFPP_FLOOD))
+            else:
+                pass
+            msg.data = event.ofp
+            msg.in_port = event.port
+            self.connection.send(msg)
+            
         if packet.dst.is_multicast:
             flood()
         else:
