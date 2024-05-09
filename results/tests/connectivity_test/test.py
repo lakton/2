@@ -29,19 +29,19 @@ if __name__ == "__main__":
                 for node, flag in node_flags.items():
                     if flag == 1:
                         flag = 0
-                        if packet_loss_percent <= 99 and node not in ["ws1", "ds1"]:
+                        if 0 <= packet_loss_percent < 100 and node not in ["ws1", "ds1"]:
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
                     elif flag == 2:
                         flag = 0
-                        if packet_loss_percent <= 99 and node not in ["ws1", "ds1"]:
+                        if 0 <= packet_loss_percent < 100 and node not in ["ws1", "ds1"]:
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
                     elif flag == 3:
                         flag = 0
-                        if packet_loss_percent <= 99 and node not in ["ws1", "ds1"]:
+                        if 0 <= packet_loss_percent < 100 and node not in ["ws1", "ds1"]:
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
