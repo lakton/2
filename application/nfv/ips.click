@@ -34,9 +34,9 @@ icmp_count :: Counter;
 service_count :: Counter;
 
 // Device declaration
-src_net :: FromDevice(ips-eth1, SNIFFER false);
+src_net :: FromDevice(ips-eth1, METHOD LINUX, SNIFFER false);
 dst_net :: PrioSched -> out_eth1 -> pack_res_net -> ToDevice(ips-eth1);
-src_lb :: FromDevice(ips-eth2, SNIFFER false);
+src_lb :: FromDevice(ips-eth2, METHOD LINUX, SNIFFER false);
 dst_lb :: PrioSched -> out_eth2 -> pack_res_in -> ToDevice(ips-eth2);
 //src_insp :: FromDevice(s6-eth3, SNIFFER false);
 dst_insp :: PrioSched -> out_eth3 -> pack_insp -> ToDevice(ips-eth3);

@@ -34,9 +34,9 @@ drop_ex :: Counter;
 drop_in :: Counter;
 
 // Device declaration
-fr_ext :: FromDevice(lb2-eth1, SNIFFER false);
+fr_ext :: FromDevice(lb2-eth1, METHOD LINUX, SNIFFER false);
 to_ext :: Queue(200) -> out_eth1 -> pack_res_ex -> ToDevice(lb2-eth1);
-fr_int :: FromDevice(lb2-eth2, SNIFFER false);
+fr_int :: FromDevice(lb2-eth2, METHOD LINUX, SNIFFER false);
 to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(lb2-eth2);
 
 // ARP Responder

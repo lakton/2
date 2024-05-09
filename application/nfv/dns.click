@@ -34,9 +34,9 @@ drop_ex_ip :: Counter;
 drop_in :: Counter;
 
 // Device declaration
-fr_ext :: FromDevice(lb1-eth1, SNIFFER false);
+fr_ext :: FromDevice(lb1-eth1, METHOD LINUX, SNIFFER false);
 to_ext :: Queue(200) -> out_eth1 -> pack_res_ex -> ToDevice(lb1-eth1);
-fr_int :: FromDevice(lb1-eth2, SNIFFER false);
+fr_int :: FromDevice(lb1-eth2, METHOD LINUX, SNIFFER false);
 to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(lb1-eth2);
 
 arpr_ext :: ARPResponder(100.0.0.25 0a:b9:f7:7e:59:6b);
