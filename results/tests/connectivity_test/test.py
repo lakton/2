@@ -4,7 +4,7 @@ import re
 
 if __name__ == "__main__":
     flag = 0
-    test = open("ping.log", "r")
+    test = open("/home/sdn/Desktop/2/results/ping.log", "r")
     for line in test:
         if re.match("(.*)ping(.*)", line):
             print("=========================")
