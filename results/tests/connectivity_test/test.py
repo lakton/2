@@ -46,11 +46,11 @@ if __name__ == "__main__":
                         else:
                             ping_data.append("FAIL")
             else:
-                if packet_loss_percent <= 99 and "ws1" not in line and "ds1" not in line:
+                if 0 <= packet_loss_percent < 100 and "ws1" not in line and "ds1" not in line:
                     ping_data.append("PASS")
                 else:
                     ping_data.append("FAIL")
-                    if packet_loss_percent <= 99 and ("dnslb" in line or "wwwlb" in line or "napt" in line):
+                    if 0 <= packet_loss_percent < 100 and ("dnslb" in line or "wwwlb" in line or "napt" in line):
                         ping_data.pop()  # Если пакет потерян, но не на всех узлах, применяем FAIL только в этом случае
     if ping_data:
         results.extend(ping_data)
