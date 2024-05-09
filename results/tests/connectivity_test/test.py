@@ -26,7 +26,7 @@ if __name__ == "__main__":
                     if flag == 1:
                         flag = 0
                         ping_data.append("packet loss percent = " + number[7].replace('+', ''))  # Убираем '+' из процента потерь
-                        if float(number[7].replace('+', '').replace('%', '')) == 0 and node != "ws1" and node != "ds1":
+                        if float(number[7].replace('%', '')) == 0 and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
