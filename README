@@ -1,81 +1,61 @@
-Team 9 
-IK2220 SDN and NFV - VT16
-
-README of the solutions submitted
-
-Disclaimer : All command should be run in root privilege.
-
-1. Mininet
+README
+Mininet
 ==========================
-Command to build the topology -> make topo. It should be run from inside directory
-To clean the topology -> make clean. It should be run from inside directory
-
-2. SDN and NFV Application
+- make topo
+- make clean
 ===========================
+- расположение pox.py находится в /2/application/sdn/pox.py
 
-Disclaimer : We consider the path or directory environment is exactly the same as in the VM provided, where :
-	- pox.py location is at /home/click/pox/pox.py
-	- click binary file can be acessed from anywhere 
+Команда для запуска приложения NFV и SDN -> make app. 
 
-Command to run the NFV and SDN application -> make app. It should be run from inside directory
-Command to clean the NFV and SDN application -> make clean. It should be run from inside directory </home/ik2220-assign-team9/application>
+Журналы вывода генерируются в каталоге </var/log>:
+- pox.log -> журнал pox
+- ipsclick.log -> журнал ips
+- dnsclick.log -> журнал dns lb (lb1)
+- wwwclick.log -> журнал www lb (lb2)
+- natclick.log -> журнал napt
 
-The output log(s) are generated in </var/log> directory :
-	- pox.log 	-> pox log
-	- ipsclick.log	-> ips log
-	- dnsclick.log	-> dns lb (lb1) log
-	- wwwclick.log	-> www lb (lb2) log
-	- natclick.log	-> napt log
-
-3. Result
+Результат
 ============================
+Содержит два тестовых случая:
 
-3c. Task3
-=============
-Disclaimer : Most of the tests under this section are using mininet m utility, which is located in </home/click/mininet/util/m>, and we assume that mininet m utility is located in this very same path, wherever it run from.
+1. Тест связности
+   - connectivity.sh -> сценарий для запуска тестов связности между хостами и/или серверами и/или балансировщиками нагрузки
+   - ping.log -> вывод stdout из connectivity.sh, перенаправленный в файл
+   - test.py -> сценарий на Python для разбора stdout (ping.log) в удобный для восприятия результат
+   - connectivity_test_results -> выходные результаты для всех тестов выше
 
-Contains two test cases :
-1. Connectivity test -> test all the connection between one host and another
-There are 4 files :
-	- connectivity.sh -> the script to run the connectivity cases between host(s) and/or server(s) and/or load balancer(s)
-	- ping.log -> stdout from connectivity.sh which is redirected to a file
-		if connectivity.sh is run, then ping.log would be generated in </var/log>
-	- test.py -> python script to parse the stdout (ping.log) into a good looking result
-	- connectivity_test_results -> the output result for all the test above
+2. Тест служб
+   Тесты служб можно выполнить, запустив service.sh. Он будет тестировать следующее:
+   - Функциональность сервера DNS
+   - Функциональность веб-сервера WWW
+   - Функциональность кругового размещения балансировщика нагрузки
+   - Функциональность ips, содержит 5 тестов
 
-2. Service test -> test the service provided by server on DMZ area
+Файлы:
+- resultservice.log -> Содержит сводку результатов всего теста службы (PASS или FAIL)
+- service.log -> Содержит файл журнала теста службы.
+- servicedns.log -> Содержит результат команды dig в тесте 1 (тест функциональности DNS)
+- servicewww.log -> Содержит результат команды curl в тесте 2 (тест функциональности веб-сервера WWW)
 
-Services test can be done by running service.sh. It will test the following :
-1. DNS server functionality
-2. WWW server functionality
-3. Round robin functionality of load balancer
-4. ips functionality, contains 5 tests
+- servdnschecker.py -> Содержит скрипт анализатора для определения успешности или неуспешности теста 1 (тест функциональности DNS).
+- servwwwchecker.py -> Содержит скрипт анализатора для определения успешности или неуспешности теста 2 (тест функциональности веб-сервера).
+- rrdnschecker.py -> Содержит скрипт анализатора для определения успешности или неуспешности теста 3 (тест функциональности кругового размещения).
+- analyzer1.py to analyzer5.py -> Содержат скрипты анализаторов для определения успешности или неуспешности теста функциональности ips. Есть 5 файлов, по одному для каждого теста в функциональности ips.
 
-Files :
-resultservice.log 	-> Contains result summary of the whole service test (either PASS or FAIL)
-service.log 		-> Contains log file of service test.
-servicedns.log 		-> Contains result of dig command in test 1 (DNS functionality)
-servicewww.log		-> Contains result of curl command in test 2 (WWW server functionality)
+- 61.pcap -> Содержит файл захвата tcpdump для s6-eth1 (ips, интерфейс, обращенный к SW2) -> этот файл будет всегда перезагружаться при каждом запуске теста ips
+- 62.pcap -> Содержит файл захвата tcpdump для s6-eth2 (ips, интерфейс, обращенный к LB2) -> этот файл будет всегда перезагружаться при каждом запуске теста ips
+- 63.pcap -> Содержит файл захвата tcpdump для s6-eth3 (ips, интерфейс, обращенный к INSP) -> этот файл будет всегда перезагружаться при каждом запуске теста ips
+- 71.pcap -> Содержит файл захвата tcpdump для s7-eth1 (LB2, интерфейс, обращенный к ips)
+- 72.pcap -> Содержит файл захвата tcpdump для s7-eth2 (LB2, интерфейс, обращенный к SW4)
+- insptest1.pcap -> Содержит файл захвата tcpdump для h11-eth0 (INSP) во время теста ips 1
+- insptest2.pcap -> Содержит файл захвата tcpdump для h11-eth0 (INSP) во время теста ips 2
+- insptest3.pcap -> Содержит файл захвата tcpdump для h11-eth0 (INSP) во время теста ips 3
+- insptest4.pcap -> Содержит файл захвата tcpdump для h11-eth0 (INSP) во время теста ips 4
+- insptest5.pcap -> Содержит файл захвата tcpdump для h11-eth0 (INSP) во время теста ips 5
 
-servdnschecker.py 		-> Contains analyzer script to determine whether test 1 (DNS functionality test) is succesful or not.
-servwwwchecker.py		-> Contains analyzer script to determine whether test 2 (WWW functionality test) is succesful or not.
-rrdnschecker.py			-> Contains analyzer script to determine whether test 3 (Round robin functionality test) is succesful or not.
-analyzer1.py to analyzer5.py	-> Contains analyzer script to determine whether ips functionality test is succesful or not. There are 5 files, one for each test inside ips functionality test.
-
-61.pcap		-> Contains tcpdump capture file of s6-eth1 (ips, interface facing SW2)	-> this file would always reloaded every ips test is run
-62.pcap		-> Contains tcpdump capture file of s6-eth2 (ips, interface facing LB2)	-> this file would always reloaded every ips test is run
-63.pcap		-> Contains tcpdump capture file of s6-eth3 (ips, interface facing INSP) -> this file would always reloaded every ips test is run
-71.pcap		-> Contains tcpdump capture file of s7-eth1 (LB2, interface facing ips)
-72.pcap		-> Contains tcpdump capture file of s7-eth2 (LB2, interface facing SW4)
-insptest1.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 1
-insptest2.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 2
-insptest3.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 3
-insptest4.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 4
-insptest5.pcap	-> Contains tcpdump capture file of h11-eth0 (INSP) during ips test 5
-
-3d. Task4
-=============
-a set of files that assess the performance of each of Click­based network function. Basically, all of this are implemented along with the click configuration itself, in each entity (ips, lb1, lb2, napt). There are two kind of files :
-	- <service>.report -> sample report of each entity
-	- <service>.click -> click configuration of each entity
-As requested in the document, report file is generated once the click module terminates.
+Результат 2
+============================
+Набор файлов, которые оценивают производительность каждой сетевой функции на основе Click. Фактически все они реализованы вместе с конфигурацией Click в каждой сущности (ips, lb1, lb2, napt). Существует два вида файлов:
+- <service>.report -> образец отчета для каждой сущности
+- <service>.click -> конфигурация Click для каждой сущности. Как требуется в документе, файл отчета генерируется после завершения работы модуля Click.
