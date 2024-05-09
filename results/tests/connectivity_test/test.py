@@ -3,15 +3,11 @@
 import re
 
 if __name__ == "__main__":
+    flag = 0
     test = open("/home/sdn/Desktop/2/results/ping.log", "r")
     results = []
-    ping_data = []  # Создание временного списка для данных ping-сессий
-    flag = 0  # Флаг для отслеживания состояния ping-сессии
     for line in test:
         if re.match("(.*)ping(.*)", line):
-            if ping_data:  # Если временный список не пустой, добавляем его к результатам
-                results.extend(ping_data)
-                ping_data = []  # Очищаем временный список
             results.append("=========================")
             results.append(line.strip())
         elif re.match(".*connect.*", line):
@@ -19,36 +15,33 @@ if __name__ == "__main__":
         elif re.match("(.*)packet(.*)", line):
             work = line
             number = work.split()
-            ping_data.append("transmitted = " + number[0])
-            ping_data.append("received = " + number[3])
+            results.append("transmitted = " + number[0])
+            results.append("received = " + number[3])
+            if re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
+                if re.match("(.*)h1(.*)", line) or re.match("(.*)h2(.*)", line):
+                    flag = 1
+                else:
+                    flag = 2
             if flag == 1:
                 flag = 0
-                ping_data.append("packet loss percent = " + number[7])
+                results.append("packet loss percent = " + number[7])
                 if number[7] == "100%":
-                    ping_data.append("PASS")
+                    results.append("FAIL")
                 else:
-                    ping_data.append("FAIL")
+                    results.append("PASS")
             elif flag == 2:
                 flag = 0
-                ping_data.append("packet loss percent = " + number[5])
+                results.append("packet loss percent = " + number[5])
                 if number[5] == "100%":
-                    ping_data.append("PASS")
+                    results.append("FAIL")
                 else:
-                    ping_data.append("FAIL")
+                    results.append("PASS")
             else:
-                ping_data.append("packet loss percent = " + number[5])
+                results.append("packet loss percent = " + number[5])
                 if number[5] == "100%":
-                    ping_data.append("FAIL")
+                    results.append("FAIL")
                 else:
-                    ping_data.append("PASS")
-        elif re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
-            if re.match("(.*)h1(.*)", line) or re.match("(.*)h2(.*)", line):
-                flag = 1
-            else:
-                flag = 2
-
-    if ping_data:  # Добавляем оставшиеся данные из временного списка, если таковые имеются
-        results.extend(ping_data)
+                    results.append("PASS")
 
     with open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
         for result in results:
