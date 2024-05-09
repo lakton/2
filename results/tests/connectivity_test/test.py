@@ -11,24 +11,18 @@ if __name__ == "__main__":
             if re.match(".*ping.*", line):
                 results.append("=========================")
                 results.append(line.strip())  # Добавление строки пинга
-
-            elif re.match(".*connect:.*", line):
-                results.append(line.strip())  # Добавление строки ошибки соединения
-
-            elif re.match(".*ping statistics.*", line):
-                results.append(line.strip())  # Добавление строки статистики пинга
                 stats = next(test)  # Чтение следующей строки для получения статистики
-                transmitted = int(re.search(r"transmitted = (\d+)", stats).group(1))
-                received = int(re.search(r"received = (\d+)", stats).group(1))
-                loss = re.search(r"packet loss percent = ([\d+%-]+)", stats).group(1)
-                if "100%" in loss:
-                    result = "FAIL"
-                else:
-                    result = "PASS"
+                transmitted = int(re.search(r"(\d+) packets transmitted", stats).group(1))
+                received = int(re.search(r"(\d+) received", stats).group(1))
+                loss_percent = re.search(r"([\d+.]+)% packet loss", stats).group(1)
+                results.append("--- " + line.strip() + " ping statistics ---")
                 results.append("transmitted = " + str(transmitted))
                 results.append("received = " + str(received))
-                results.append("packet loss percent = " + loss)
-                results.append(result)
+                results.append("packet loss percent = " + loss_percent + "%")
+                if loss_percent == "100.0":
+                    results.append("FAIL")
+                else:
+                    results.append("PASS")
 
     with open("/home/sdn/Desktop/2/results/connectivity_test_results", "w") as output_file:
         for result in results:
