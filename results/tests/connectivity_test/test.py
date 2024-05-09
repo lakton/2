@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
         # Write summary of test results
         output_file.write("\n=========================\n")
-        output_file.write("Общее количество тестов: {}\n".format(total_tests))
+        output_file.write("Общее количество тестов: {}\n".format(total_tests / 2))
         output_file.write("Количество корректных результатов: {}\n".format(correct_tests))
         output_file.write("Количество некорректных результатов: {}\n".format(incorrect_tests))
         output_file.write("Количество unreachable: {}\n".format(unreachable_tests))
