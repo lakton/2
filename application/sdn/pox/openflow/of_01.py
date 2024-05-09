@@ -875,7 +875,7 @@ class Connection (EventMixin):
       data = data.pack()
 
     if deferredSender.sending:
-      log.debug("deferred sender is sending!")
+      #log.debug("deferred sender is sending!") 
       deferredSender.send(self, data)
       return
     try:
