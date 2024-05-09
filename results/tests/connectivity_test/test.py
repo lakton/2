@@ -20,24 +20,24 @@ if __name__ == "__main__":
             if re.match("(.*)packet(.*)", line):
                 work = line
                 number = work.split()
-                print("transmitted = ", number[0])
-                print("received = ", number[3])
+                print("передано = ", number[0])
+                print("получено = ", number[3])
                 if flag == 1:
                     flag = 0
-                    print("packet loss percent = ", number[7])
+                    print("процент пакет лосса = ", number[7])
                     if number[7] == "100%":
                         print("PASS")
                     else:
                         print("FAIL")
                 elif flag == 2:
                     flag = 0
-                    print("packet loss percent = ", number[5])
+                    print("процент пакет лосса = ", number[5])
                     if number[5] == "100%":
                         print("PASS")
                     else:
                         print("FAIL")
                 else:
-                    print("packet loss percent = ", number[5])
+                    print("процент пакет лосса = ", number[5])
                     if number[5] == "100%":
                         print("FAIL")
                     else:

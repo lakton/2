@@ -9,6 +9,6 @@ try:
     else:
         file.write("\nHTTP PUT (allowed packet) test : FAIL")
 except OSError:
-    file.write("Some error happened")
+    file.write("Какая-то ошибка.. :(")
 
 file.close()

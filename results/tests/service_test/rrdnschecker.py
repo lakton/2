@@ -15,7 +15,7 @@ try:
     scapy.rdpcap(file).show()
     sys.stdout = save_stdout
 except:
-    print("Error reading pcap file")
+    print("Не удалось прочитать pcap файл")
 
 # Convert capture to string
 rawoutput = capture.getvalue()
@@ -63,7 +63,7 @@ with open("outdns2.txt", "r") as f2:
                 break
         else:
             is_consecutive = False
-            print("Error here")
+            print("Ошибка здесь!")
 
 # Print result. Return "True" if round robin works properly
 print(is_consecutive)

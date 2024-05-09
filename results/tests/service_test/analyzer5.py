@@ -8,6 +8,6 @@ try:
     else:
         file.write("\nHTTP GET blocking test : FAIL")
 except OSError:
-    file.write("Some error happened")
+    file.write("Какая-то ошибка.. :(")
 
 file.close()

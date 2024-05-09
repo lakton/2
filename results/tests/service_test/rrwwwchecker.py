@@ -15,7 +15,7 @@ try:
     scapy.rdpcap(file).show()
     sys.stdout = save_stdout
 except Exception as e:
-    print("Error reading pcap file:", e)
+    print("Не удалось прочитать pcap файл:", e)
 
 # Convert capture to string
 raw_output = capture.getvalue()
@@ -61,7 +61,7 @@ with open("out2.txt", "r") as f2:
                 result = 'FAIL'
                 break
         else:
-            print("Error here")
+            print("Ошибка здесь")
 
 # Print result. Return "True" if round robin works properly
 with open("/home/sdn/Desktop/2/results/resultservice.log", "a") as file:

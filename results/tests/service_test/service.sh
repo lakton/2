@@ -21,36 +21,36 @@ cp /dev/null /home/sdn/Desktop/2/results/servicewww.log
 #============================================================================
 #DNS SERVER TEST
 #H1
-echo "h1 digging 100.0.0.25 for sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h1 timeout 20 dig @100.0.0.25 sdncourse.se >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
+echo "h1 digging 100.0.0.25 for  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h1 timeout 20 dig @100.0.0.25   >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 5
 #H2
-echo "h2 digging 100.0.0.25 for sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h2 timeout 20 dig @100.0.0.25 sdncourse.se >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
+echo "h2 digging 100.0.0.25 for  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h2 timeout 20 dig @100.0.0.25   >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 5
 #H3
-echo "h3 digging 100.0.0.25 for sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h3 timeout 20 dig @100.0.0.25 sdncourse.se >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
+echo "h3 digging 100.0.0.25 for  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h3 timeout 20 dig @100.0.0.25   >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 5
 #H4
-echo "h4 digging 100.0.0.25 for sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h4 timeout 20 dig @100.0.0.25 sdncourse.se >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
+echo "h4 digging 100.0.0.25 for  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h4 timeout 20 dig @100.0.0.25   >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 10
 python3 $test_dir/servdnschecker.py
 
 #============================================================================
 #WWW SERVER TEST
-echo "h1 curl sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h1 timeout 20 curl sdncourse.se -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
+echo "h1 curl  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h1 timeout 20 curl   -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
 sleep 5
-echo "h2 curl sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h2 timeout 20 curl sdncourse.se -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
+echo "h2 curl  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h2 timeout 20 curl   -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
 sleep 5
-echo "h3 curl sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h3 timeout 20 curl sdncourse.se -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
+echo "h3 curl  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h3 timeout 20 curl   -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
 sleep 5
-echo "h4 curl sdncourse.se" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util h4 timeout 20 curl sdncourse.se -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
+echo "h4 curl  " >> /home/sdn/Desktop/2/results/service.log 2>&1
+$m_util h4 timeout 20 curl   -s -X POST -v >> /home/sdn/Desktop/2/results/servicewww.log 2>&1
 sleep 10
 python3 $test_dir/servwwwchecker.py
 

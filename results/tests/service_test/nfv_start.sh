@@ -18,12 +18,12 @@ echo "kill all click script"
 pkill click
 
 #Run every click instances
-echo "starting ips"
+echo "запуск ips"
 sudo /home/sdn/Desktop/fastclick/bin/click -f $click_conf/ips.click >> /home/sdn/Desktop/2/results/ipsclick.log 2>&1 &
-echo "starting DNS Load Balancer"
+echo "запуск DNS Load Balancer"
 sudo /home/sdn/Desktop/fastclick/bin/click -f $click_conf/dns.click >> /home/sdn/Desktop/2/results/dnsclick.log 2>&1 &
-echo "starting WWW Load Balancer"
+echo "запуск WWW Load Balancer"
 sudo /home/sdn/Desktop/fastclick/bin/click -f $click_conf/www.click >> /home/sdn/Desktop/2/results/wwwclick.log 2>&1 &
-echo "starting NAPT"
+echo "запуск NAPT"
 sudo /home/sdn/Desktop/fastclick/bin/click -f $click_conf/nat.click >> /home/sdn/Desktop/2/results/natclick.log 2>&1 &
-echo "All Click Script are running"
+echo "ВСЕ МОДУЛИ ЗАПУЩЕНЫ"
