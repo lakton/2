@@ -11,7 +11,7 @@ if __name__ == "__main__":
             if re.match("(.*)ping(.*)", line):
                 output_file.write("=========================\n")
                 output_file.write(line)
-                total_tests += 1
+                total_tests += 1/2
                 
             if re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
                 if re.match("(.*)h1(.*)", line) or re.match("(.*)h2(.*)", line):
