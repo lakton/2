@@ -216,7 +216,6 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, False)
 
     def _handle_PacketIn(self, event):
-        log.debug("Пакет брандмауэра 1.")
         super()._handle_PacketIn(event)
 
 
@@ -248,7 +247,7 @@ class LearningFirewall2(LearningFirewall):
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:05'), 8, False)
 
     def _handle_PacketIn(self, event):
-        log.debug("Пакет брандмауэра 2.", event.parsed)
+        #log.debug("Пакет брандмауэра 2.")
         super()._handle_PacketIn(event)
 
 
