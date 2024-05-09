@@ -2,7 +2,7 @@ import os
 
 print('ANALYZER 1')
 
-file = open("/var/log/resultservice.log", "a")
+file = open("/home/sdn/Desktop/2/results/resultservice.log", "a")
 file.write("\nips test for allowed packets\n")
 
 try:

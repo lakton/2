@@ -6,7 +6,7 @@
 - `make clean` - **clean** ALL
 - `make app` - **pox.py** находится в `/2/application/sdn/pox.py`
 
-## Журналы вывода генерируются в каталоге `</var/log>`:
+## Журналы вывода генерируются в каталоге `</home/sdn/Desktop/2/results/`:
 - `pox.log` -> журнал **pox**
 - `ipsclick.log` -> журнал **ips**
 - `dnsclick.log` -> журнал **dns lb (lb1)**

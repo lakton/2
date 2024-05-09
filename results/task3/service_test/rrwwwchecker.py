@@ -64,5 +64,5 @@ with open("out2.txt", "r") as f2:
             print("Error here")
 
 # Print result. Return "True" if round robin works properly
-with open("/var/log/resultservice.log", "a") as file:
+with open("/home/sdn/Desktop/2/results/resultservice.log", "a") as file:
     file.write("\n\nWWW LB round robin test : " + result)
