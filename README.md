@@ -1,8 +1,10 @@
 # README
 ## Mininet
 ==========================
+
 - `make topo`
 - `make clean`
+
 ===========================
 - расположение pox.py находится в `/2/application/sdn/pox.py`
 
