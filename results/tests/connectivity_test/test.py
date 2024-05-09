@@ -21,33 +21,29 @@ if __name__ == "__main__":
             number = work.split()
             ping_data.append("transmitted = " + number[0])
             ping_data.append("received = " + number[3])
+            loss_percent = number[7] if '+' not in number[7] else number[7].replace('+', '')  # Убираем '+' из процента потерь
+            ping_data.append("packet loss percent = " + loss_percent)
             if any(node_flags.values()):  # Если хотя бы для одной ноды флаг установлен, то оцениваем по PASS/FAIL
                 for node, flag in node_flags.items():
                     if flag == 1:
                         flag = 0
-                        packet_loss_percent = number[7].replace('+', '') if '+' in number[7] else number[7]  # Убираем '+' из процента потерь
-                        ping_data.append("packet loss percent = " + packet_loss_percent)
-                        if float(packet_loss_percent.replace('%', '')) == 0 and node != "ws1" and node != "ds1":
+                        if float(loss_percent.replace('%', '')) == 0 and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
                     elif flag == 2:
                         flag = 0
-                        ping_data.append("packet loss percent = " + number[5])
-                        if float(number[5].replace('%', '')) == 0 and node != "ws1" and node != "ds1":
+                        if float(loss_percent.replace('%', '')) == 0 and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
                     else:
-                        ping_data.append("packet loss percent = " + number[5])
-                        if float(number[5].replace('%', '')) == 0 and node != "ws1" and node != "ds1":
+                        if float(loss_percent.replace('%', '')) == 0 and node != "ws1" and node != "ds1":
                             ping_data.append("PASS")
                         else:
                             ping_data.append("FAIL")
             else:
-                packet_loss_percent = number[5].replace('+', '') if '+' in number[5] else number[5]  # Убираем '+' из процента потерь
-                ping_data.append("packet loss percent = " + packet_loss_percent)
-                if float(packet_loss_percent.replace('%', '')) == 0 and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
+                if float(loss_percent.replace('%', '')) == 0 and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
                     ping_data.append("PASS")
                 else:
                     ping_data.append("FAIL")
