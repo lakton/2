@@ -25,6 +25,10 @@ if __name__ == "__main__":
             received = int(number[3])
             packet_loss_percent = (1 - received / transmitted) * 100
             ping_data.append("packet loss percent = " + f"{packet_loss_percent:.2f}%")
+            if "wwwlb" in line and 0 <= packet_loss_percent < 100:
+                ping_data.append("PASS")
+            else:
+                ping_data.append("FAIL")
             if any(node_flags.values()):
                 for node, flag in node_flags.items():
                     if flag == 1:
