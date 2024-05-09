@@ -23,7 +23,7 @@ if __name__ == "__main__":
             ping_data.append("received = " + number[3])
             transmitted = int(number[0])
             received = int(number[3])
-            packet_loss_percent = (1 - received / transmitted) * 100
+            packet_loss_percent = (transmitted - received) / transmitted * 100
             ping_data.append("packet loss percent = " + f"{packet_loss_percent:.2f}%")
             if any(node_flags.values()):
                 for node, flag in node_flags.items():
@@ -47,6 +47,13 @@ if __name__ == "__main__":
                             ping_data.append("PASS")
                         else:
                             if packet_loss_percent != 99 and node not in ["ws1", "ds1"]:
+                                ping_data.append("FAIL")
+                    elif flag == 4:
+                        flag = 0
+                        if packet_loss_percent == 100 and node not in ["h1", "h2"]:
+                            ping_data.append("PASS")
+                        else:
+                            if packet_loss_percent != 99 and node not in ["h1", "h2"]:
                                 ping_data.append("FAIL")
             else:
                 if packet_loss_percent == 100 and "ws1" not in line and "ds1" not in line and "h1" not in line and "h2" not in line:
