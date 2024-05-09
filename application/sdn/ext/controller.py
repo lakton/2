@@ -29,7 +29,7 @@ class LearningFirewall (EventMixin):
         # Switch we will be adding L2 learning switch capabilities to
         self.macToPort = {}
         self.connection = connection
-        self.transparetn= transparent
+        self.transparent= transparent
         self.listenTo(connection)
         self.firewall = {}
         self.flag = 0
