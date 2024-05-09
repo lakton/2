@@ -19,20 +19,19 @@ if __name__ == "__main__":
                     flag = 1
                 else:
                     flag = 2
-
+            if re.match("(.*)unreachable(.*)", line):
+                    output_file.write("ПРОВЕРЬ САМ\n")
+                    unreachable_tests += 1
+                    continue
             if re.match(".*()connect(.*)", line):
                 output_file.write(line)
-                
+            
             if re.match("(.*)packet(.*)", line):
                 work = line
                 number = work.split()
                 output_file.write("Пакетов отправлено = " + number[0] + "\n")
                 output_file.write("Пакетов принято = " + number[3] + "\n")
                 
-                if "unreachable" in line:
-                    output_file.write("ПРОВЕРЬ САМ\n")
-                    unreachable_tests += 1
-                    continue
                 
                 if flag == 1:
                     flag = 0
