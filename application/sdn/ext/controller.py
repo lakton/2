@@ -301,10 +301,10 @@ class LearningSwitch1 (EventMixin):
         dpidstr = dpidToStr(event.connection.dpid)
         arp = packet.find('arp')
         if arp is not None:
-            # log.debug("%s"%arp.protodst)
+            log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
-                print("Destination Host Unreachable")
+                print("Destination Host Unreachable. WEB-сервера и DNS-сервера.")
                 return
         def flood(message=None):
             msg = of.ofp_packet_out()
