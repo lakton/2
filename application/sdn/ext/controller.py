@@ -26,7 +26,7 @@ i = 0
 
 class LearningFirewall (EventMixin):
     def __init__(self, connection, transparent):
-        # Switch we will be adding L2 learning switch capabilities to
+        # Коммутатор, к которому мы будем добавлять возможности обучающегося L2-коммутатора
         self.macToPort = {}
         self.connection = connection
         self.transparent= transparent
@@ -38,23 +38,23 @@ class LearningFirewall (EventMixin):
 
     def AddRule(self, dpidstr, dst=0, dst_port=0, value=True):
         self.firewall[(dpidstr, dst, dst_port, )] = value
-        log.debug("Adding firewall rule in %s: %s %s", dpidstr, dst, dst_port)
+        log.debug("Добавление правила брандмауэра в %s: %s %s", dpidstr, dst, dst_port)
 
     def CheckRule(self, dpidstr, dst=0, dst_port=0):
         try:
             entry = self.firewall[(dpidstr, dst, dst_port)]
             if entry == True:
-                log.debug("Rule %s found in %s-%s: FORWARD", dst, dpidstr, dst_port)
+                log.debug("Правило %s найдено в %s-%s: FORWARD", dst, dpidstr, dst_port)
             else:
-                log.debug("Rule %s found in %s- %s: DROP", dst, dpidstr, dst_port)
+                log.debug("Правило %s найдено в %s- %s: DROP", dst, dpidstr, dst_port)
                 return entry
         except KeyError:
-            log.debug("Rule %s NOT found in %s-%s: DROP", dst, dpidstr, dst_port)
+            log.debug("Правило %s !НЕ! найдено в %s-%s: DROP", dst, dpidstr, dst_port)
             return False
 
     def _handle_PacketIn(self, event):
         global i
-        # parsing the input packet
+        # разбор входного пакета
         packet = event.parse()
 
         def flood(message=None):
@@ -62,7 +62,7 @@ class LearningFirewall (EventMixin):
             if time.time() - self.connection.connect_time >= flood_delay:
                 if self.hold_down_expired is False:
                     self.hold_down_expired = True
-                    log.info("%s: Flood hold-down expired -- flooding", event.dpid)
+                    log.info("%s: Истек срок удержания флуда - флудим", event.dpid)
                 if message is not None:
                     log.debug(message)
                 msg.actions.append(of.ofp_action_output(port=of.OFPP_FLOOD))
@@ -88,7 +88,7 @@ class LearningFirewall (EventMixin):
                 msg.in_port = event.port
                 self.connection.send(msg)
 
-        # updating out mac to port mapping
+        # обновление сопоставления mac и порта
         self.macToPort[packet.src] = event.port
         dpidstr = dpidToStr(event.connection.dpid)
         arp = packet.find('arp')
@@ -106,10 +106,10 @@ class LearningFirewall (EventMixin):
             if udp is not None:
                 self.stateful[i] = (ip.id, ip.srcip, ip.dstip, udp.srcport, udp.dstport)
                 i = i + 1
-                log.debug("this is udp protocol")
+                log.debug("ЭТО UDP")
                 if self.CheckRule(dpidstr, packet.dst, udp.dstport) == False and self.CheckRule(dpidstr, packet.src,
                                                                                                udp.srcport) == False:
-                    log.debug("the device is %s and the destination ip is %s-%s" % (
+                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
                     dpidstr, packet.dst, udp.dstport))
                     drop()
                     self.flag = 1
@@ -119,11 +119,11 @@ class LearningFirewall (EventMixin):
             if tcp is not None:
                 self.stateful[i] = (ip.id, ip.srcip, ip.dstip, tcp.srcport, tcp.dstport)
                 i = i + 1
-                log.debug("this is tcp protocol")
+                log.debug("ЭТО TCP")
 
                 if self.CheckRule(dpidstr, packet.dst, tcp.dstport) == False and self.CheckRule(dpidstr, packet.src,
                                                                                                tcp.srcport) == False:
-                    log.debug("the device is %s and the destination ip is %s-%s" % (
+                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
                     dpidstr, packet.dst, tcp.dstport))
                     drop()
                     self.flag = 1
@@ -134,7 +134,7 @@ class LearningFirewall (EventMixin):
                 i = i + 1
                 log.debug('icmp is not none %s' % icmp.type)
                 if self.CheckRule(dpidstr, packet.dst, icmp.type) == False:
-                    log.debug("the device is %s and the destination ip is %s-%s" % (
+                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
                     dpidstr, packet.dst, icmp.type))
                     drop()
                     self.flag = 1
@@ -147,7 +147,7 @@ class LearningFirewall (EventMixin):
                 i = i + 1
                 log.debug('icmp is not none %s' % icmp.type)
                 if self.CheckRule(dpidstr, packet.dst, icmp.type) == False:
-                    log.debug("the device is %s and the destination ip is %s-%s" % (
+                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
                     dpidstr, packet.dst, icmp.type))
                     drop()
                     self.flag = 1
@@ -164,16 +164,16 @@ class LearningFirewall (EventMixin):
             flood()
         else:
             if packet.dst not in self.macToPort:
-                flood("Port for %s unknown --flooding" % (packet.dst,))
+                flood("Порт для %s неизвестен -- флудим" % (packet.dst,))
             else:
                 # installing flow
                 outport = self.macToPort[packet.dst]
                 if outport == event.port:
-                    log.warning("Same port for packet from %s -> %s on %s. Drop." %
+                    log.warning("Тот же порт для пакета от %s -> %s на %s. Drop." %
                                 (packet.src, packet.dst, outport), dpidToStr(event.dpid))
                     return
-                log.debug("installing flow for %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
-                log.debug("this is dpid %s" % dpidToStr(event.dpid))
+                log.debug("Установка потока(flow) для %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
+                log.debug("Это dpid %s" % dpidToStr(event.dpid))
                 msg = of.ofp_flow_mod()
                 msg.match.dl_src = packet.src
                 msg.match.dl_dst = packet.dst
@@ -187,22 +187,25 @@ class LearningFirewall (EventMixin):
 class LearningFirewall1(LearningFirewall):
     def __init__(self, connection, transparent):
         super().__init__(connection, transparent)
-        # rules for access to demilitarized zone and private zone:
-        # Services accessible are a) dns server at 100.0.0.25:53 b) http server at 100.0.0.45:80 and c) icmp ping request and response to the virtual ip's of the servers
-        # dns and http server ping request,response
+        # правила доступа к демилитаризованной зоне и частной зоне:
+        # Доступны следующие службы: 
+        # a) dns-сервер по адресу 100.0.0.25:53 
+        # b) http-сервер по адресу 100.0.0.45:80 
+        # c) icmp ping-запрос и ответ на виртуальные ip этих серверов.
+        # dns и http сервер ping запрос-ответ
         self.AddRule('00-00-00-00-00-02', EthAddr('0a:b9:f7:7e:59:6b'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('92:4a:f4:04:75:54'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True)
-        # rest generates icmp error if anything else if the DmZ is pinged
+        # остальное генерирует ошибку icmp, если DmZ пингуется
 
-        # dns server udp query at port 53.
+        # dns сервер udp запрос на 53 порт.
         self.AddRule('00-00-00-00-00-02', EthAddr('0a:b9:f7:7e:59:6b'), 53, True)
 
-        # http server tcp query at port 80
+        # http сервер tcp запрос на порт 80
         self.AddRule('00-00-00-00-00-02', EthAddr('92:4a:f4:04:75:54'), 80, True)
 
-        # host to host pinging
+        # пингование хоста с хостом
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('fa:dd:38:74:98:c8'), 0, True)
@@ -213,36 +216,39 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, False)
 
     def _handle_PacketIn(self, event):
-        log.debug("I am inside Fw1")
+        log.debug("Правила для брандмауэра 1.")
         super()._handle_PacketIn(event)
 
 
 class LearningFirewall2(LearningFirewall):
     def __init__(self, connection, transparent):
         super().__init__(connection, transparent)
-        # rules for access to demilitarized zone and private zone:
-        # Services accessible are a) dns server at 100.0.0.25:53 b) http server at 100.0.0.45:80 and c) icmp ping request and response to the virtual ip's of the servers
-        # dns and http server ping request,response
+        # правила доступа к демилитаризованной зоне и частной зоне:
+        # Доступны следующие службы: 
+        # a) dns-сервер по адресу 100.0.0.25:53 
+        # b) http-сервер по адресу 100.0.0.45:80 
+        # c) icmp ping-запрос и ответ на виртуальные ip этих серверов.
+        # dns и http сервер ping запрос-ответ
         self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 0, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 0, True)
-        # rest generates icmp error if anything else if the DmZ is pinged
+        # остальное генерирует ошибку icmp, если DmZ пингуется
 
-        # dns server udp query at port 53.
+        # dns сервер udp запрос на 53 порт.
         self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 53, True)
 
-        # http server tcp query at port 80
+        # http сервер tcp запрос на порт 80
         self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 80, True)
 
-        # host to host pinging
+        # пингование хоста с хостом
         self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 8, True)
 
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:05'), 8, False)
 
     def _handle_PacketIn(self, event):
-        log.debug("I am inside Fw2")
+        log.debug("Правила для брандмауэра 2.")
         super()._handle_PacketIn(event)
 
 
@@ -263,7 +269,7 @@ def launch():
 
 class LearningSwitch1 (EventMixin):
     def __init__(self, connection, transparent):
-        # Switch we will be adding L2 learning switch capabilities to
+        # Коммутатор, к которому мы будем добавлять возможности обучающегося L2-коммутатора
         self.macToPort = {}
         self.connection = connection
         self.listenTo(connection)
@@ -272,24 +278,24 @@ class LearningSwitch1 (EventMixin):
 
     def AddRule(self, dpidstr, dst=0, dst_port=0, value=True):
         self.firewall[(dpidstr, dst, dst_port, )] = value
-        log.debug("Adding firewall rule in %s: %s %s", dpidstr, dst, dst_port)
+        log.debug("Добавление правила брандмауэра в %s: %s %s", dpidstr, dst, dst_port)
 
     def CheckRule(self, dpidstr, dst=0, dst_port=0):
         try:
             entry = self.firewall[(dpidstr, dst, dst_port)]
             if entry == True:
-                log.debug("Rule %s found in %s-%s: FORWARD", dst, dpidstr, dst_port)
+                log.debug("Правило %s найдено в %s-%s: ПРОХОД", dst, dpidstr, dst_port)
             else:
-                log.debug("Rule %s found in %s- %s: DROP", dst, dpidstr, dst_port)
+                log.debug("Правило %s найдено в %s- %s: ОТБРОС", dst, dpidstr, dst_port)
                 return entry
         except KeyError:
-            log.debug("Rule %s NOT found in %s-%s: DROP", dst, dpidstr, dst_port)
+            log.debug("Правило %s НЕ найдено в %s-%s: ОТБРОС", dst, dpidstr, dst_port)
             return False
 
     def _handle_PacketIn(self, event):
-        # parsing the input packet
+        # разбор входящего пакета
         packet = event.parsed
-        # updating out mac to port mapping
+        # обновление отображения MAC-адресов на порты
         self.macToPort[packet.src] = event.port
         dpidstr = dpidToStr(event.connection.dpid)
         arp = packet.find('arp')
@@ -304,16 +310,16 @@ class LearningSwitch1 (EventMixin):
             flood()
         else:
             if packet.dst not in self.macToPort:
-                flood("Port for %s unknown --flooding" % (packet.dst,))
+                flood("Порт для %s неизвестен -- флудим" % (packet.dst,))
             else:
-                # installing flow
+                # установка потока
                 outport = self.macToPort[packet.dst]
                 if outport == event.port:
-                    log.warning("Same port for packet from %s -> %s on %s. Drop." %
+                    log.warning("Тот же порт для пакета от %s -> %s на %s. Drop." %
                                 (packet.src, packet.dst, outport), dpidToStr(event.dpid))
                     return
-                log.debug("installing flow for %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
-                log.debug("this is dpid %s" % dpidToStr(event.dpid))
+                log.debug("Установка потока(flow) для %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
+                log.debug("Это dpid %s" % dpidToStr(event.dpid))
                 msg = of.ofp_flow_mod()
                 msg.match.dl_src = packet.src
                 msg.match.dl_dst = packet.dst
@@ -322,6 +328,7 @@ class LearningSwitch1 (EventMixin):
                 msg.actions.append(of.ofp_action_output(port=outport))
                 msg.buffer_id = event.ofp.buffer_id
                 self.connection.send(msg)
+
                 
 class learning_switch(EventMixin):
     def __init__(self, transparent):
@@ -332,31 +339,32 @@ class learning_switch(EventMixin):
     def _handle_ConnectionUp(self, event):
         log.debug("Connection %s" % (event.connection,))
         if event.dpid in [2, 9]:
-            log.debug("this is firewall triggered")
+            log.debug("Брандмауэры подключаются")
             if event.dpid == 2:
-                log.debug("I am inside firewall1")
+                log.debug("Брандмауэр 1 подключен")
                 LearningFirewall1(event.connection, self.transparent)
             else:
-                log.debug("I am inside firewall2")
+                log.debug("Брандмауэр 2 подключен")
                 LearningFirewall2(event.connection, self.transparent)
         elif event.dpid in [1, 3, 5, 8, 11]:
-            log.debug("SWITCH triggered")
+            log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
         else:
-            log.debug("CLICK triggered")
+            log.debug("(Fast)Click подключен")
             # DOING NOTHING
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
-        log.info("Switch %s has shutdown.", dpidToStr(event.dpid))
+        log.info("Коммутатор %s выключен.", dpidToStr(event.dpid))
 
 
 def launch(transparent=False, hold_down=flood_delay):
-    # Starts an L2 learning switch.
+    # Запускает коммутатор L2 с обучением.
     try:
         global flood_delay
         flood_delay = int(str(hold_down), 10)
         assert flood_delay >= 0
     except:
-        raise RuntimeError("Expected hold-down to be a number")
+        raise RuntimeError("Ожидалось, что задержка будет числом")
     core.registerNew(learning_switch, str_to_bool(transparent))
+
