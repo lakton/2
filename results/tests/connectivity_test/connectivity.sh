@@ -107,4 +107,5 @@ echo "h4(10.0.0.51) ping ws1(100.0.0.40)" >> /home/sdn/Desktop/2/results/ping.lo
 sleep 5
 $m_util h4 ping -c 5 100.0.0.40 >> /home/sdn/Desktop/2/results/ping.log 2>&1
 sleep 5
-echo "Тесты завершены. Запусти 'test.py' для формирования результатов"
+echo "Тесты завершены. Запускаю 'test.py' для формирования результатов"
+python3 test.py
