@@ -3,7 +3,7 @@
 import re
 
 if __name__ == "__main__":
-    node_flags = {"ws1": 0, "ds1": 0}  # Словарь для хранения состояний флагов для каждой ноды
+    node_flags = {"ws1": 0, "ds1": 0, "h1": 0, "h2": 0}  # Словарь для хранения состояний флагов для каждой ноды
     test = open("/home/sdn/Desktop/2/results/ping.log", "r")
     results = []
     ping_data = []  # Создание временного списка для данных ping-сессий
@@ -29,23 +29,23 @@ if __name__ == "__main__":
                 for node, flag in node_flags.items():
                     if flag == 1:
                         flag = 0
-                        if packet_loss_percent == 100 and node != "ws1" and node != "ds1":
+                        if packet_loss_percent == 100 and node not in ["ws1", "ds1", "h1", "h2"]:
                             ping_data.append("PASS")
                         else:
-                            if packet_loss_percent != 99 and node != "ws1" and node != "ds1":
+                            if packet_loss_percent != 99 and node not in ["ws1", "ds1", "h1", "h2"]:
                                 ping_data.append("FAIL")
                     elif flag == 2:
                         flag = 0
-                        if packet_loss_percent == 100 and node != "ws1" and node != "ds1":
+                        if packet_loss_percent == 100 and node not in ["ws1", "ds1", "h1", "h2"]:
                             ping_data.append("PASS")
                         else:
-                            if packet_loss_percent != 99 and node != "ws1" and node != "ds1":
+                            if packet_loss_percent != 99 and node not in ["ws1", "ds1", "h1", "h2"]:
                                 ping_data.append("FAIL")
             else:
-                if packet_loss_percent == 100 and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
+                if packet_loss_percent == 100 and "ws1" not in line and "ds1" not in line and "h1" not in line and "h2" not in line:  # Учитываем случаи с ws1, ds1, h1, h2
                     ping_data.append("PASS")
                 else:
-                    if packet_loss_percent != 99 and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
+                    if packet_loss_percent != 99 and "ws1" not in line and "ds1" not in line and "h1" not in line and "h2" not in line:  # Учитываем случаи с ws1, ds1, h1, h2
                         ping_data.append("FAIL")
     if ping_data:  # Добавляем оставшиеся данные из временного списка, если таковые имеются
         results.extend(ping_data)
