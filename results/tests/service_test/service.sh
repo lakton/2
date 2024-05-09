@@ -1,4 +1,4 @@
-m_util="/home/click/mininet/util/m"
+m_util="/home/sdn/Desktop/mininet/util/m"
 test_dir="/home/sdn/Desktop/2/results/tests/service_test"
 
 touch /home/sdn/Desktop/2/results/resultservice.log
