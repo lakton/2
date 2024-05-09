@@ -7,8 +7,11 @@ topo:
 click:
 		@cd /home/sdn/Desktop/2/application/sdn && sudo make click
 
-testc:
-		@cd /home/sdn/Desktop/2/results/tests/ && sudo make test
+connect:
+		@cd /home/sdn/Desktop/2/results/tests/ && sudo make connect
+
+service:
+		@cd /home/sdn/Desktop/2/results/tests/ && sudo make service
 
 clean:
 		@sudo mn -c
