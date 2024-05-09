@@ -4,6 +4,9 @@ app:
 topo:
 		@cd /home/sdn/Desktop/2/topology/ && sudo make topo
 
+click:
+		@cd /home/sdn/Desktop/2/application/sdn && sudo make click
+
 clean:
 		@sudo mn -c
 		@echo -n "[MAKE] Killing POX..      " 
