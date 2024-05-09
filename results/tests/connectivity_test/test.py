@@ -29,21 +29,21 @@ if __name__ == "__main__":
                 for node, flag in node_flags.items():
                     if flag == 1:
                         flag = 0
-                        if packet_loss_percent < 99 and node != "ws1" and node != "ds1":
-                            ping_data.append("PASS")
-                        else:
+                        if packet_loss_percent == 100 and node != "ws1" and node != "ds1":
                             ping_data.append("FAIL")
+                        else:
+                            ping_data.append("PASS")
                     elif flag == 2:
                         flag = 0
-                        if packet_loss_percent < 99 and node != "ws1" and node != "ds1":
-                            ping_data.append("PASS")
-                        else:
+                        if packet_loss_percent == 100 and node != "ws1" and node != "ds1":
                             ping_data.append("FAIL")
+                        else:
+                            ping_data.append("PASS")
             else:
-                if packet_loss_percent < 99 and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
-                    ping_data.append("PASS")
-                else:
+                if packet_loss_percent == 100 and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
                     ping_data.append("FAIL")
+                else:
+                    ping_data.append("PASS")
     if ping_data:  # Добавляем оставшиеся данные из временного списка, если таковые имеются
         results.extend(ping_data)
 
