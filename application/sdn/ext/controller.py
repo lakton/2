@@ -161,10 +161,10 @@ class LearningFirewall (EventMixin):
                 return
 
         if packet.dst.is_multicast:
-            self.flood()
+            flood()
         else:
             if packet.dst not in self.macToPort:
-                self.flood("Порт для %s неизвестен -- флудим" % (packet.dst,))
+                flood("Порт для %s неизвестен -- флудим" % (packet.dst,))
             else:
                 # installing flow
                 outport = self.macToPort[packet.dst]
