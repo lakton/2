@@ -1,5 +1,5 @@
 m_util="/home/click/mininet/util/m"
-test_dir="/home/sdn/Desktop/2/results/task3/service_test"
+test_dir="/home/sdn/Desktop/2/results/tests/service_test"
 
 touch /home/sdn/Desktop/2/results/resultservice.log
 chmod 755 /home/sdn/Desktop/2/results/resultservice.log
@@ -72,7 +72,7 @@ $m_util h1 timeout 20 curl 100.0.0.45 -X POST -s -v >> /home/sdn/Desktop/2/resul
 sleep 20
 $m_util h1 timeout 20 curl 100.0.0.45 -X POST -s -v >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
-python $test_dir/rrdnschecker.py
+python3 $test_dir/rrdnschecker.py
 sleep 20
 
 #============================================================================
@@ -87,7 +87,7 @@ $m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest1.pcap 2>&1 &
 $m_util h1 ping 100.0.0.45 -c 10 >> /home/sdn/Desktop/2/results/service.log 2>&1 
 pkill tcp
 killall tcp
-python $test_dir/analyzer1.py
+python3 $test_dir/analyzer1.py
 sleep 5
 
 echo "2. HTTP POST" >> /home/sdn/Desktop/2/results/service.log 2>&1
@@ -98,7 +98,7 @@ $m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest2.pcap 2>&1 &
 $m_util h1 timeout 20 curl 100.0.0.45 -X POST -v -d 'user=foo' >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
 killall tcp
-python $test_dir/analyzer2.py
+python3 $test_dir/analyzer2.py
 sleep 5
 
 echo "3. HTTP PUT" >> /home/sdn/Desktop/2/results/service.log 2>&1
@@ -108,7 +108,7 @@ $m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
 $m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest3.pcap 2>&1 &
 $m_util h1 timeout 20 curl 100.0.0.45 -X PUT -v -d 'HelloWorld' >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
-python $test_dir/analyzer3.py
+python3 $test_dir/analyzer3.py
 sleep 5
 
 echo "ips TEST : Blocked packets" >> /home/sdn/Desktop/2/results/service.log 2>&1
@@ -123,7 +123,7 @@ $m_util h1 timeout 15 curl 100.0.0.45 -X PUT -v -d 'INSERT' >> /home/sdn/Desktop
 $m_util h1 timeout 15 curl 100.0.0.45 -X PUT -v -d 'UPDATE' >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h1 timeout 15 curl 100.0.0.45 -X PUT -v -d 'DELETE' >> /home/sdn/Desktop/2/results/service.log 2>&1
 kill tcp
-python $test_dir/analyzer4.py
+python3 $test_dir/analyzer4.py
 sleep 5
 
 echo "5. HTTP GET" >> /home/sdn/Desktop/2/results/service.log 2>&1
@@ -133,6 +133,6 @@ $m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
 $m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest5.pcap 2>&1 &
 $m_util h1 timeout 20 wget -O - 100.0.0.45 >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
-python $test_dir/analyzer5.py
+python3 $test_dir/analyzer5.py
 
 #============================================================================
