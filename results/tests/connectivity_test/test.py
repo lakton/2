@@ -45,10 +45,10 @@ if __name__ == "__main__":
                             ping_data.append("FAIL")
             else:
                 ping_data.append("packet loss percent = " + number[5])
-                if number[5] == "100%":
-                    ping_data.append("FAIL")
-                else:
+                if number[5] == "100%" and "ws1" not in line and "ds1" not in line:  # Учитываем случаи с ws1 и ds1
                     ping_data.append("PASS")
+                else:
+                    ping_data.append("FAIL")
     if ping_data:  # Добавляем оставшиеся данные из временного списка, если таковые имеются
         results.extend(ping_data)
 
