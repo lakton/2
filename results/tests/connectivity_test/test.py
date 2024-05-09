@@ -7,7 +7,9 @@ if __name__ == "__main__":
     test = open("/home/sdn/Desktop/2/results/ping.log", "r")
     results = []
     for line in test:
+        print("Processing line:", line.strip())  # Добавлено отладочное сообщение
         if re.match("(.*)ping(.*)", line):
+            print("Matched 'ping' pattern")  # Добавлено отладочное сообщение
             results.append("=========================")
         results.append(line.strip())  # Удаление символа новой строки для избежания лишних переносов строк
         if re.match("(.*)ws1(.*)", line) or re.match("(.*)ds1(.*)", line):
