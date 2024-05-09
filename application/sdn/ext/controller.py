@@ -254,7 +254,8 @@ class LearningFirewall2(LearningFirewall):
 
 class LearningSwitch(EventMixin):
 
-    def __init__(self):
+    def __init__(self, connection):
+        self.connection = connection
         self.macToPort = {}
         self.listenTo(core.openflow)
 
