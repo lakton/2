@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import re
 
 if __name__ == "__main__":
@@ -25,21 +27,19 @@ if __name__ == "__main__":
             ping_data.append("packet loss percent = " + f"{packet_loss_percent:.2f}%")
             if any(node_flags.values()):
                 for node, flag in node_flags.items():
-                    if flag == 1 or flag == 2 or flag == 3:
+                     if flag == 1 or flag == 2 or flag == 3:
                         flag = 0
                         if 0 <= packet_loss_percent < 100 and node not in ["ws1", "ds1"]:
                             ping_data.append("FAIL")
                         else:
                             ping_data.append("PASS")
             else:
-                    if 0 <= packet_loss_percent < 100 and "ws1" not in line and "ds1" not in line:
-                        ping_data.append("FAIL")
-                    else:
-                        ping_data.append("PASS")
-                        if "wwwlb" in line and 0 <= packet_loss_percent < 100:
-                            ping_data.append("PASS")
-                        else:
-                            ping_data.append("FAIL")
+                if 0 <= packet_loss_percent < 100 and "ws1" not in line and "ds1" not in line:
+                    ping_data.append("FAIL")
+                else:
+                    ping_data.append("PASS")
+                    #if 0 <= packet_loss_percent < 100 and ("dnslb" in line or "wwwlb" in line or "napt" in line):
+                        #ping_data.pop()  # Если пакет потерян, но не на всех узлах, применяем FAIL только в этом случае
     if ping_data:
         results.extend(ping_data)
 
