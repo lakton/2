@@ -3,7 +3,7 @@
 import re
 
 if __name__ == "__main__":
-    node_flags = {"ws1": 0, "ds1": 0, "h1": 0, "h2": 0, "h3": 0, "h4": 0, "dnslb": 0, "wwwlb": 0, "napt": 0}
+    node_flags = {"ws1": 0, "ds1": 0}
     test = open("/home/sdn/Desktop/2/results/ping.log", "r")
     results = []
     ping_data = []
