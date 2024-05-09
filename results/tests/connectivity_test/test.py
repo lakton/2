@@ -48,5 +48,7 @@ if __name__ == "__main__":
                         output_file.write("PASS\n")
                     correct_results += 1
 
-    output_file.write(f"\nОбщее количество тестов: {total_tests}\n")
-    output_file.write(f"Количество корректных результатов: {correct_results}\n")
+    # Перемещаем запись количества тестов и корректных результатов за пределы блока with open(...):
+    with open("/home/sdn/Desktop/2/results/connectivity_test_results", "a") as output_file:
+        output_file.write(f"\nОбщее количество тестов: {total_tests}\n")
+        output_file.write(f"Количество корректных результатов: {correct_results}\n")
