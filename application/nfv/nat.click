@@ -38,10 +38,10 @@ drop_ex_ip :: Counter;
 drop_in_ip :: Counter;
 
 // Device declaration
-fr_ext :: FromDevice(s10-eth1, SNIFFER false);
-to_ext :: Queue(200) -> out_eth1 -> pack_res_ex -> ToDevice(s10-eth1);
-fr_int :: FromDevice(s10-eth2, SNIFFER false);
-to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(s10-eth2);
+fr_ext :: FromDevice(napt-eth1, SNIFFER false);
+to_ext :: Queue(200) -> out_eth1 -> pack_res_ex -> ToDevice(napt-eth1);
+fr_int :: FromDevice(napt-eth2, SNIFFER false);
+to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(napt-eth2);
 
 arpr_ext :: ARPResponder(100.0.0.1 fa:dd:38:74:98:c8);
 arpr_int :: ARPResponder(10.0.0.1 52:8f:3e:18:4c:8b);

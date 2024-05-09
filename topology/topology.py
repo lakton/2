@@ -11,30 +11,30 @@ class MyTopo( Topo ):
 
         # Add hosts and switches
         # public zone
-        sw1 = self.addSwitch( 's1' )
+        sw1 = self.addSwitch( 'sw1' )
         h1 = self.addHost( 'h1', ip='100.0.0.10/24' )
         h2 = self.addHost( 'h2', ip='100.0.0.11/24' )
-        fw1 = self.addSwitch( 's2' )
+        fw1 = self.addSwitch( 'fw1' )
 
         # dmz
-        sw2 = self.addSwitch( 's3' )
-        lb1 = self.addSwitch( 's4' )
-        sw3 = self.addSwitch( 's5' )
-        ips = self.addSwitch( 's6' )
-        insp = self.addHost( 'h11', ip='100.0.0.30/24' )
-        lb2 = self.addSwitch( 's7' )
-        sw4 = self.addSwitch( 's8' )
-        ds1 = self.addHost( 'h5', ip='100.0.0.20/24' )
-        ds2 = self.addHost( 'h6', ip='100.0.0.21/24' )
-        ds3 = self.addHost( 'h7', ip='100.0.0.22/24' )
-        ws1 = self.addHost( 'h8', ip='100.0.0.40/24' )
-        ws2 = self.addHost( 'h9', ip='100.0.0.41/24' )
-        ws3 = self.addHost( 'h10', ip='100.0.0.42/24' )
+        sw2 = self.addSwitch( 'sw2' )
+        lb1 = self.addSwitch( 'lb1' )
+        sw3 = self.addSwitch( 'sw3' )
+        ips = self.addSwitch( 'ips' )
+        insp = self.addHost( 'insp', ip='100.0.0.30/24' )
+        lb2 = self.addSwitch( 'lb2' )
+        sw4 = self.addSwitch( 'sw4' )
+        ds1 = self.addHost( 'ds1', ip='100.0.0.20/24' )
+        ds2 = self.addHost( 'ds2', ip='100.0.0.21/24' )
+        ds3 = self.addHost( 'ds3', ip='100.0.0.22/24' )
+        ws1 = self.addHost( 'ws1', ip='100.0.0.40/24' )
+        ws2 = self.addHost( 'ws2', ip='100.0.0.41/24' )
+        ws3 = self.addHost( 'ws3', ip='100.0.0.42/24' )
 
         # private
-        fw2 = self.addSwitch( 's9' )
-        napt = self.addSwitch( 's10' )
-        sw5 = self.addSwitch( 's11' )
+        fw2 = self.addSwitch( 'fw2' )
+        napt = self.addSwitch( 'napt' )
+        sw5 = self.addSwitch( 'sw5' )
         h3 = self.addHost( 'h3', ip='10.0.0.50/24' )
         h4 = self.addHost( 'h4', ip='10.0.0.51/24' )
 

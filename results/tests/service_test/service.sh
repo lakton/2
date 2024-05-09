@@ -58,8 +58,8 @@ python3 $test_dir/servwwwchecker.py
 #============================================================================
 #WWW LB ROUND ROBIN TEST 
 echo "WWW LB ROUND ROBIN TEST" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util s7 tcpdump -i s7-eth1 -w $test_dir/71.pcap 2>&1 &
-$m_util s7 tcpdump -i s7-eth2 -w $test_dir/72.pcap 2>&1 &
+$m_util lb2 tcpdump -i lb2-eth1 -w $test_dir/71.pcap 2>&1 &
+$m_util lb2 tcpdump -i lb2-eth2 -w $test_dir/72.pcap 2>&1 &
 $m_util h1 timeout 20 curl 100.0.0.45 -X POST -s -v >> /home/sdn/Desktop/2/results/service.log 2>&1
 sleep 20
 $m_util h1 timeout 20 curl 100.0.0.45 -X POST -s -v >> /home/sdn/Desktop/2/results/service.log 2>&1
@@ -80,10 +80,10 @@ sleep 20
 
 echo "ips TEST : Allowed packets" >> /home/sdn/Desktop/2/results/service.log 2>&1
 echo "1. ARP & PING" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
-$m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest1.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth1 -w $test_dir/61.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth2 -w $test_dir/62.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth3 -w $test_dir/63.pcap 2>&1 &
+$m_util insp tcpdump -i insp-eth0 -w $test_dir/insptest1.pcap 2>&1 &
 $m_util h1 ping 100.0.0.45 -c 10 >> /home/sdn/Desktop/2/results/service.log 2>&1 
 pkill tcp
 killall tcp
@@ -91,10 +91,10 @@ python3 $test_dir/analyzer1.py
 sleep 5
 
 echo "2. HTTP POST" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
-$m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest2.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth1 -w $test_dir/61.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth2 -w $test_dir/62.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth3 -w $test_dir/63.pcap 2>&1 &
+$m_util insp tcpdump -i insp-eth0 -w $test_dir/insptest2.pcap 2>&1 &
 $m_util h1 timeout 20 curl 100.0.0.45 -X POST -v -d 'user=foo' >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
 killall tcp
@@ -102,10 +102,10 @@ python3 $test_dir/analyzer2.py
 sleep 5
 
 echo "3. HTTP PUT" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
-$m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest3.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth1 -w $test_dir/61.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth2 -w $test_dir/62.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth3 -w $test_dir/63.pcap 2>&1 &
+$m_util insp tcpdump -i insp-eth0 -w $test_dir/insptest3.pcap 2>&1 &
 $m_util h1 timeout 20 curl 100.0.0.45 -X PUT -v -d 'HelloWorld' >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
 python3 $test_dir/analyzer3.py
@@ -113,10 +113,10 @@ sleep 5
 
 echo "ips TEST : Blocked packets" >> /home/sdn/Desktop/2/results/service.log 2>&1
 echo "4. HTTP PUT injection" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
-$m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest4.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth1 -w $test_dir/61.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth2 -w $test_dir/62.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth3 -w $test_dir/63.pcap 2>&1 &
+$m_util insp tcpdump -i insp-eth0 -w $test_dir/insptest4.pcap 2>&1 &
 $m_util h1 timeout 15 curl 100.0.0.45 -X PUT -v -d \"cat /etc/passwd\" >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h1 timeout 15 curl 100.0.0.45 -X PUT -v -d \"cat /home/sdn/Desktop/2/results/\" >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h1 timeout 15 curl 100.0.0.45 -X PUT -v -d 'INSERT' >> /home/sdn/Desktop/2/results/service.log 2>&1
@@ -127,10 +127,10 @@ python3 $test_dir/analyzer4.py
 sleep 5
 
 echo "5. HTTP GET" >> /home/sdn/Desktop/2/results/service.log 2>&1
-$m_util s6 tcpdump -i s6-eth1 -w $test_dir/61.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth2 -w $test_dir/62.pcap 2>&1 &
-$m_util s6 tcpdump -i s6-eth3 -w $test_dir/63.pcap 2>&1 &
-$m_util h11 tcpdump -i h11-eth0 -w $test_dir/insptest5.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth1 -w $test_dir/61.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth2 -w $test_dir/62.pcap 2>&1 &
+$m_util ips tcpdump -i ips-eth3 -w $test_dir/63.pcap 2>&1 &
+$m_util insp tcpdump -i insp-eth0 -w $test_dir/insptest5.pcap 2>&1 &
 $m_util h1 timeout 20 wget -O - 100.0.0.45 >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcp
 python3 $test_dir/analyzer5.py
