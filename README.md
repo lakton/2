@@ -1,5 +1,7 @@
-# README
-## Mininet POX
+
+# Mininet, POX, (Fast)Click
+
+## Команды
 - `make topo` - **topo**
 - `make clean` - **clean** ALL
 - `make app` - **pox.py** находится в `/2/application/sdn/pox.py`
