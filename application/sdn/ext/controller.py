@@ -348,7 +348,7 @@ class learning_switch(EventMixin):
                 LearningFirewall2(event.connection, self.transparent)
         elif event.dpid in [1, 3, 5, 8, 11]:
             log.debug("Коммутаторы подключены")
-            LearningSwitch(event.connection)
+            LearningSwitch(event.connection, self.transparent)
         else:
             log.debug("(Fast)Click подключен")
             # DOING NOTHING

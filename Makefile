@@ -7,6 +7,9 @@ topo:
 click:
 		@cd /home/sdn/Desktop/2/application/sdn && sudo make click
 
+testc:
+		@cd /home/sdn/Desktop/2/results/task3/connectivity_test && sudo make test
+
 clean:
 		@sudo mn -c
 		@echo -n "[MAKE] Killing POX..      " 
