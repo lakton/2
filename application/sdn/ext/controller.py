@@ -11,6 +11,9 @@ from pox.lib.util import dpidToStr
 from pox.lib.util import str_to_bool
 import time
 
+import subprocess
+import shlex
+
 from pox.lib.addresses import EthAddr
 from pox.lib.addresses import IPAddr
 from pox.lib.packet import *
@@ -364,9 +367,30 @@ class learning_switch(EventMixin):
         elif event.dpid in [1, 3, 5, 8, 11]:
             log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
+        elif event.dpid == 10:
+            # Если подключен коммутатор с идентификатором 7, запускаем NAPT
+            log.debug("NAPT подключен")
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/nat.click"
+            subprocess.Popen(shlex.split(args))
+        elif event.dpid == 4:
+            # Если подключен коммутатор с идентификатором 8, запускаем балансировщик нагрузки
+            log.debug("LB1 подключен")
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/dns.click"
+            subprocess.Popen(shlex.split(args))
+        elif event.dpid == 7:
+            # Если подключен коммутатор с идентификатором 8, запускаем балансировщик нагрузки
+            log.debug("LB2 подключен")
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/www.click"
+            subprocess.Popen(shlex.split(args))
+        elif event.dpid == 6:
+            # Если подключен коммутатор с идентификатором 9, запускаем IPS
+            log.debug("IPS подключен")
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/ips.click"
+            subprocess.Popen(shlex.split(args))
         else:
-            log.debug("(Fast)Click подключен")
+            log.debug("")
             # DOING NOTHING
+        
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
