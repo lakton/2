@@ -58,9 +58,13 @@ if __name__ == "__main__":
                     else:
                         output_file.write("PASS\n")
                         correct_tests += 1
-
-        # Write summary of test results
-        output_file.write("\n=========================\n")
-        output_file.write("Общее количество тестов: {}\n".format(total_tests // 2))
-        output_file.write("Количество корректных результатов: {}\n".format(correct_tests))
-        output_file.write("Количество некорректных результатов: {}\n".format(incorrect_tests))
+    # Write summary of test results
+output_file.write("\n=========================\n")
+if incorrect_tests == 0:
+    output_file.write("Все тесты прошли успешно\n")
+else:
+    output_file.write("НЕ все тесты прошли успешно\n")
+output_file.write("\n=========================\n")
+output_file.write("Общее количество тестов: {}\n".format(total_tests // 2))
+output_file.write("Количество корректных результатов: {}\n".format(correct_tests))
+output_file.write("Количество некорректных результатов: {}\n".format(incorrect_tests))
