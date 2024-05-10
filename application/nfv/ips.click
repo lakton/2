@@ -114,93 +114,92 @@ src_lb -> in_eth2 -> pack_req_in -> Print(ReplyFrInside) -> Queue -> [0]dst_net;
 //MAIN LOGIC
 src_net -> in_eth1 -> pack_req_net -> service_count -> first_stage;
 first_stage[0]
-        -> Print(1arpreq)
+        -> Print("ARP запрос обработан и направлен на lb1")
 	-> arp_req_ex
         -> Queue
         -> [0]dst_lb;
 first_stage[1]
-        -> Print(1arprep)
+        -> Print("ARP ответ обработан и направлен на lb1")
         -> arp_res_ex
 	-> Queue
         -> [1]dst_lb;
 first_stage[2]
-        -> Print(1IPpkt)
+        -> Print("IP пакет обработан и направлен на второй этап")
         -> second_stage;
 first_stage[3]
-        -> Print(1other)
+        -> Print("Другие пакеты обработаны и направлены на insp")
         -> Queue
         -> [0]dst_insp;
 //=======================================================
 second_stage[0]
-        -> Print(2icmp)
+        -> Print("Обработан ICMP пакет и направлен на lb1")
 	-> icmp_count
         -> Queue
         -> [2]dst_lb;
 second_stage[1]                 //HTTP
-         -> Print(2httpgetput)
+         -> Print("Обработан HTTP GET/PUT запрос и направлен на третий этап")
          -> third_stage;
 second_stage[2]                 //HTTP
-         -> Print(2httppost)
+         -> Print("Обработан HTTP POST запрос и направлен на третий этап")
          -> third_stage;
 second_stage[3]
-        -> Print(2syn)
+        -> Print("Обработан SYN пакет и направлен на lb1")
         -> Queue
         -> [3]dst_lb;
 second_stage[4]
-        -> Print(2synack)
+        -> Print("Обработан SYN-ACK пакет и направлен на lb1")
         -> Queue
         -> [4]dst_lb;
 second_stage[5]
-        -> Print(2ack)
+        -> Print("Обработан ACK пакет и направлен на lb1")
         -> Queue
         -> [5]dst_lb;
 second_stage[6]
-        -> Print(2rst)
+        -> Print("Обработан RST пакет и направлен на lb1")
         -> Queue
         -> [6]dst_lb;
 second_stage[7]
-        -> Print(2finack)
+        -> Print("Обработан FIN-ACK пакет и направлен на lb1")
         -> Queue
         -> [7]dst_lb;
 second_stage[8]
-        -> Print(2other)
+        -> Print("Другие пакеты обработаны и направлены на insp")
         -> Queue
         -> [1]dst_insp;
 //==========================================
 third_stage[0]
-        -> Print(3post)
+        -> Print("Обработан POST запрос и направлен на lb1")
         -> Queue
         -> [8]dst_lb;
 third_stage[1]
-	-> Print(3put)
+	-> Print("Обработан PUT запрос и направлен на четвертый этап")
         -> fourth_stage;
 third_stage[2]
-        -> Print(3other)
+        -> Print("Другие пакеты обработаны успешно")
         -> Queue
         -> [2]dst_insp;
 //=========================================
 fourth_stage[0]
-        -> Print(4catpwd)
+        -> Print("Предотвращена попытка запроса на чтение пароля (cat /etc/passwd)")
         -> Queue
         -> [3]dst_insp;
 fourth_stage[1]
-        -> Print(4catvarlog)
+        -> Print("Предотвращена попытка запроса на чтение логов (cat /var/log)")
         -> Queue
         -> [4]dst_insp;
 fourth_stage[2]
-        -> Print(4insert)
+        -> Print("Предотвращена попытка INSERT")
         -> Queue
         -> [5]dst_insp;
 fourth_stage[3]
-        -> Print(4update)
+        -> Print("Предотвращена попытка UPDATE")
         -> Queue
         -> [6]dst_insp;
 fourth_stage[4]
-        -> Print(4delete)
+        -> Print("Предотвращена попытка DELETE")
         -> Queue
         -> [7]dst_insp;
 fourth_stage[5]
-        -> Print(4PASSYEAY)
+        -> Print("Пакет отправлен на lb")
         -> Queue
         -> [9]dst_lb;
-

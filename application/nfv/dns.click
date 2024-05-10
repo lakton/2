@@ -89,17 +89,17 @@ DriverManager(wait,
                 stop);
 
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
-c_in[0] -> Print(dns_ci_0) -> arp_req_ex -> arpr_ext[0] -> to_ext;
-c_in[1] -> Print(dns_ci_1) -> arp_res_ex -> [1]arpq_ext;
-c_in[2] -> Print(dns_ci_2) -> Strip(14) -> CheckIPHeader -> c_ip_in;
-c_in[3] -> Print(dns_ci_3) -> drop_ex -> Discard;
+c_in[0] -> Print("Получен запрос DNS-пакета") -> arp_req_ex -> arpr_ext[0] -> to_ext;
+c_in[1] -> Print("ARP-ответ для внешнего интерфейса") -> arp_res_ex -> [1]arpq_ext;
+c_in[2] -> Print("Запрос DNS-пакета обработан и проверен заголовок IP") -> Strip(14) -> CheckIPHeader -> c_ip_in;
+c_in[3] -> Print("Неизвестный пакет - удаляем") -> drop_ex -> Discard;
 
-c_ip_in[0] -> Print(dns_c_ip_in0) -> service_count -> rewr[1] -> [0]arpq_int -> to_int;
-c_ip_in[1] -> Print(dns_c_ip_in1) -> icmp_count -> ICMPPingResponder -> [0]arpq_ext -> to_ext;
-c_ip_in[2] -> Print(dns_c_ip_in2) -> drop_ex_ip -> Discard;
+c_ip_in[0] -> Print("Запрос DNS для подсчета сервисов") -> service_count -> rewr[1] -> [0]arpq_int -> to_int;
+c_ip_in[1] -> Print("Счетчик ICMP-пакетов") -> icmp_count -> ICMPPingResponder -> [0]arpq_ext -> to_ext;
+c_ip_in[2] -> Print("Удаление внешнего IP-пакета") -> drop_ex_ip -> Discard;
 
 fr_int -> in_eth2 -> pack_req_in -> c_ex;
-c_ex[0] -> Print(dns_ce_0) -> arp_req_in -> arpr_int[0] -> to_int; 
-c_ex[1] -> Print(dns_ce_1) -> arp_res_in -> [1]arpq_int;
-c_ex[2] -> Print(dns_ce_2) -> Strip(14) -> CheckIPHeader -> rewr[0] -> [0]arpq_ext -> to_ext;
-c_ex[3] -> Print(dns_ce_3) -> drop_in -> Discard;
+c_ex[0] -> Print("Запрос DNS для внутреннего интерфейса") -> arp_req_in -> arpr_int[0] -> to_int; 
+c_ex[1] -> Print("ARP-ответ для внутреннего интерфейса") -> arp_res_in -> [1]arpq_int;
+c_ex[2] -> Print("Запрос DNS-пакета обработан и проверен заголовок IP") -> Strip(14) -> CheckIPHeader -> rewr[0] -> [0]arpq_ext -> to_ext;
+c_ex[3] -> Print("Удаление внутреннего пакета") -> drop_in -> Discard;

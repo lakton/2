@@ -99,23 +99,24 @@ DriverManager(wait,
 		stop);
 
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
-c_in[0] -> Print(nat_ci_0) -> arp_req_ex -> arpr_ext[0] -> to_ext;
-c_in[1] -> Print(nat_ci_1) -> arp_res_ex -> [1]arpq_ext;
-c_in[2] -> Print(nat_ci_2) -> Strip(14) -> CheckIPHeader -> c_ip_in;
-c_in[3] -> Print(nat_ci_3) -> drop_ex -> Discard;
+c_in[0] -> Print("Получен запрос ARP из внешней сети") -> arp_req_ex -> arpr_ext[0] -> to_ext;
+c_in[1] -> Print("Получен ответ ARP из внешней сети") -> arp_res_ex -> [1]arpq_ext;
+c_in[2] -> Print("Получен IP-пакет из внешней сети") -> Strip(14) -> CheckIPHeader -> c_ip_in;
+c_in[3] -> Print("Отбрасывается пакет из внешней сети") -> drop_ex -> Discard;
 
-c_ip_in[0] -> Print(nat_c_ip_in0) -> rewr[1] -> [0]arpq_int -> to_int;
-c_ip_in[1] -> Print(nat_c_ip_in1) -> icmp_ex -> rewr_icmp[1] -> [0]arpq_int -> to_int;
-c_ip_in[2] -> Print(nat_c_ip_in2) -> icmp_count -> ICMPPingResponder -> [0]arpq_ext -> to_ext;
-c_ip_in[3] -> Print(nat_c_ip_in3) -> drop_ex_ip -> Discard;
+c_ip_in[0] -> Print("Переписывается IP и порт для внутренней сети") -> rewr[1] -> [0]arpq_int -> to_int;
+c_ip_in[1] -> Print("Переписывается ICMP-пакет для внутренней сети") -> icmp_ex -> rewr_icmp[1] -> [0]arpq_int -> to_int;
+c_ip_in[2] -> Print("Получен ICMP-пакет из внутренней сети") -> icmp_count -> ICMPPingResponder -> [0]arpq_ext -> to_ext;
+c_ip_in[3] -> Print("Отбрасывается IP-пакет из внешней сети") -> drop_ex_ip -> Discard;
 
 fr_int -> in_eth2 -> pack_req_in -> c_ex;
-c_ex[0] -> Print(nat_ce_0) -> arp_req_in -> arpr_int[0] -> to_int; 
-c_ex[1] -> Print(nat_ce_1) -> arp_res_in -> [1]arpq_int;
-c_ex[2] -> Print(nat_ce_2) -> Strip(14) -> CheckIPHeader -> c_ip_ex;
-c_ex[3] -> Print(nat_ce_3) -> drop_in -> Discard;
+c_ex[0] -> Print("Получен запрос ARP из внутренней сети") -> arp_req_in -> arpr_int[0] -> to_int; 
+c_ex[1] -> Print("Получен ответ ARP из внутренней сети") -> arp_res_in -> [1]arpq_int;
+c_ex[2] -> Print("Получен IP-пакет из внутренней сети") -> Strip(14) -> CheckIPHeader -> c_ip_ex;
+c_ex[3] -> Print("Отбрасывается пакет из внутренней сети") -> drop_in -> Discard;
 
-c_ip_ex[0] -> Print(nat_c_ip_ex0) -> service_count -> rewr[0] -> [0]arpq_ext -> to_ext;
-c_ip_ex[1] -> Print(nat_c_ip_ex1) -> Discard; 
-c_ip_ex[2] -> Print(nat_c_ip_ex2) -> icmp_in -> rewr_icmp[0] -> [0]arpq_ext -> to_ext;
-c_ip_ex[3] -> Print(nat_c_ip_ex3) -> drop_in_ip -> Discard;
+c_ip_ex[0] -> Print("Переписывается IP и порт для внешней сети") -> service_count -> rewr[0] -> [0]arpq_ext -> to_ext;
+c_ip_ex[1] -> Print("Отбрасывается пакет, предназначенный для внутренней сети") -> Discard; 
+c_ip_ex[2] -> Print("Получен ICMP-пакет из внешней сети") -> icmp_in -> rewr_icmp[0] -> [0]arpq_ext -> to_ext;
+c_ip_ex[3] -> Print("Отбрасывается IP-пакет из внутренней сети") -> drop_in_ip -> Discard;
+
