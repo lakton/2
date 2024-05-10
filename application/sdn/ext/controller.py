@@ -347,12 +347,7 @@ class LearningSwitch1 (EventMixin):
                 msg.buffer_id = event.ofp.buffer_id
                 self.connection.send(msg)
 
-scripts = [
-    {"dpid": 10, "script_path": "/home/sdn/Desktop/2/application/nfv/nat.click", "log_path": "/home/sdn/Desktop/2/results/natclick.log"},
-    {"dpid": 4, "script_path": "/home/sdn/Desktop/2/application/nfv/dns.click", "log_path": "/home/sdn/Desktop/2/results/dnsclick.log"},
-    {"dpid": 7, "script_path": "/home/sdn/Desktop/2/application/nfv/www.click", "log_path": "/home/sdn/Desktop/2/results/wwwclick.log"},
-    {"dpid": 6, "script_path": "/home/sdn/Desktop/2/application/nfv/ips.click", "log_path": "/home/sdn/Desktop/2/results/ipsclick.log"}
-]      
+                
 class learning_switch(EventMixin):
     def __init__(self, transparent):
         super().__init__()
@@ -372,11 +367,26 @@ class learning_switch(EventMixin):
         elif event.dpid in [1, 3, 5, 8, 11]:
             log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
-        for script in scripts:
-            if event.dpid == script["dpid"]:
-                log.debug(f"Скрипт FastClick {script['dpid']} будет запущен")
-                args = f"sudo /home/sdn/Desktop/fastclick/bin/click -f {script['script_path']} >> {script['log_path']} 2>&1"
-                subprocess.Popen(shlex.split(args), close_fds=True)
+'''elif event.dpid == 10:
+                                                                                                                                        # Если подключен коммутатор с идентификатором 10, запускаем NAPT
+                                                                                                                                        log.debug("NAPT подключен")
+                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/nat.click >> /home/sdn/Desktop/2/results/natclick.log 2>&1"
+                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)
+                                                                                                                                    elif event.dpid == 4:
+                                                                                                                                        # Если подключен коммутатор с идентификатором 4, запускаем балансировщик нагрузки LB1
+                                                                                                                                        log.debug("LB1 подключен")
+                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/dns.click >> /home/sdn/Desktop/2/results/dnsclick.log 2>&1"
+                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)
+                                                                                                                                    elif event.dpid == 7:
+                                                                                                                                        # Если подключен коммутатор с идентификатором 7, запускаем балансировщик нагрузки LB2
+                                                                                                                                        log.debug("LB2 подключен")
+                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/www.click >> /home/sdn/Desktop/2/results/wwwclick.log 2>&1"
+                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)
+                                                                                                                                    elif event.dpid == 6:
+                                                                                                                                        # Если подключен коммутатор с идентификатором 6, запускаем систему обнаружения вторжений (IPS)
+                                                                                                                                        log.debug("IPS подключен")
+                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/ips.click >> /home/sdn/Desktop/2/results/ipsclick.log 2>&1"
+                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)'''
         
 
     def _handle_ConnectionDown(self, event):
