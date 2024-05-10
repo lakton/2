@@ -160,11 +160,15 @@ class LearningFirewall (EventMixin):
                 drop()
                 return
 
+        flood_warning_shown = False   
         if packet.dst.is_multicast:
             flood()
         else:
             if packet.dst not in self.macToPort:
-                flood("Адрес назначения %s неизвестен %s, %s -- флудим всем портам, кроме полученного" % (packet.dst, packet.src, dpidToStr(event.dpid)))
+        # Выводим предупреждение о флуде только если флаг flood_warning_shown не установлен
+                    if not flood_warning_shown:
+                        flood("Адрес назначения %s неизвестен %s, %s -- флудим всем портам, кроме полученного" % (packet.dst, packet.src, dpidToStr(event.dpid)))
+                        flood_warning_shown = True  # Устанавливаем флаг в True после вывода предупреждения о флуде
             else:
                 # installing flow
                 outport = self.macToPort[packet.dst]
