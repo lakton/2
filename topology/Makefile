@@ -1,4 +1,4 @@
 topo:
-	sudo mn --custom topology.py --topo mytopo --controller remote
+	sudo python3 topology.py
 clean:
 	sudo mn -c 
