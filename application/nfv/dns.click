@@ -92,7 +92,7 @@ fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Получен запрос DNS-пакета") -> arp_req_ex -> arpr_ext[0] -> to_ext;
 c_in[1] -> Print("ARP-ответ для внешнего интерфейса") -> arp_res_ex -> [1]arpq_ext;
 c_in[2] -> Print("Запрос DNS-пакета обработан и проверен заголовок IP") -> Strip(14) -> CheckIPHeader -> c_ip_in;
-c_in[3] -> Print("Неизвестный пакет - удаляем") -> drop_ex -> Discard;
+c_in[3] -> drop_ex -> Discard;
 
 c_ip_in[0] -> Print("Запрос DNS для подсчета сервисов") -> service_count -> rewr[1] -> [0]arpq_int -> to_int;
 c_ip_in[1] -> Print("Счетчик ICMP-пакетов") -> icmp_count -> ICMPPingResponder -> [0]arpq_ext -> to_ext;
