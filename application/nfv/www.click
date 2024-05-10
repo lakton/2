@@ -40,12 +40,12 @@ fr_int :: FromDevice(lb2-eth2, METHOD LINUX, SNIFFER false);
 to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(lb2-eth2);
 
 // ARP Responder
-arpr_ext :: ARPResponder(100.0.0.45 92:4a:f4:04:75:54);
-arpr_int :: ARPResponder(100.0.0.45 26:bb:04:96:4b:eb);
+arpr_ext :: ARPResponder(100.0.0.45 ae:cb:56:11:ce:44);
+arpr_int :: ARPResponder(100.0.0.45 3e:2a:d4:cf:8c:e3);
 
 // ARP Querier
-arpq_ext :: ARPQuerier(100.0.0.45, 92:4a:f4:04:75:54);
-arpq_int :: ARPQuerier(100.0.0.45, 26:bb:04:96:4b:eb);
+arpq_ext :: ARPQuerier(100.0.0.45, ae:cb:56:11:ce:44);
+arpq_int :: ARPQuerier(100.0.0.45, 3e:2a:d4:cf:8c:e3);
 
 // Classifier internal and external
 c_in,c_ex :: Classifier(12/0806 20/0001,	// ARP Request

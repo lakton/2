@@ -43,10 +43,10 @@ to_ext :: Queue(200) -> out_eth1 -> pack_res_ex -> ToDevice(napt-eth1);
 fr_int :: FromDevice(napt-eth2, METHOD LINUX, SNIFFER false);
 to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(napt-eth2);
 
-arpr_ext :: ARPResponder(100.0.0.1 fa:dd:38:74:98:c8);
-arpr_int :: ARPResponder(10.0.0.1 52:8f:3e:18:4c:8b);
-arpq_ext :: ARPQuerier(100.0.0.1, fa:dd:38:74:98:c8);
-arpq_int :: ARPQuerier(10.0.0.1, 52:8f:3e:18:4c:8b);
+arpr_ext :: ARPResponder(100.0.0.1 8a:11:96:8b:b0:e5);
+arpr_int :: ARPResponder(10.0.0.1 4a:1c:a8:0c:07:20);
+arpq_ext :: ARPQuerier(100.0.0.1, 8a:11:96:8b:b0:e5);
+arpq_int :: ARPQuerier(10.0.0.1, 4a:1c:a8:0c:07:20);
 c_in,c_ex :: Classifier(12/0806 20/0001, 12/0806 20/0002, 12/0800, -);
 c_ip_in :: IPClassifier(
                         tcp or udp, // Standard Flow

@@ -191,32 +191,32 @@ class LearningFirewall1(LearningFirewall):
 
         # FW1 (Firewall 1) - 00:00:00:00:00:02
         # DNS и HTTP сервера могут пинговаться (ICMP ping-запрос и ответ)
-        self.AddRule('00-00-00-00-00-02', EthAddr('0a:b9:f7:7e:59:6b'), 8, True) # Пинг DNS сервера (ds1)
-        self.AddRule('00-00-00-00-00-02', EthAddr('92:4a:f4:04:75:54'), 8, True) # Пинг DNS сервера (ds2)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True) # Пинг HTTP сервера (ws1))
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) # Пинг HTTP сервера (ws2)
+        self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 8, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True)
 
         # DNS сервер принимает UDP запросы на порт 53
-        self.AddRule('00-00-00-00-00-02', EthAddr('0a:b9:f7:7e:59:6b'), 53, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
         # HTTP сервер принимает TCP запросы на порт 80
-        self.AddRule('00-00-00-00-00-02', EthAddr('92:4a:f4:04:75:54'), 80, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 80, True)
 
         # Пинг между хостами в сети
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True) # Пинг хоста H3 (h3)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True) # Пинг хоста H2 (h2)
-        self.AddRule('00-00-00-00-00-02', EthAddr('fa:dd:38:74:98:c8'), 0, True) # Пинг H3 (h3) через NAPT
-        self.AddRule('00-00-00-00-00-02', EthAddr('fa:dd:38:74:98:c8'), 8, True) # Пинг H2 (h2) через NAPT
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) # Пинг H3 (h3)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True) # Пинг H2 (h2)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 8, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True)
         
         # Правила для доступа к h1 и h2 (в зоне PbZ)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True) # ICMP для h1
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 0, True) # ICMP для h2
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 0, True) 
 
-        # Запрет ICMP от h1 и h2 к h3 и h4
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) # ICMP для h3
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:07'), 8, False) # ICMP для h4
+        # Запрет ICMP к h3 и h4
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:07'), 8, False)
 
         # Запрет пингования хоста h2 (00:00:00:00:00:05)
         #self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, False)
@@ -232,27 +232,24 @@ class LearningFirewall2(LearningFirewall):
 
         # FW2 (Firewall 2) - 00:00:00:00:00:09
         # DNS и HTTP сервера могут пинговаться (ICMP ping-запрос и ответ)
-        self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 8, True) # Пинг DNS сервера (ds1)
-        self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 0, True) # Пинг HTTP сервера (ws1)
-        self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 8, True) # Пинг DNS сервера (ds2)
-        self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 0, True) # Пинг HTTP сервера (ws2)
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 0, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 0, True) 
 
         # DNS сервер принимает UDP запросы на порт 53
-        self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 53, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
         # HTTP сервер принимает TCP запросы на порт 80
-        self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 80, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 80, True)
 
         # Пинг между хостами в сети
-        self.AddRule('00-00-00-00-00-09', EthAddr('0a:b9:f7:7e:59:6b'), 8, True) # Пинг DNS сервера (ds1)
-        self.AddRule('00-00-00-00-00-09', EthAddr('92:4a:f4:04:75:54'), 8, True) # Пинг HTTP сервера (ws2)
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
         
         # Правила для доступа к h3 и h4 (в зоне PrZ)
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) # ICMP для h3
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 0, True) # ICMP для h4
-        # Запрет ICMP от h3 и h4 к h1 и h2
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:04'), 8, False) # ICMP для h1
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:05'), 8, False) # ICMP для h2
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 0, True)
 
         # Запрет пингования хоста h2 (00:00:00:00:00:05)
         #self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:05'), 8, False)

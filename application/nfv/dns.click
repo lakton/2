@@ -39,10 +39,10 @@ to_ext :: Queue(200) -> out_eth1 -> pack_res_ex -> ToDevice(lb1-eth1);
 fr_int :: FromDevice(lb1-eth2, METHOD LINUX, SNIFFER false);
 to_int :: Queue(200) -> out_eth2 -> pack_res_in -> ToDevice(lb1-eth2);
 
-arpr_ext :: ARPResponder(100.0.0.25 0a:b9:f7:7e:59:6b);
-arpr_int :: ARPResponder(100.0.0.25 5a:fa:6a:39:c0:a7);
-arpq_ext :: ARPQuerier(100.0.0.25, 0a:b9:f7:7e:59:6b);
-arpq_int :: ARPQuerier(100.0.0.25, 5a:fa:6a:39:c0:a7);
+arpr_ext :: ARPResponder(100.0.0.25 fe:91:b3:92:f1:98);
+arpr_int :: ARPResponder(100.0.0.25 9a:c2:77:de:0f:6c);
+arpq_ext :: ARPQuerier(100.0.0.25, fe:91:b3:92:f1:98);
+arpq_int :: ARPQuerier(100.0.0.25, 9a:c2:77:de:0f:6c);
 c_in,c_ex :: Classifier(12/0806 20/0001, 12/0806 20/0002, 12/0800, -);
 c_ip_in :: IPClassifier(
                         dst 100.0.0.25 udp port 53,
