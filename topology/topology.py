@@ -79,7 +79,7 @@ if __name__ == "__main__":
     # Создание удаленного контроллера
     ctrl1 = RemoteController('c0', ip='192.168.200.101', port=6633)
     # Установка уровня логирования
-    setLogLevel('info')
+    setLogLevel('debug')
     # Создание экземпляра топологии
     topo = MyTopo()
     # Создание сети Mininet
