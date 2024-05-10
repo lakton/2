@@ -207,14 +207,12 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 0, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 8, True) 
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) 
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True)
         
         # Правила для доступа к h1 и h2 (в зоне PbZ)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 0, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('f2:76:22:fb:b0:2e'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True) 
         # Запрет ICMP к h3 и h4
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) 
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:07'), 8, False)
@@ -233,26 +231,20 @@ class LearningFirewall2(LearningFirewall):
 
         # FW2 (Firewall 2) - 00:00:00:00:00:09
         # DNS и HTTP сервера могут пинговаться (ICMP ping-запрос и ответ)
-        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True)
-        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 0, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
-        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 0, True) 
-
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 8, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 8, True)
         # DNS сервер принимает UDP запросы на порт 53
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
         # HTTP сервер принимает TCP запросы на порт 80
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 80, True)
-
-        # Пинг между хостами в сети
-        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
-        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
         
         # Правила для доступа к h1 и h2 (в зоне PbZ)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 0, True) 
 
         
         # Правила для доступа к h3 и h4 (в зоне PrZ)
