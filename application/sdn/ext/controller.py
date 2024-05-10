@@ -361,7 +361,7 @@ class learning_switch(EventMixin):
             if event.dpid == 2:
                 log.debug("Брандмауэр 1 подключен")
                 LearningFirewall1(event.connection, self.transparent)
-            else:
+            elif event.dpid == 9:
                 log.debug("Брандмауэр 2 подключен")
                 LearningFirewall2(event.connection, self.transparent)
         elif event.dpid in [1, 3, 5, 8, 11]:
@@ -387,14 +387,11 @@ class learning_switch(EventMixin):
             log.debug("IPS подключен")
             args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/ips.click >> /home/sdn/Desktop/2/results/ipsclick.log 2>&1"
             subprocess.Popen(shlex.split(args), close_fds=True)
-        else:
-            log.debug("")
-            # DOING NOTHING
         
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
-        log.info("Коммутатор %s выключен.", dpidToStr(event.dpid))
+        log.info("Коммутатор %s отключен.", dpidToStr(event.dpid))
 
 
 def launch(transparent=False, hold_down=flood_delay):
