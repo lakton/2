@@ -214,7 +214,8 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 0, True) 
 
-        self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True) 
+        # Запрет ICMP к h3 и h4
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) 
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:07'), 8, False)
 
         # Запрет пингования хоста h2 (00:00:00:00:00:05)
@@ -245,6 +246,10 @@ class LearningFirewall2(LearningFirewall):
         # Пинг между хостами в сети
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
+        
+        # Правила для доступа к h1 и h2 (в зоне PbZ)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 8, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, True) 
         
         # Правила для доступа к h3 и h4 (в зоне PrZ)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) 
