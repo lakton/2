@@ -37,9 +37,9 @@ with open("outdns1.txt", "r") as f1, open("outdns2.txt", "w") as f2:
 with open("outdns2.txt", "r") as f2:
     is_consecutive = True
     first_line = f2.readline()
-    previous = int(first_line[49:51])
+    previous = int(first_line[49:51]) if first_line[49:51].strip() else 0  # Add check for empty string
     for line in f2:
-        current = int(line[49:51])
+        current = int(line[49:51]) if line[49:51].strip() else 0  # Add check for empty string
         if current == 40:
             if previous == 42 or previous == 40:
                 previous = current
