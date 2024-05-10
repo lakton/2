@@ -370,22 +370,22 @@ class learning_switch(EventMixin):
         elif event.dpid == 10:
             # Если подключен коммутатор с идентификатором 7, запускаем NAPT
             log.debug("NAPT подключен")
-            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/nat.click"
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/nat.click &"
             subprocess.Popen(shlex.split(args))
         elif event.dpid == 4:
             # Если подключен коммутатор с идентификатором 8, запускаем балансировщик нагрузки
             log.debug("LB1 подключен")
-            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/dns.click"
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/dns.click &"
             subprocess.Popen(shlex.split(args))
         elif event.dpid == 7:
             # Если подключен коммутатор с идентификатором 8, запускаем балансировщик нагрузки
             log.debug("LB2 подключен")
-            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/www.click"
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/www.click &"
             subprocess.Popen(shlex.split(args))
         elif event.dpid == 6:
             # Если подключен коммутатор с идентификатором 9, запускаем IPS
             log.debug("IPS подключен")
-            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/ips.click"
+            args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/ips.click &"
             subprocess.Popen(shlex.split(args))
         else:
             log.debug("")
