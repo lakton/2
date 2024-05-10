@@ -254,6 +254,7 @@ class LearningFirewall2(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('f2:76:22:fb:b0:2e'), 0, True) 
         
         # Правила для доступа к h3 и h4 (в зоне PrZ)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) 
