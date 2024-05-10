@@ -11,10 +11,6 @@ from pox.lib.util import dpidToStr
 from pox.lib.util import str_to_bool
 import time
 
-import subprocess
-import shlex
-import psutil
-
 from pox.lib.addresses import EthAddr
 from pox.lib.addresses import IPAddr
 from pox.lib.packet import *
@@ -352,7 +348,8 @@ class LearningSwitch1 (EventMixin):
                 msg.buffer_id = event.ofp.buffer_id
                 self.connection.send(msg)
 
-running_processes = [p.name() for p in psutil.process_iter()]      
+switches = {}
+ 
 class learning_switch(EventMixin):
     def __init__(self, transparent):
         super().__init__()
