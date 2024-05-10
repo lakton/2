@@ -213,6 +213,7 @@ class LearningFirewall1(LearningFirewall):
         # Правила для доступа к h1 и h2 (в зоне PbZ)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True) 
 
         # Запрет ICMP к h3 и h4
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) 
