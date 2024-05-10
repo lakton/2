@@ -367,6 +367,8 @@ class learning_switch(EventMixin):
         elif event.dpid in [1, 3, 5, 8, 11]:
             log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
+        else:
+            log.debug("(Fast)Click запущен")
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
