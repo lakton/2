@@ -367,27 +367,6 @@ class learning_switch(EventMixin):
         elif event.dpid in [1, 3, 5, 8, 11]:
             log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
-'''elif event.dpid == 10:
-                                                                                                                                        # Если подключен коммутатор с идентификатором 10, запускаем NAPT
-                                                                                                                                        log.debug("NAPT подключен")
-                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/nat.click >> /home/sdn/Desktop/2/results/natclick.log 2>&1"
-                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)
-                                                                                                                                    elif event.dpid == 4:
-                                                                                                                                        # Если подключен коммутатор с идентификатором 4, запускаем балансировщик нагрузки LB1
-                                                                                                                                        log.debug("LB1 подключен")
-                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/dns.click >> /home/sdn/Desktop/2/results/dnsclick.log 2>&1"
-                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)
-                                                                                                                                    elif event.dpid == 7:
-                                                                                                                                        # Если подключен коммутатор с идентификатором 7, запускаем балансировщик нагрузки LB2
-                                                                                                                                        log.debug("LB2 подключен")
-                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/www.click >> /home/sdn/Desktop/2/results/wwwclick.log 2>&1"
-                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)
-                                                                                                                                    elif event.dpid == 6:
-                                                                                                                                        # Если подключен коммутатор с идентификатором 6, запускаем систему обнаружения вторжений (IPS)
-                                                                                                                                        log.debug("IPS подключен")
-                                                                                                                                        args = "sudo /home/sdn/Desktop/fastclick/bin/click -f /home/sdn/Desktop/2/application/nfv/ips.click >> /home/sdn/Desktop/2/results/ipsclick.log 2>&1"
-                                                                                                                                        subprocess.Popen(shlex.split(args), close_fds=True)'''
-        
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
