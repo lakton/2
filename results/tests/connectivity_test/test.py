@@ -27,15 +27,18 @@ if __name__ == "__main__":
             
             if re.match("(.*)packet(.*)", line):
                 work = line
-                number = work.split()
-                output_file.write("Пакетов отправлено = " + number[0] + "\n")
-                output_file.write("Пакетов принято = " + number[3] + "\n")
+                numbers = re.findall(r'\d+', work)  # Извлечение всех чисел из строки
+                transmitted = int(numbers[0])
+                received = int(numbers[1])
                 
+                output_file.write("Пакетов отправлено = " + str(transmitted) + "\n")
+                output_file.write("Пакетов принято = " + str(received) + "\n")
                 
                 if flag == 1:
                     flag = 0
-                    output_file.write("Процент потерь пакетов = " + number[7] + "\n")
-                    if number[7] == "100%":
+                    packet_loss = ((transmitted - received) / transmitted) * 100
+                    output_file.write("Процент потерь пакетов = {:.2f}%\n".format(packet_loss))
+                    if packet_loss == 100:
                         output_file.write("PASS\n")
                         correct_tests += 1
                     else:
@@ -43,16 +46,18 @@ if __name__ == "__main__":
                         incorrect_tests += 1
                 elif flag == 2:
                     flag = 0
-                    output_file.write("Процент потерь пакетов = " + number[5] + "\n")
-                    if number[5] == "100%":
+                    packet_loss = ((transmitted - received) / transmitted) * 100
+                    output_file.write("Процент потерь пакетов = {:.2f}%\n".format(packet_loss))
+                    if packet_loss == 100:
                         output_file.write("PASS\n")
                         correct_tests += 1
                     else:
                         output_file.write("FAIL\n")
                         incorrect_tests += 1
                 else:
-                    output_file.write("Процент потерь пакетов = " + number[5] + "\n")
-                    if number[5] == "100%":
+                    packet_loss = ((transmitted - received) / transmitted) * 100
+                    output_file.write("Процент потерь пакетов = {:.2f}%\n".format(packet_loss))
+                    if packet_loss == 100:
                         output_file.write("FAIL\n")
                         incorrect_tests += 1
                     else:
