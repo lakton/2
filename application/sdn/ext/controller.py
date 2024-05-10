@@ -374,18 +374,12 @@ class learning_switch(EventMixin):
             if event.dpid == 2:
                 log.debug("Брандмауэр 1 подключен")
                 LearningFirewall1(event.connection, self.transparent)
-                fw1w = dpidToStr(event.dpid)
-                log.debug(("DPID FW1 {}: {}".format(event.dpid, fw1w)))
             elif event.dpid == 9:
                 log.debug("Брандмауэр 2 подключен")
                 LearningFirewall2(event.connection, self.transparent)
-                fw2w = dpidToStr(event.dpid)
-                log.debug(("DPID FW2 {}: {}".format(event.dpid, fw2w)))
         elif event.dpid in [1, 3, 5, 8, 11]:
             log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
-            switches[event.dpid] = event.connection
-            log.debug("DPID коммутатора {}: {}".format(event.dpid, dpidToStr(event.dpid)))
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
