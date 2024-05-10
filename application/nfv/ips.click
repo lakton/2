@@ -103,7 +103,7 @@ DriverManager(wait,
                 stop);
 
 //FORWARDER FROM INSIDE NETWORK
-src_lb -> in_eth2 -> pack_req_in -> Print(ReplyFrInside) -> Queue -> [0]dst_net;
+src_lb -> in_eth2 -> pack_req_in -> Print(Ответ из внутренней) -> Queue -> [0]dst_net;
 //first_stage_int[0] -> arp_req_in -> Queue -> [0]dst_net;
 //first_stage_int[1] -> arp_res_in -> Queue -> [0]dst_net;
 //first_stage_int[2] -> Print(ReplyFrInside) -> Queue -> [0]dst_net;
