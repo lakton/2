@@ -69,4 +69,40 @@ class MyTopo( Topo ):
         self.addLink( sw5, h3 )
         self.addLink( sw5, h4 )
 
-topos = { 'mytopo': ( lambda: MyTopo() ) }
+if __name__ == "__main__":
+    # Создание удаленного контроллера
+    ctrl1 = RemoteController('c0', ip='192.168.200.101', port=6633)
+    # Установка уровня логирования
+    setLogLevel('info')
+    # Создание экземпляра топологии
+    topo = MyTopo()
+    # Создание сети Mininet
+    net = Mininet(
+        topo=topo,
+        switch=OVSSwitch,
+        controller=ctrl1,
+        autoSetMacs=True
+    )
+    # Добавление маршрута для хостов h3 и h4
+    net.get("h3").cmd("route add default gw 10.0.0.1 h3-eth0")
+    net.get("h4").cmd("route add default gw 10.0.0.1 h4-eth0")
+    net.get("ds1").cmd("route add default gw 100.0.0.25 ds1-eth0")
+    net.get("ds2").cmd("route add default gw 100.0.0.25 ds2-eth0")
+    net.get("ds3").cmd("route add default gw 100.0.0.25 ds3-eth0")
+    net.get("ds1").cmd("python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server20.py &")
+    net.get("ds1").cmd("python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server21.py &")
+    net.get("ds3").cmd("python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server22.py &")
+    net.get("ws1").cmd("route add default gw 100.0.0.45 ws1-eth0")
+    net.get("ws2").cmd("route add default gw 100.0.0.45 ws2-eth0")
+    net.get("ws3").cmd("route add default gw 100.0.0.45 ws3-eth0")
+    net.get("ws1").cmd("python3 SimpleServer.py >> /tmp/http.log &")
+    net.get("ws2").cmd("python3 SimpleServer.py >> /tmp/http.log &")
+    net.get("ws3").cmd("python3 SimpleServer.py >> /tmp/http.log &")
+    net.get("h1").cmd("cp /dev/null /etc/resolv.conf")
+    net.get("h1").cmd("echo 'nameserver 100.0.0.25' > /etc/resolv.conf")
+    # Запуск сети
+    net.start()
+    CLI(net)  # Запуск интерактивной консоли Mininet
+
+
+
