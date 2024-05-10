@@ -72,7 +72,6 @@ sleep 20
 $m_util h1 timeout 20 curl 100.0.0.45 -X POST -s -v >> /home/sdn/Desktop/2/results/service.log 2>&1
 pkill tcpdump
 python3 $test_dir/rrdnschecker.py
-sleep 20
 
 #============================================================================
 # IPS TEST
