@@ -164,7 +164,7 @@ class LearningFirewall (EventMixin):
             flood()
         else:
             if packet.dst not in self.macToPort:
-                flood("Адрес назначения %s неизвестен %s -- флудим всем портам, кроме полученного" % (packet.dst, event.dpid))
+                flood("Адрес назначения %s неизвестен %s, %s -- флудим всем портам, кроме полученного" % (packet.dst, packet.src, dpidToStr(event.dpid)))
             else:
                 # installing flow
                 outport = self.macToPort[packet.dst]
