@@ -304,7 +304,7 @@ class LearningSwitch1 (EventMixin):
         dpidstr = dpidToStr(event.connection.dpid)
         arp = packet.find('arp')
         if arp is not None:
-            log.debug("%s"%arp.protodst)
+            #log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
                 print("Destination Host Unreachable. WEB-сервера и DNS-сервера.")
@@ -328,15 +328,15 @@ class LearningSwitch1 (EventMixin):
             flood()
         else:
             if packet.dst not in self.macToPort:
-                flood("Порт для %s неизвестен -- флудим" % (packet.dst,))
+                flood("Адрес назначения %s неизвестен -- флудим всем портам, кроме полученного" % (packet.dst,))
             else:
                 # установка потока
                 outport = self.macToPort[packet.dst]
                 if outport == event.port:
-                    log.warning("Тот же порт для пакета от %s -> %s на %s. Drop." %
+                    log.warning("От адреса %s -> на адрес %s на порт %s. Drop." %
                                 (packet.src, packet.dst, outport), dpidToStr(event.dpid))
                     return
-                log.debug("Установка потока(flow) для %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
+                log.debug("Установка потока(flow) от %s.%i -> на %s.%i" % (packet.src, event.port, packet.dst, outport))
                 log.debug("Это dpid %s" % dpidToStr(event.dpid))
                 msg = of.ofp_flow_mod()
                 msg.match.dl_src = packet.src
