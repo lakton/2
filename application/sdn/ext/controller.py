@@ -96,7 +96,7 @@ class LearningFirewall (EventMixin):
         dpidstr = dpidToStr(event.connection.dpid)
         arp = packet.find('arp')
         if arp is not None:
-            print("Найден ARP-заголовок")
+            #print("Найден ARP-заголовок")
             # log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
