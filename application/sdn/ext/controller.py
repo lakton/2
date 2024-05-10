@@ -13,6 +13,7 @@ import time
 
 import subprocess
 import shlex
+import psutil
 
 from pox.lib.addresses import EthAddr
 from pox.lib.addresses import IPAddr
@@ -324,11 +325,15 @@ class LearningSwitch1 (EventMixin):
             msg.in_port = event.port
             self.connection.send(msg)
             
+        flood_warning_shown = False   
         if packet.dst.is_multicast:
             flood()
         else:
             if packet.dst not in self.macToPort:
-                flood("Адрес назначения %s неизвестен -- флудим всем портам, кроме полученного" % (packet.dst,))
+        # Выводим предупреждение о флуде только если флаг flood_warning_shown не установлен
+                    if not flood_warning_shown:
+                        flood("Адрес назначения %s неизвестен -- флудим всем портам, кроме полученного" % (packet.dst,))
+                        flood_warning_shown = True  # Устанавливаем флаг в True после вывода предупреждения о флуде
             else:
                 # установка потока
                 outport = self.macToPort[packet.dst]
@@ -336,7 +341,7 @@ class LearningSwitch1 (EventMixin):
                     log.warning("От адреса %s -> на адрес %s на порт %s. Drop." %
                                 (packet.src, packet.dst, outport), dpidToStr(event.dpid))
                     return
-                log.debug("Установка потока(flow) от %s.%i -> на %s.%i" % (packet.src, event.port, packet.dst, outport))
+                log.debug("Установка потока(flow) от %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
                 log.debug("Это dpid %s" % dpidToStr(event.dpid))
                 msg = of.ofp_flow_mod()
                 msg.match.dl_src = packet.src
@@ -347,7 +352,7 @@ class LearningSwitch1 (EventMixin):
                 msg.buffer_id = event.ofp.buffer_id
                 self.connection.send(msg)
 
-                
+running_processes = [p.name() for p in psutil.process_iter()]      
 class learning_switch(EventMixin):
     def __init__(self, transparent):
         super().__init__()
@@ -368,7 +373,11 @@ class learning_switch(EventMixin):
             log.debug("Коммутаторы подключены")
             LearningSwitch(event.connection)
         else:
-            log.debug("(Fast)Click запущен")
+            if "click" in running_processes:
+                log.debug("(Fast)Click запущен")
+
+
+
 
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)

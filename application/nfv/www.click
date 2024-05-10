@@ -101,14 +101,14 @@ fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Запрос ARP из внешней сети") -> arp_req_ex -> arpr_ext[0] -> to_ext;
 c_in[1] -> Print("Ответ ARP из внешней сети") -> arp_res_ex -> [1]arpq_ext;
 c_in[2] -> Print("Получен IP-пакет из внешней сети") -> Strip(14) -> CheckIPHeader -> c_ip_in;
-c_in[3] -> Print("Отбрасывается пакет из внешней сети") -> Discard;
+c_in[3] -> Print("DROP ex") -> Discard;
 
 c_ip_in[0] -> Print("Перенаправление на сервис из внешней сети") -> service_count -> rewr[1] -> [0]arpq_int -> to_int;
 c_ip_in[1] -> Print("Ответ на ICMP-пакет из внутренней сети") -> icmp_count -> ICMPPingResponder -> [0]arpq_ext -> to_ext;
-c_ip_in[2] -> Print("Отбрасывается пакет из внешней сети") -> drop_ex -> Discard;
+c_ip_in[2] -> Print("DROP ex") -> drop_ex -> Discard;
 
 fr_int -> in_eth2 -> pack_req_in -> c_ex;
 c_ex[0] -> Print("Запрос ARP из внутренней сети") -> arp_req_in -> arpr_int[0] -> to_int; 
 c_ex[1] -> Print("Ответ ARP из внутренней сети") -> arp_res_in -> [1]arpq_int;
 c_ex[2] -> Print("Получен IP-пакет из внутренней сети") -> Strip(14) -> CheckIPHeader -> rewr[0] -> [0]arpq_ext -> to_ext;
-c_ex[3] -> Print("Отбрасывается пакет из внутренней сети") -> drop_in -> Discard;
+c_ex[3] -> Print("DROP in") -> drop_in -> Discard;

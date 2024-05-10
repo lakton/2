@@ -162,7 +162,6 @@ second_stage[7]
         -> Queue
         -> [7]dst_lb;
 second_stage[8]
-        -> Print("Другие пакеты обработаны и направлены на insp")
         -> Queue
         -> [1]dst_insp;
 //==========================================
@@ -174,7 +173,6 @@ third_stage[1]
 	-> Print("Обработан PUT запрос и направлен на четвертый этап")
         -> fourth_stage;
 third_stage[2]
-        -> Print("Другие пакеты обработаны успешно")
         -> Queue
         -> [2]dst_insp;
 //=========================================
@@ -199,6 +197,5 @@ fourth_stage[4]
         -> Queue
         -> [7]dst_insp;
 fourth_stage[5]
-        -> Print("Пакет отправлен на lb")
         -> Queue
         -> [9]dst_lb;
