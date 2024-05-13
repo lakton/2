@@ -80,7 +80,7 @@ packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_ex.count) $(pack_res
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_in.count)))
 
 // Driver Manager
-DriverManager(wait , print > ../../results/www.report  "
+DriverManager(wait , print > /home/sdn/Desktop/2/application/results/www.report  "
 		print > lb2.report "===============LB2 Report=================",
 		print >> lb2.report "Input Packet rate (pps) : " $(inrate.run),
 		print >> lb2.report "Output Packet rate (pps) : " $(outrate.run),

@@ -79,7 +79,7 @@ icmp_sum :: Script(TYPE PASSIVE, return $(add $(icmp_count.count) $(icmp_in.coun
 // drop sum
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_in.count) $(drop_ex_ip.count) $(drop_in_ip.count)))
 
-DriverManager(wait , print > ../../results/nat.report  "
+DriverManager(wait , print > /home/sdn/Desktop/2/application/results/nat.report  "
                 print > napt.report "===============NAPT Report=================",
                 print >> napt.report "Input Packet rate (pps) : " $(inrate.run),
                 print >> napt.report "Output Packet rate (pps) : " $(outrate.run),

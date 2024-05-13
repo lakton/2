@@ -71,7 +71,7 @@ arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in
 // drop sum
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_ex_ip.count) $(drop_in.count)))
 
-DriverManager(wait , print > ../../results/dns.report  "
+DriverManager(wait , print > /home/sdn/Desktop/2/application/results/dns.report  "
                 print > lb1.report "===============LB1 Report=================",
                 print >> lb1.report "Input Packet rate (pps) : " $(inrate.run),
                 print >> lb1.report "Output Packet rate (pps) : " $(outrate.run),

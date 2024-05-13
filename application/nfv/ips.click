@@ -85,7 +85,7 @@ packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_net.count) $(pack_re
 // arpreq_sum :: Script(TYPE PASSIVE, return $(add $(arp_req_ex.count) $(arp_req_in.count)))
 // arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in.count)))
 
-DriverManager(wait , print > ../../results/ips.report  "
+DriverManager(wait , print > /home/sdn/Desktop/2/application/results/ips.report  "
                 print > ips.report "===============ips Report=================",
                 print >> ips.report "Input Packet rate (pps) : " $(inrate.run),
                 print >> ips.report "Output Packet rate (pps) : " $(outrate.run),
