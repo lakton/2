@@ -106,7 +106,7 @@ class LearningFirewall (EventMixin):
             # log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
-                print("Destination Host Unreachable")
+                print("Destination Host Unreachable. WEB-сервера и DNS-сервера.")
                 return
 
         """Здесь мы извлекаем заголовки UDP, TCP и ICMP из пакета IPv4 и выполняем соответствующие действия в зависимости от протокола."""
@@ -240,7 +240,6 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) 
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:07'), 8, False)
         
-        self.AddRule('00-00-00-00-00-02', EthAddr('ff:ff:ff:ff:ff:ff'), 53, True)
             # napt INT
         #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True)
         #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True) 
@@ -285,14 +284,13 @@ class LearningFirewall2(LearningFirewall):
         # napt INT
         #self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 0, True)
         #self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 53, True)
-        self.AddRule('00-00-00-00-00-09', EthAddr('ff:ff:ff:ff:ff:ff'), 53, True)
+    
         # h3 h4, 0, 53 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 0, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 53, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 53, True)
-       # self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 40984, True) 
-        #self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 40984, True)
+
 
     def _handle_PacketIn(self, event):
         #log.debug("Пакет брандмауэра 2.")
