@@ -95,13 +95,16 @@ if __name__ == "__main__":
     net.get("ds1").cmd("route add default gw 100.0.0.25 ds1-eth0")
     net.get("ds2").cmd("route add default gw 100.0.0.25 ds2-eth0")
     net.get("ds3").cmd("route add default gw 100.0.0.25 ds3-eth0")
-    #net.get("lb1").cmd("python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server.py")
+    net.get("ds1").cmd("python3 /home/sdn/Desktop/2/application/sdn/ext/dns_server.py")
     net.get("ws1").cmd("route add default gw 100.0.0.45 ws1-eth0")
     net.get("ws2").cmd("route add default gw 100.0.0.45 ws2-eth0")
     net.get("ws3").cmd("route add default gw 100.0.0.45 ws3-eth0")
-    #net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.45")
+    net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.40")
+    net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.41")
+    net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.42")
     net.get("h1").cmd("cp /dev/null /etc/resolv.conf")
     net.get("h1").cmd("echo 'nameserver 100.0.0.25' > /etc/resolv.conf")
+    net.get("h1").cmd("echo 'nameserver 100.0.0.45' > /etc/resolv.conf")
     # Запуск сети
     net.start()
     CLI(net)  # Запуск интерактивной консоли Mininet
