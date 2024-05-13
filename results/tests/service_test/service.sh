@@ -4,7 +4,7 @@ test_dir="/home/sdn/Desktop/2/results/tests/service_test/"
 # Clear or create log files
 touch /home/sdn/Desktop/2/results/tests/service_test/resultservice.log
 chmod 755 /home/sdn/Desktop/2/results/tests/service_test/resultservice.log
-cp /dev/null/home/sdn/Desktop/2/results/tests/service_test/resultservice.log
+cp /dev/null /home/sdn/Desktop/2/results/tests/service_test/resultservice.log
 
 touch /home/sdn/Desktop/2/results/tests/service_test/service.log
 chmod 755 /home/sdn/Desktop/2/results/tests/service_test/service.log
