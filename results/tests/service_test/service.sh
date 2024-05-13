@@ -21,19 +21,19 @@ cp /dev/null /home/sdn/Desktop/2/results/servicewww.log
 #============================================================================
 # DNS SERVER TEST
 # H1
-echo "h1 digging 100.0.0.25 for sdnithub.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
+echo "h1 digging 100.0.0.25 for sdnithub1.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h1 timeout 11 dig @100.0.0.25 sdnithub1.ru >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 11
 # H2
-echo "h2 digging 100.0.0.25 for sdnithub.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
+echo "h2 digging 100.0.0.25 for sdnithub2.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h2 timeout 11 dig @100.0.0.25 sdnithub2.ru >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 11
 # H3
-echo "h3 digging 100.0.0.25 for sdnithub.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
+echo "h3 digging 100.0.0.25 for sdnithub3.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h3 timeout 11 dig @100.0.0.25 sdnithub3.ru >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 11
 # H4
-echo "h4 digging 100.0.0.25 for sdnithub.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
+echo "h4 digging 100.0.0.25 for sdnithub1.ru" >> /home/sdn/Desktop/2/results/service.log 2>&1
 $m_util h4 timeout 11 dig @100.0.0.25 sdnithub1.ru >> /home/sdn/Desktop/2/results/servicedns.log 2>&1
 sleep 11
 python3 $test_dir/servdnschecker.py
