@@ -285,7 +285,7 @@ class LearningFirewall2(LearningFirewall):
         # napt INT
         #self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 0, True)
         #self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 53, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('ff:ff:ff:ff:ff:ff'), 53, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('ff:ff:ff:ff:ff:ff'), 53, True)
         # h3 h4, 0, 53 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 0, True)
