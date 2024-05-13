@@ -34,13 +34,13 @@ icmp_count :: Counter;
 service_count :: Counter;
 
 //http counters
-getpost :: Counter;
+getput :: Counter;
 post :: Counter;
 put :: Counter;
 delete :: Counter;
 update :: Counter;
 insert :: Counter;
-pass :: Counter;
+passs :: Counter;
 logg :: Counter;
 
 
@@ -98,8 +98,8 @@ arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in
 
 //FORWARDER FROM INSIDE NETWORK
 src_lb -> in_eth2 -> pack_req_in -> Queue -> [0]dst_net;
-first_stage_int[0] -> arp_req_in -> Queue -> [0]dst_net;
-first_stage_int[1] -> arp_res_in -> Queue -> [0]dst_net;
+//first_stage_int[0] -> arp_req_in -> Queue -> [0]dst_net;
+//first_stage_int[1] -> arp_res_in -> Queue -> [0]dst_net;
 //first_stage_int[2] -> Print(ReplyFrInside) -> Queue -> [0]dst_net;
 
 //JUST STUPID FORWARDER. don't forget to comment
@@ -219,8 +219,6 @@ DriverManager(wait, print > /home/sdn/Desktop/2/results/ips.report "
     Пакеты ARP:
         - Запросы (внешние): $(arp_req_ex.count)
         - Ответы (внешние): $(arp_res_ex.count)
-        - Запросы (внутренние): $(arp_req_in.count)
-        - Ответы (внутренние): $(arp_res_in.count)
 
     Пакеты ICMP:
         - Всего: $(icmp_count.count)
