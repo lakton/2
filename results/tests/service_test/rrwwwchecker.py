@@ -4,7 +4,7 @@ import scapy.all as scapy
 import sys
 
 # pcap file name
-file = "72.pcap"
+file = "/home/sdn/Desktop/2/results/service_test/72.pcap"
 
 # Print pcap to screen and capture
 # Source: http://stackoverflow.com/questions/29288848/get-info-string-from-scapy-packet

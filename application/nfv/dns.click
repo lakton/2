@@ -71,7 +71,7 @@ arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in
 // drop sum
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_ex_ip.count) $(drop_in.count)))
 
-DriverManager(wait,
+DriverManager(wait , print > ../../results/dns.report  "
                 print > lb1.report "===============LB1 Report=================",
                 print >> lb1.report "Input Packet rate (pps) : " $(inrate.run),
                 print >> lb1.report "Output Packet rate (pps) : " $(outrate.run),
@@ -86,7 +86,7 @@ DriverManager(wait,
                 print >> lb1.report "Total # of ICMP packets : "$(icmp_count.count),
                 print >> lb1.report "Total # of dropped packets : "$(drop_sum.run),
                 print >> lb1.report "=========================================",
-                stop);
+             "   stop);
 
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Получен запрос DNS-пакета") -> arp_req_ex -> arpr_ext[0] -> to_ext;

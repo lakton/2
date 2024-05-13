@@ -17,6 +17,7 @@ from pox.lib.packet import *
 
 log = core.getLogger()
 
+# Определяем время для удаления неактивных потоков
 HARD_TIMEOUT = 30
 IDLE_TIMEOUT = 30
 
@@ -25,21 +26,27 @@ i = 0
 #flag = 0
 
 class LearningFirewall (EventMixin):
+    """
+    Этот класс представляет обучающийся брандмауэр.
+    macToPort, firewall, stateful - словари для отслеживания соответствий MAC-адресов портам коммутатора, правил брандмауэра и состояния фаервола соответственно
+    """
     def __init__(self, connection, transparent):
         # Коммутатор, к которому мы будем добавлять возможности обучающегося L2-коммутатора
-        self.macToPort = {}
+        self.macToPort = {}#
         self.connection = connection
         self.transparent= transparent
         self.listenTo(connection)
-        self.firewall = {}
+        self.firewall = {}#
         self.flag = 0
         self.hold_down_expired = flood_delay == 0
-        self.stateful = {}
-
+        self.stateful = {}#
+        
+    #   AddRule - метод для добавления правил брандмауэра в словарь.
     def AddRule(self, dpidstr, dst=0, dst_port=0, value=True):
         self.firewall[(dpidstr, dst, dst_port, )] = value
         log.debug("Добавление правила брандмауэра в %s: %s %s", dpidstr, dst, dst_port)
-
+        
+    #   CheckRule - метод для проверки наличия правил в брандмауэре.
     def CheckRule(self, dpidstr, dst=0, dst_port=0):
         try:
             entry = self.firewall[(dpidstr, dst, dst_port)]
@@ -51,7 +58,9 @@ class LearningFirewall (EventMixin):
         except KeyError:
             log.debug("Правило %s !НЕ! найдено в %s-%s: DROP", dst, dpidstr, dst_port)
             return False
-
+        
+    #   Метод _handle_PacketIn вызывается при получении коммутатором пакета, который не соответствует ни одному правилу.
+    #   event содержит информацию о событии, включая входной пакет.
     def _handle_PacketIn(self, event):
         global i
         # разбор входного пакета
@@ -100,11 +109,12 @@ class LearningFirewall (EventMixin):
                 print("Destination Host Unreachable")
                 return
 
+        """Здесь мы извлекаем заголовки UDP, TCP и ICMP из пакета IPv4 и выполняем соответствующие действия в зависимости от протокола."""
         ip = packet.find('ipv4')
         if ip is not None:
             udp = ip.find('udp')
             if udp is not None:
-                self.stateful[i] = (ip.id, ip.srcip, ip.dstip, udp.srcport, udp.dstport)
+                self.stateful[i] = (ip.id, ip.srcip, ip.dstip, udp.srcport, udp.dstport)#Добавляем информацию о состоянии для последующей обработки.
                 i = i + 1
                 log.debug("ЭТО UDP")
                 if self.CheckRule(dpidstr, packet.dst, udp.dstport) == False and self.CheckRule(dpidstr, packet.src,
@@ -117,7 +127,7 @@ class LearningFirewall (EventMixin):
 
             tcp = ip.find('tcp')
             if tcp is not None:
-                self.stateful[i] = (ip.id, ip.srcip, ip.dstip, tcp.srcport, tcp.dstport)
+                self.stateful[i] = (ip.id, ip.srcip, ip.dstip, tcp.srcport, tcp.dstport)#Добавляем информацию о состоянии для последующей обработки.
                 i = i + 1
                 log.debug("ЭТО TCP")
 
@@ -128,9 +138,10 @@ class LearningFirewall (EventMixin):
                     drop()
                     self.flag = 1
                     return
+
             icmp = ip.find('icmp')
             if icmp is not None:
-                self.stateful[i] = (ip.id, ip.srcip, ip.dstip, icmp.code, icmp.type)
+                self.stateful[i] = (ip.id, ip.srcip, ip.dstip, icmp.code, icmp.type)#Добавляем информацию о состоянии для последующей обработки.
                 i = i + 1
                 log.debug('Найден ICMP-заголовок %s' % icmp.type)
                 if self.CheckRule(dpidstr, packet.dst, icmp.type) == False:
@@ -178,15 +189,14 @@ class LearningFirewall (EventMixin):
                     return
                 log.debug("Установка потока(flow) от %s.%i -> на %s.%i" % (packet.src, event.port, packet.dst, outport))
                 log.debug("Это dpid %s" % dpidToStr(event.dpid))
-                msg = of.ofp_flow_mod()
-                msg.match.dl_src = packet.src
-                msg.match.dl_dst = packet.dst
-                msg.idle_timeout = IDLE_TIMEOUT
-                msg.hard_timeout = HARD_TIMEOUT
-                msg.actions.append(of.ofp_action_output(port=outport))
-                msg.buffer_id = event.ofp.buffer_id
-                self.connection.send(msg)
-
+                msg = of.ofp_flow_mod()  # Создание объекта для отправки сообщения установки потока
+                msg.match.dl_src = packet.src  # Устанавливаем условие для сопоставления MAC-адреса источника
+                msg.match.dl_dst = packet.dst  # Устанавливаем условие для сопоставления MAC-адреса назначения
+                msg.idle_timeout = IDLE_TIMEOUT  # Устанавливаем время бездействия (время до удаления потока)
+                msg.hard_timeout = HARD_TIMEOUT  # Устанавливаем таймаут (время, после которого поток будет удален даже при активном использовании)
+                msg.actions.append(of.ofp_action_output(port=outport))  # Добавляем действие для отправки пакета на указанный порт
+                msg.buffer_id = event.ofp.buffer_id  # Устанавливаем буфер для обработки пакета
+                self.connection.send(msg)  # Отправляем сообщение о установке потока через соединение OpenFlow
 
 class LearningFirewall1(LearningFirewall):
     def __init__(self, connection, transparent):

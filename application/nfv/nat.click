@@ -79,7 +79,7 @@ icmp_sum :: Script(TYPE PASSIVE, return $(add $(icmp_count.count) $(icmp_in.coun
 // drop sum
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_in.count) $(drop_ex_ip.count) $(drop_in_ip.count)))
 
-DriverManager(wait,
+DriverManager(wait , print > ../../results/nat.report  "
                 print > napt.report "===============NAPT Report=================",
                 print >> napt.report "Input Packet rate (pps) : " $(inrate.run),
                 print >> napt.report "Output Packet rate (pps) : " $(outrate.run),
@@ -96,7 +96,7 @@ DriverManager(wait,
                 print >> napt.report "=========================================",
                 print >> napt.report "notes : we consider icmp echo from private network",
 		print >> napt.report "NOT as a service",
-		stop);
+	"       stop);
 
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Получен запрос ARP из внешней сети") -> arp_req_ex -> arpr_ext[0] -> to_ext;
