@@ -93,16 +93,16 @@ DriverManager(wait, print > /home/sdn/Desktop/2/results/dns.report"
     =================== Отчет DNS ===================,
 
     Общее количество полученных и отправленных пакетов (pps):
-        - Входящие: $(inrate)
-        - Исходящие: $(outrate)
+        - Входящие in 1: $(in_eth1.rate)
+        - Входящие in 2: $(in_eth2.rate)
+        - Исходящие out 1: $(out_eth1.rate)
+        - Исходящие out 2: $(out_eth1.rate)
 
-    Общее количество запросов и ответов DNS:
-        - Запросы: $(packreq_sum)
-        - Ответы: $(packres_sum)
-
-    Общее количество запросов и ответов ARP:
-        - Запросы (внешние): $(arpreq_sum)
-        - Ответы (внешние): $(arpres_sum)
+    Пакеты ARP:
+        - Запросы (внешние): $(arp_req_ex.count)
+        - Ответы (внешние): $(arp_res_ex.count)
+        - Запросы (внутренние): $(arp_req_in.count)
+        - Ответы (внутренние): $(arp_res_in.count)
 
     Пакеты, отброшенные из-за ошибок:
         - Ошибки внешних пакетов: $(drop_ex.count)

@@ -100,8 +100,8 @@ DriverManager(wait,  print > /home/sdn/Desktop/2/results/www.report "
     =================== Отчет HTTP Балансировщика ===================,
 
     Общее количество запросов и ответов ARP:
-        - Запросы (внешние): $(arpreq_sum)
-        - Ответы (внешние): $(arpres_sum)
+        - Запросы (внешние): $(arp_req_ex.count)
+        - Ответы (внешние): $(arp_res_ex.count)
         - Запросы (внутренние): $(arp_req_in.count)
         - Ответы (внутренние): $(arp_res_in.count)
 

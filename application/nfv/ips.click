@@ -24,14 +24,25 @@ pack_insp :: Counter;
 // arp
 arp_req_ex :: Counter;
 arp_res_ex :: Counter;
-//arp_req_in :: Counter;
-//arp_res_in :: Counter;
+arp_req_in :: Counter;
+arp_res_in :: Counter;
 
 // icmp
 icmp_count :: Counter;
 
 // service counter
 service_count :: Counter;
+
+//http counters
+getpost :: Counter;
+post :: Counter;
+put :: Counter;
+delete :: Counter;
+update :: Counter;
+insert :: Counter;
+pass :: Counter;
+logg :: Counter;
+
 
 // Device declaration
 src_net :: FromDevice(ips-eth1, METHOD LINUX, SNIFFER false);
@@ -82,13 +93,13 @@ packreq_sum :: Script(TYPE PASSIVE, return $(add $(pack_req_net.count) $(pack_re
 packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_net.count) $(pack_res_in.count) $(pack_insp.count)))
 
 // arp req-resp
-// arpreq_sum :: Script(TYPE PASSIVE, return $(add $(arp_req_ex.count) $(arp_req_in.count)))
-// arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in.count)))
+arpreq_sum :: Script(TYPE PASSIVE, return $(add $(arp_req_ex.count) $(arp_req_in.count)))
+arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in.count)))
 
 //FORWARDER FROM INSIDE NETWORK
 src_lb -> in_eth2 -> pack_req_in -> Queue -> [0]dst_net;
-//first_stage_int[0] -> arp_req_in -> Queue -> [0]dst_net;
-//first_stage_int[1] -> arp_res_in -> Queue -> [0]dst_net;
+first_stage_int[0] -> arp_req_in -> Queue -> [0]dst_net;
+first_stage_int[1] -> arp_res_in -> Queue -> [0]dst_net;
 //first_stage_int[2] -> Print(ReplyFrInside) -> Queue -> [0]dst_net;
 
 //JUST STUPID FORWARDER. don't forget to comment
@@ -120,6 +131,7 @@ second_stage[0]
         -> [2]dst_lb;
 second_stage[1]                 //HTTP
          -> Print("Обработан HTTP GET/PUT запрос и направлен на третий этап")
+         -> getput
          -> third_stage;
 second_stage[2]                 //HTTP
          -> Print("Обработан HTTP POST запрос и направлен на третий этап")
@@ -150,10 +162,12 @@ second_stage[8]
 //==========================================
 third_stage[0]
         -> Print("Обработан POST запрос и направлен на lb1")
+        -> post
         -> Queue
         -> [8]dst_lb;
 third_stage[1]
 	-> Print("Обработан PUT запрос и направлен на четвертый этап")
+        -> put
         -> fourth_stage;
 third_stage[2]
         -> Queue
@@ -161,22 +175,27 @@ third_stage[2]
 //=========================================
 fourth_stage[0]
         -> Print("Предотвращена попытка запроса на чтение пароля (cat /etc/passwd)")
+        -> passs
         -> Queue
         -> [3]dst_insp;
 fourth_stage[1]
         -> Print("Предотвращена попытка запроса на чтение логов (cat /var/log)")
+        -> logg
         -> Queue
         -> [4]dst_insp;
 fourth_stage[2]
         -> Print("Предотвращена попытка INSERT")
+        -> insert
         -> Queue
         -> [5]dst_insp;
 fourth_stage[3]
         -> Print("Предотвращена попытка UPDATE")
+        -> update
         -> Queue
         -> [6]dst_insp;
 fourth_stage[4]
         -> Print("Предотвращена попытка DELETE")
+        -> delete
         -> Queue
         -> [7]dst_insp;
 fourth_stage[5]
@@ -186,37 +205,39 @@ DriverManager(wait, print > /home/sdn/Desktop/2/results/ips.report "
     ====================== Отчет IPS ======================,
 
     Общее количество полученных пакетов (pps):
-        - Входящие: $(inrate)
-        - Исходящие: $(outrate)
+        - Входящие: $(in_eth1.rate)
+        - Входящие: $(in_eth2.rate)
+        - Исходящие: $(out_eth1.rate)
+        - Исходящие: $(out_eth2.rate)
 
     Общее количество обработанных пакетов (запрос-ответ):
-        - Запросы: $(packreq_sum)
-        - Ответы: $(packres_sum)
+        - Запросы net: $(pack_req_net.count)
+        - Запросы in: $(pack_req_in.count)
+        - Ответы net: $(pack_res_net.count)
+        - Ответы net: $(pack_res_in.count)
 
     Пакеты ARP:
         - Запросы (внешние): $(arp_req_ex.count)
         - Ответы (внешние): $(arp_res_ex.count)
+        - Запросы (внутренние): $(arp_req_in.count)
+        - Ответы (внутренние): $(arp_res_in.count)
 
     Пакеты ICMP:
         - Всего: $(icmp_count.count)
 
     Пакеты HTTP:
-        - Запросы GET/PUT: $(third_stage[0].count)
-        - Запросы POST: $(third_stage[1].count)
+        - Запросы GET: $(getput)
+        - Запросы PUT: $(put)
+        - Запросы POST: $(post)
 
     Обнаруженные SQL-команды:
-        - INSERT: $(fourth_stage[2].count)
-        - UPDATE: $(fourth_stage[3].count)
-        - DELETE: $(fourth_stage[4].count)
+        - INSERT: $(insert)
+        - UPDATE: $(update)
+        - DELETE: $(delete)
 
     Обнаруженные нарушения безопасности:
-        - Доступ к файлу с паролями: $(fourth_stage[0].count)
-        - Доступ к файлу журнала: $(fourth_stage[1].count)
-
-    Пакеты, перенаправленные на балансировщик нагрузки:
-        - Из сети: $(dst_net.count)
-        - Из балансировщика нагрузки: $(dst_lb.count)
-        - Из модуля инспекции: $(dst_insp.count)
+        - Доступ к файлу с паролями: $(passs)
+        - Доступ к файлу журнала: $(logg)
 
     Пакеты, обработанные модулем инспекции:
         - Всего: $(pack_insp.count)
