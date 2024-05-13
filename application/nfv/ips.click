@@ -24,8 +24,8 @@ pack_insp :: Counter;
 // arp
 arp_req_ex :: Counter;
 arp_res_ex :: Counter;
-arp_req_in :: Counter;
-arp_res_in :: Counter;
+//arp_req_in :: Counter;
+//arp_res_in :: Counter;
 
 // icmp
 icmp_count :: Counter;
