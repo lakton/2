@@ -104,7 +104,6 @@ if __name__ == "__main__":
     #net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.42 >> /var/log/www3.log 2>&1 &")
     net.get("h1").cmd("cp /dev/null /etc/resolv.conf")
     net.get("h1").cmd("echo 'nameserver 100.0.0.25' > /etc/resolv.conf")
-    net.get("h1").cmd("echo 'nameserver 100.0.0.45' > /etc/resolv.conf")
     # Запуск сети
     net.start()
     CLI(net)  # Запуск интерактивной консоли Mininet
