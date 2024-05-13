@@ -101,14 +101,11 @@ if __name__ == "__main__":
     net.get("ws1").cmd("route add default gw 100.0.0.45 ws1-eth0")
     net.get("ws2").cmd("route add default gw 100.0.0.45 ws2-eth0")
     net.get("ws3").cmd("route add default gw 100.0.0.45 ws3-eth0")
-   # net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.40 >> /var/log/www1.log 2>&1 &")
-    #net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.41 >> /var/log/www2.log 2>&1 &")
-    #net.get("ws1").cmd("python3 -m http.server 80 --bind 100.0.0.42 >> /var/log/www3.log 2>&1 &")
+    net.get("ws1").cmd("python3 -m http.server 80 &")
+    net.get("ws2").cmd("python3 -m http.server 80 &")
+    net.get("ws3").cmd("python3 -m http.server 80 &")
     net.get("h1").cmd("cp /dev/null /etc/resolv.conf")
     net.get("h1").cmd("echo 'nameserver 100.0.0.25' > /etc/resolv.conf")
     # Запуск сети
     net.start()
     CLI(net)  # Запуск интерактивной консоли Mininet
-
-
-
