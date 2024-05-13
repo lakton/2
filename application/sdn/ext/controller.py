@@ -209,11 +209,15 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 8, True) 
         
-        #(ds1-3):00:00:00:00:00:01-3 ,8 icmp,
+        #(ds1-3):00:00:00:00:00:01-3 , 0 - all ports?, 8 icmp, 53 - udp
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 0, True)
         #
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 8, True)
+
         
         #(dnslb EXT): fe:91:b3:92:f1:98 , 53 udp
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 53, True)
@@ -252,11 +256,19 @@ class LearningFirewall2(LearningFirewall):
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
         
-        #(ds1-3):00:00:00:00:00:01-3 , 8 icmp
+        #(ds1-3):00:00:00:00:00:01-3 , 0 - all ports?, 8 icmp, 53 - udp
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 0, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 0, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 0, True)
+        
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 8, True)
 
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 53, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 53, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 53, True)
+        
         #(dnslb EXT): fe:91:b3:92:f1:98 , 53 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
