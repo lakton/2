@@ -1,6 +1,6 @@
 from scapy.all import *
 
-DNSServerIP = "100.0.0.25"
+DNSServerIP = "100.0.0.45"
 filter = "udp port 53 and ip dst " + DNSServerIP + " and not ip src " + DNSServerIP
 
 def DNS_Responder(localIP):
