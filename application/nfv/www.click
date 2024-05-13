@@ -80,7 +80,7 @@ packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_ex.count) $(pack_res
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_in.count)))
 
 // Driver Manager
-DriverManager(wait , print > /home/sdn/Desktop/2/application/results/www.report  "
+DriverManager(wait ,  print > /home/sdn/Desktop/2/results/www.report
 		print > lb2.report "===============LB2 Report=================",
 		print >> lb2.report "Input Packet rate (pps) : " $(inrate.run),
 		print >> lb2.report "Output Packet rate (pps) : " $(outrate.run),
@@ -95,7 +95,7 @@ DriverManager(wait , print > /home/sdn/Desktop/2/application/results/www.report 
 		print >> lb2.report "Total # of ICMP packets : "$(icmp_count.count),
 		print >> lb2.report "Total # of dropped packets : "$(drop_sum.run),
 		print >> lb2.report "=========================================",
-		"stop);
+		stop);
 
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Запрос ARP из внешней сети") -> arp_req_ex -> arpr_ext[0] -> to_ext;
