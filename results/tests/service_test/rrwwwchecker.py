@@ -4,7 +4,7 @@ import scapy.all as scapy
 import sys
 
 # pcap file name
-file = "/home/sdn/Desktop/2/results/service_test/72.pcap"
+file = "/home/sdn/Desktop/2/results/tests/service_test/72.pcap"
 
 # Print pcap to screen and capture
 # Source: http://stackoverflow.com/questions/29288848/get-info-string-from-scapy-packet
@@ -64,5 +64,5 @@ with open("out2.txt", "r") as f2:
             print("Ошибка здесь")
 
 # Print result. Return "True" if round robin works properly
-with open("/home/sdn/Desktop/2/results/resultservice.log", "a") as file:
+with open("/home/sdn/Desktop/2/results/tests/service_test/resultservice.log", "a") as file:
     file.write("\n\nWWW LB round robin test : " + result)
