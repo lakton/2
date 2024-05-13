@@ -1,0 +1,20 @@
+{
+    "$origin": "sdnithub.com.",
+    "$ttl": 3600,
+    "soa": {
+        "mname": "ns1.sdnithub.com.",
+        "rname": "admin.sdnithub.com.",
+        "serial": "{time}",
+        "refresh": 3600,
+        "retry": 600,
+        "expire": 604800,
+        "minimum": 86400
+    },
+    "ns": [
+        { "host": "ns1.sdnithub.com." }
+    ],
+    
+    "a": [
+        { "name": "@", "ttl": 400, "value": "100.0.0.21" }
+    ]
+}

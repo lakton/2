@@ -51,12 +51,12 @@ class LearningFirewall (EventMixin):
         try:
             entry = self.firewall[(dpidstr, dst, dst_port)]
             if entry == True:
-                log.debug("Правило %s найдено в %s-%s: FORWARD", dst, dpidstr, dst_port)
+                log.debug("Правило для %s найдено в брандмауэре %s, порт - %s: FORWARD", dst, dpidstr, dst_port)
             else:
-                log.debug("Правило %s найдено в %s- %s: DROP", dst, dpidstr, dst_port)
+                log.debug("Правило для %s найдено в брандмауэре %s, порт - %s: DROP", dst, dpidstr, dst_port)
                 return entry
         except KeyError:
-            log.debug("Правило %s !НЕ! найдено в %s-%s: DROP", dst, dpidstr, dst_port)
+            log.debug("Правило для %s !НЕ! найдено в брандмауэре %s, порт - %s: DROP", dst, dpidstr, dst_port)
             return False
         
     #   Метод _handle_PacketIn вызывается при получении коммутатором пакета, который не соответствует ни одному правилу.
@@ -106,7 +106,7 @@ class LearningFirewall (EventMixin):
             # log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
-                print("Destination Host Unreachable. WEB-сервера и DNS-сервера.")
+                print("ARP пакеты на WEB и DNS-сервера недоступны.")
                 return
 
         """Здесь мы извлекаем заголовки UDP, TCP и ICMP из пакета IPv4 и выполняем соответствующие действия в зависимости от протокола."""
@@ -133,7 +133,7 @@ class LearningFirewall (EventMixin):
 
                 if self.CheckRule(dpidstr, packet.dst, tcp.dstport) == False and self.CheckRule(dpidstr, packet.src,
                                                                                                tcp.srcport) == False:
-                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
+                    log.debug("Устройство %s и его MAC-назначения: %s-%s" % (
                     dpidstr, packet.dst, tcp.dstport))
                     drop()
                     self.flag = 1
@@ -145,7 +145,7 @@ class LearningFirewall (EventMixin):
                 i = i + 1
                 log.debug('Найден ICMP-заголовок %s' % icmp.type)
                 if self.CheckRule(dpidstr, packet.dst, icmp.type) == False:
-                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
+                    log.debug("Устройство %s и его MAC-назначения: %s-%s" % (
                     dpidstr, packet.dst, icmp.type))
                     drop()
                     self.flag = 1
@@ -158,7 +158,7 @@ class LearningFirewall (EventMixin):
                 i = i + 1
                 log.debug('Найден ICMP-заголовок %s' % icmp.type)
                 if self.CheckRule(dpidstr, packet.dst, icmp.type) == False:
-                    log.debug("Устройство %s и его IP-назначения: %s-%s" % (
+                    log.debug("Устройство %s и его MAC-назначения: %s-%s" % (
                     dpidstr, packet.dst, icmp.type))
                     drop()
                     self.flag = 1
@@ -209,18 +209,11 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 8, True) 
         
-        #(ds1-3):00:00:00:00:00:01-3 , 0 - all ports?, 8 icmp, 53 - udp
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) 
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 0, True)
+        #(ds1-3):00:00:00:00:00:01-3 ,8 icmp,
         #
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 8, True)
-        #
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 53, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 53, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 53, True)
         
         #(dnslb EXT): fe:91:b3:92:f1:98 , 53 udp
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 53, True)
@@ -259,19 +252,11 @@ class LearningFirewall2(LearningFirewall):
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
         
-        #(ds1-3):00:00:00:00:00:01-3 , 0 - all ports?, 8 icmp, 53 - udp
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 0, True) 
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 0, True)
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 0, True)
-        
+        #(ds1-3):00:00:00:00:00:01-3 , 8 icmp
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 8, True)
 
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 53, True)
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 53, True)
-        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 53, True)
-        
         #(dnslb EXT): fe:91:b3:92:f1:98 , 53 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
@@ -305,7 +290,7 @@ class LearningSwitch(EventMixin):
         self.listenTo(core.openflow)
 
     def _handle_ConnectionUp(self, event):
-        log.debug("Connection %s" % (event.connection,))
+        log.debug("Подключение %s" % (event.connection,))
         LearningSwitch1(event.connection, False)
 
 
@@ -331,12 +316,12 @@ class LearningSwitch1 (EventMixin):
         try:
             entry = self.firewall[(dpidstr, dst, dst_port)]
             if entry == True:
-                log.debug("Правило %s найдено в %s-%s: ПРОХОД", dst, dpidstr, dst_port)
+                log.debug("Правило для %s найдено в брандмауэре %s, порт - %s: FORWARD", dst, dpidstr, dst_port)
             else:
-                log.debug("Правило %s найдено в %s- %s: ОТБРОС", dst, dpidstr, dst_port)
+                log.debug("Правило для %s найдено в брандмауэре %s, порт - %s: DROP", dst, dpidstr, dst_port)
                 return entry
         except KeyError:
-            log.debug("Правило %s НЕ найдено в %s-%s: ОТБРОС", dst, dpidstr, dst_port)
+            log.debug("Правило для %s !НЕ! найдено в брандмауэре %s, порт - %s: DROP", dst, dpidstr, dst_port)
             return False
 
     def _handle_PacketIn(self, event):
@@ -350,7 +335,7 @@ class LearningSwitch1 (EventMixin):
             #log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
-                print("Destination Host Unreachable. WEB-сервера и DNS-сервера.")
+                print("ARP-пакеты WEB и DNS-сервера недоступны")
                 return
         def flood(message=None):
             msg = of.ofp_packet_out()
@@ -403,7 +388,7 @@ class learning_switch(EventMixin):
         self.transparent = transparent
 
     def _handle_ConnectionUp(self, event):
-        log.debug("Connection %s" % (event.connection,))
+        log.debug("Подключение %s" % (event.connection,))
         if event.dpid in [2, 9]:
             log.debug("Брандмауэры подключаются")
             if event.dpid == 2:
