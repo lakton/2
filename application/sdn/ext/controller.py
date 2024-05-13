@@ -390,8 +390,6 @@ class LearningSwitch1 (EventMixin):
                 msg.actions.append(of.ofp_action_output(port=outport))
                 msg.buffer_id = event.ofp.buffer_id
                 self.connection.send(msg)
-
-switches = {}
  
 class learning_switch(EventMixin):
     def __init__(self, transparent):
@@ -416,7 +414,6 @@ class learning_switch(EventMixin):
     def _handle_ConnectionDown(self, event):
         # ConnectionDown(event.connection,event.dpid)
         log.info("Коммутатор %s отключен.", dpidToStr(event.dpid))
-
 
 def launch(transparent=False, hold_down=flood_delay):
     # Запускает коммутатор L2 с обучением.

@@ -2,7 +2,7 @@
 
 from scapy.all import DNS, DNSQR, DNSRR, IP, send, sniff, sr1, UDP
 
-IFACE = "lo0"   # Or your default interface
+IFACE = "lb1-eth0"   # Or your default interface
 DNS_SERVER_IP = "100.0.0.25"  # Your local IP
 
 BPF_FILTER = "udp port 53 and ip dst {DNS_SERVER_IP}"
@@ -12,7 +12,7 @@ def dns_responder(local_ip: str):
     def forward_dns(orig_pkt: IP):
         print("Forwarding:", orig_pkt[DNSQR].qname)
         response = sr1(
-            IP(dst='8.8.8.8')
+            IP(dst='100.0.0.25')
                 / UDP(sport=orig_pkt[UDP].sport)
                 / DNS(rd=1, id=orig_pkt[DNS].id, qd=DNSQR(qname=orig_pkt[DNSQR].qname)),
             verbose=0,

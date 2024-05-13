@@ -79,25 +79,6 @@ icmp_sum :: Script(TYPE PASSIVE, return $(add $(icmp_count.count) $(icmp_in.coun
 // drop sum
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_in.count) $(drop_ex_ip.count) $(drop_in_ip.count)))
 
-DriverManager(wait ,  print > /home/sdn/Desktop/2/results/dns.report
-                print > napt.report "===============NAPT Report=================",
-                print >> napt.report "Input Packet rate (pps) : " $(inrate.run),
-                print >> napt.report "Output Packet rate (pps) : " $(outrate.run),
-                print >> napt.report " ",
-                print >> napt.report "Total # of input packets : " $(packreq_sum.run),
-                print >> napt.report "Total # of output packets : "$(packres_sum.run),
-                print >> napt.report " ",
-                print >> napt.report "Total # of ARP requests : " $(arpreq_sum.run),
-                print >> napt.report "Total # of ARP response : " $(arpres_sum.run),
-                print >> napt.report " ",
-                print >> napt.report "Total # of service packets : "$(service_count.count),
-                print >> napt.report "Total # of ICMP packets : "$(icmp_sum.run),
-                print >> napt.report "Total # of dropped packets : "$(drop_sum.run),
-                print >> napt.report "=========================================",
-                print >> napt.report "notes : we consider icmp echo from private network",
-		print >> napt.report "NOT as a service",
-                stop);
-
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Получен запрос ARP из внешней сети") -> arp_req_ex -> arpr_ext[0] -> to_ext;
 c_in[1] -> Print("Получен ответ ARP из внешней сети") -> arp_res_ex -> [1]arpq_ext;
@@ -120,3 +101,37 @@ c_ip_ex[1] -> Print("Отбрасывается пакет, предназнач
 c_ip_ex[2] -> Print("Получен ICMP-пакет из внешней сети") -> icmp_in -> rewr_icmp[0] -> [0]arpq_ext -> to_ext;
 c_ip_ex[3] -> Print("Отбрасывается IP-пакет из внутренней сети") -> drop_in_ip -> Discard;
 
+DriverManager(wait, print > /home/sdn/Desktop/2/results/napt.report"
+
+    =================== Отчет NAPT ===================,
+
+    Общее количество полученных и отправленных пакетов (pps):
+        - Входящие: $(inrate)
+        - Исходящие: $(outrate)
+
+    Общее количество запросов и ответов ARP:
+        - Запросы (внешние): $(arpreq_sum)
+        - Ответы (внешние): $(arpres_sum)
+        - Запросы (внутренние): $(arp_req_in.count)
+        - Ответы (внутренние): $(arp_res_in.count)
+
+    Общее количество запросов и ответов IP пакетов:
+        - Запросы (внешние): $(pack_req_ex.count)
+        - Ответы (внешние): $(pack_res_ex.count)
+        - Запросы (внутренние): $(pack_req_in.count)
+        - Ответы (внутренние): $(pack_res_in.count)
+
+    Пакеты ICMP:
+        - Внешние: $(icmp_ex.count)
+        - Внутренние: $(icmp_in.count)
+        - Всего: $(icmp_count.count)
+
+    Пакеты, отброшенные из-за ошибок:
+        - Ошибки внешних пакетов: $(drop_ex.count)
+        - Ошибки внешных IP-пакетов: $(drop_ex_ip.count)
+        - Ошибки внутренних пакетов: $(drop_in.count)
+        - Ошибки внутренних IP-пакетов: $(drop_in_ip.count)
+
+    ======================== Конец отчета ========================,
+
+",stop);

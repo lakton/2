@@ -85,23 +85,6 @@ packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_net.count) $(pack_re
 // arpreq_sum :: Script(TYPE PASSIVE, return $(add $(arp_req_ex.count) $(arp_req_in.count)))
 // arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in.count)))
 
-DriverManager(wait,  print > /home/sdn/Desktop/2/results/ips.report
-                print > ips.report "===============ips Report=================",
-                print >> ips.report "Input Packet rate (pps) : " $(inrate.run),
-                print >> ips.report "Output Packet rate (pps) : " $(outrate.run),
-                print >> ips.report " ",
-                print >> ips.report "Total # of input packets : " $(packreq_sum.run),
-                print >> ips.report "Total # of output packets : "$(packres_sum.run),
-                print >> ips.report " ",
-                print >> ips.report "Total # of ARP requests : " $(arp_req_ex.count),
-                print >> ips.report "Total # of ARP response : " $(arp_res_ex.count),
-                print >> ips.report " ",
-                print >> ips.report "Total # of service packets : "$(service_count.count),
-                print >> ips.report "Total # of ICMP packets : "$(icmp_count.count),
-                print >> ips.report "Total # of dropped packets : No dropped packets, malicious packets sent to insp",
-                print >> ips.report "=========================================",
-                stop);
-
 //FORWARDER FROM INSIDE NETWORK
 src_lb -> in_eth2 -> pack_req_in -> Print(Ответ из внутренней) -> Queue -> [0]dst_net;
 //first_stage_int[0] -> arp_req_in -> Queue -> [0]dst_net;
@@ -199,3 +182,45 @@ fourth_stage[4]
 fourth_stage[5]
         -> Queue
         -> [9]dst_lb;
+DriverManager(wait, print > /home/sdn/Desktop/2/results/ips.report "
+    ====================== Отчет IPS ======================,
+
+    Общее количество полученных пакетов (pps):
+        - Входящие: $(inrate)
+        - Исходящие: $(outrate)
+
+    Общее количество обработанных пакетов (запрос-ответ):
+        - Запросы: $(packreq_sum)
+        - Ответы: $(packres_sum)
+
+    Пакеты ARP:
+        - Запросы (внешние): $(arp_req_ex.count)
+        - Ответы (внешние): $(arp_res_ex.count)
+
+    Пакеты ICMP:
+        - Всего: $(icmp_count.count)
+
+    Пакеты HTTP:
+        - Запросы GET/PUT: $(third_stage[0].count)
+        - Запросы POST: $(third_stage[1].count)
+
+    Обнаруженные SQL-команды:
+        - INSERT: $(fourth_stage[2].count)
+        - UPDATE: $(fourth_stage[3].count)
+        - DELETE: $(fourth_stage[4].count)
+
+    Обнаруженные нарушения безопасности:
+        - Доступ к файлу с паролями: $(fourth_stage[0].count)
+        - Доступ к файлу журнала: $(fourth_stage[1].count)
+
+    Пакеты, перенаправленные на балансировщик нагрузки:
+        - Из сети: $(dst_net.count)
+        - Из балансировщика нагрузки: $(dst_lb.count)
+        - Из модуля инспекции: $(dst_insp.count)
+
+    Пакеты, обработанные модулем инспекции:
+        - Всего: $(pack_insp.count)
+
+    ======================== Конец отчета ========================,
+
+    ", stop);

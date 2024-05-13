@@ -1,3 +1,5 @@
+# DNS Server
+
 import socket
 import glob
 import json
@@ -11,7 +13,7 @@ sock.bind((ip, port))
 
 def load_zones():
     jsonzone = {}
-    zonefiles = glob.glob('/home/sdn/Desktop/2/results/tests/zones/*.zone')
+    zonefiles = glob.glob('/home/sdn/Desktop/2/results/tests/zones/file1.zone')
 
     for zone in zonefiles:
         with open(zone) as zonedata:
@@ -20,39 +22,26 @@ def load_zones():
             jsonzone[zonename] = data
     return jsonzone
 
-
 zonedata = load_zones()
 
-
 def getflags(flags):
-    byte1 = bytes([flags[0]])
-    byte2 = bytes([flags[1]])
-
+    byte1 = bytes(flags[:1])
+    byte2 = bytes(flags[1:2])
     rflags = ''
-
     QR = '1'
-
     OPCODE = ''
     for bit in range(1, 5):
         OPCODE += str(ord(byte1) & (1 << bit))
-
     AA = '1'
-
     TC = '0'
-
     RD = '0'
-
+    
     # Byte 2
-
     RA = '0'
-
     Z = '000'
-
     RCODE = '0000'
-
     return int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE, 2).to_bytes(1,
-                                                                                                             byteorder='big')
-
+                                                                                                                byteorder='big')
 
 def getquestiondomain(data):
     state = 0
@@ -80,15 +69,11 @@ def getquestiondomain(data):
         y += 1
 
     questiontype = data[y:y + 2]
-
     return domainparts, questiontype
-
 
 def getzone(domain):
     global zonedata
-
     zone_name = '.'.join(domain)
-
     return zonedata[zone_name]
 
 
@@ -97,11 +82,8 @@ def getrecs(data):
     qt = ''
     if questiontype == b'\x00\x01':
         qt = 'a'
-
     zone = getzone(domain)
-
     return zone[qt], qt, domain
-
 
 def buildquestion(domainname, rectype):
     qbytes = b''
@@ -109,7 +91,7 @@ def buildquestion(domainname, rectype):
     for part in domainname:
         length = len(part)
         qbytes += bytes([length])
-
+        
         for char in part:
             qbytes += ord(char).to_bytes(1, byteorder='big')
 
@@ -117,19 +99,15 @@ def buildquestion(domainname, rectype):
         qbytes += (1).to_bytes(2, byteorder='big')
 
     qbytes += (1).to_bytes(2, byteorder='big')
-
     return qbytes
 
-
 def rectobytes(domainname, rectype, recttl, recval):
-
     rbytes = b'\xc0\x0c'
 
     if rectype == 'a':
         rbytes = rbytes + bytes([0]) + bytes([1])
-
+        
     rbytes = rbytes + bytes([0]) + bytes([1])
-
     rbytes += int(recttl).to_bytes(4, byteorder='big')
 
     if rectype == 'a':
@@ -139,45 +117,30 @@ def rectobytes(domainname, rectype, recttl, recval):
             rbytes += bytes([int(part)])
     return rbytes
 
-
 def buildresponse(data):
-
     # Transaction ID
     TransactionID = data[:2]
-
     # Get the flags
     Flags = getflags(data[2:4])
-
     # Question Count
     QDCOUNT = b'\x00\x01'
-
     # Answer Count
     ANCOUNT = len(getrecs(data[12:])[0]).to_bytes(2, byteorder='big')
-
     # Nameserver Count
     NSCOUNT = (0).to_bytes(2, byteorder='big')
-
     # Additonal Count
     ARCOUNT = (0).to_bytes(2, byteorder='big')
-
     dnsheader = TransactionID + Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
-
     # Create DNS body
     dnsbody = b''
-
     # Get answer for query
     records, rectype, domainname = getrecs(data[12:])
-
     dnsquestion = buildquestion(domainname, rectype)
-
     for record in records:
         dnsbody += rectobytes(domainname, rectype, record["ttl"], record["value"])
-
     return dnsheader + dnsquestion + dnsbody
-
 
 while True:
     data, addr = sock.recvfrom(512)
     r = buildresponse(data)
-
     sock.sendto(r, addr)

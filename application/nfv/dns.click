@@ -71,23 +71,6 @@ arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in
 // drop sum
 drop_sum :: Script(TYPE PASSIVE, return $(add $(drop_ex.count) $(drop_ex_ip.count) $(drop_in.count)))
 
-DriverManager(wait , print > /home/sdn/Desktop/2/results/dns.report
-                print > lb1.report "===============LB1 Report=================",
-                print >> lb1.report "Input Packet rate (pps) : " $(inrate.run),
-                print >> lb1.report "Output Packet rate (pps) : " $(outrate.run),
-                print >> lb1.report " ",
-                print >> lb1.report "Total # of input packets : " $(packreq_sum.run),
-                print >> lb1.report "Total # of output packets : "$(packres_sum.run),
-                print >> lb1.report " ",
-                print >> lb1.report "Total # of ARP requests : " $(arpreq_sum.run),
-                print >> lb1.report "Total # of ARP response : " $(arpres_sum.run),
-                print >> lb1.report " ",
-                print >> lb1.report "Total # of service packets : "$(service_count.count),
-                print >> lb1.report "Total # of ICMP packets : "$(icmp_count.count),
-                print >> lb1.report "Total # of dropped packets : "$(drop_sum.run),
-                print >> lb1.report "=========================================",
-                stop);
-
 fr_ext -> in_eth1 -> pack_req_ex -> c_in;
 c_in[0] -> Print("Получен запрос DNS-пакета") -> arp_req_ex -> arpr_ext[0] -> to_ext;
 c_in[1] -> Print("ARP-ответ для внешнего интерфейса") -> arp_res_ex -> [1]arpq_ext;
@@ -103,3 +86,32 @@ c_ex[0] -> Print("Запрос DNS для внутреннего интерфе�
 c_ex[1] -> Print("ARP-ответ для внутреннего интерфейса") -> arp_res_in -> [1]arpq_int;
 c_ex[2] -> Print("Запрос DNS-пакета обработан и проверен заголовок IP") -> Strip(14) -> CheckIPHeader -> rewr[0] -> [0]arpq_ext -> to_ext;
 c_ex[3] -> Print("Удаление внутреннего пакета") -> drop_in -> Discard;
+
+
+DriverManager(wait, print > /home/sdn/Desktop/2/results/dns.report"
+
+    =================== Отчет DNS ===================,
+
+    Общее количество полученных и отправленных пакетов (pps):
+        - Входящие: $(inrate)
+        - Исходящие: $(outrate)
+
+    Общее количество запросов и ответов DNS:
+        - Запросы: $(packreq_sum)
+        - Ответы: $(packres_sum)
+
+    Общее количество запросов и ответов ARP:
+        - Запросы (внешние): $(arpreq_sum)
+        - Ответы (внешние): $(arpres_sum)
+
+    Пакеты, отброшенные из-за ошибок:
+        - Ошибки внешних пакетов: $(drop_ex.count)
+        - Ошибки внешних IP-пакетов: $(drop_ex_ip.count)
+        - Ошибки внутренних пакетов: $(drop_in.count)
+
+    Пакеты ICMP:
+        - Всего: $(icmp_count.count)
+
+    ======================== Конец отчета ========================,
+
+",stop);
