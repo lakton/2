@@ -1,0 +1,1 @@
+Не удалось прочитать pcap файл: [Errno 2] No such file or directory: '/home/sdn/Desktop/2/results/tests/service_test/62.pcap'
