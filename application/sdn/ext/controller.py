@@ -202,37 +202,47 @@ class LearningFirewall1(LearningFirewall):
     def __init__(self, connection, transparent):
         super().__init__(connection, transparent)
         # Правила доступа к демилитаризованной зоне и частной зоне:
-
-        # FW1 (Firewall 1) - 00:00:00:00:00:02
-        # DNS и HTTP сервера могут пинговаться (ICMP ping-запрос и ответ)
+        # FW1 (Firewall 1) - 00-00-00-00-00-02
+        
+        #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
+        #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 8, True) 
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True) 
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True)
-
-        # DNS сервер принимает UDP запросы на порт 53
+        
+        #(ds1-3):00:00:00:00:00:01-3 , 0 - all ports?, 8 icmp, 53 - udp
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 0, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 0, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 0, True)
+        #
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 8, True)
+        #
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 53, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 53, True)
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:03'), 53, True)
+        
+        #(dnslb EXT): fe:91:b3:92:f1:98 , 53 udp
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
-        # HTTP сервер принимает TCP запросы на порт 80
+        #(wwwlb EXT): ae:cb:56:11:ce:44 , 80 - http
         self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 80, True)
 
-        # Пинг между хостами в сети
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:01'), 8, True) 
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:02'), 8, True) 
+        #(napt EXT): 8a:11:96:8b:b0:e5, 0 - all ports?, 8- icmp
         self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 0, True) 
         self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 8, True) 
         
-        # Правила для доступа к h1 и h2 (в зоне PbZ)
+        # h1 h2 all ports
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True)
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 0, True) 
-        #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True)
-        #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True) 
-        # Запрет ICMP к h3 и h4
+        
+        # h3 h4 icmp restricted
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:06'), 8, False) 
         self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:07'), 8, False)
-
-        # Запрет пингования хоста h2 (00:00:00:00:00:05)
-        #self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, False)
+        
+            # napt INT
+        #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True)
+        #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True) 
 
     def _handle_PacketIn(self, event):
         super()._handle_PacketIn(event)
@@ -242,31 +252,46 @@ class LearningFirewall2(LearningFirewall):
     def __init__(self, connection, transparent):
         super().__init__(connection, transparent)
         # Правила доступа к демилитаризованной зоне и частной зоне:
-
-        # FW2 (Firewall 2) - 00:00:00:00:00:09
-        # DNS и HTTP сервера могут пинговаться (ICMP ping-запрос и ответ)
+        # FW2 (Firewall 2) - 00-00-00-00-00-09
+        
+        #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
+        #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 8, True)
+        
+        #(ds1-3):00:00:00:00:00:01-3 , 0 - all ports?, 8 icmp, 53 - udp
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 0, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 0, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 0, True)
+        
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 8, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 8, True)
-        # DNS сервер принимает UDP запросы на порт 53
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 8, True)
+
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:01'), 53, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:02'), 53, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:03'), 53, True)
+        
+        #(dnslb EXT): fe:91:b3:92:f1:98 , 53 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 53, True)
 
-        # HTTP сервер принимает TCP запросы на порт 80
+        #(wwwlb EXT): ae:cb:56:11:ce:44 , 80 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 80, True)
         
-        # Правила для доступа к h1 и h2 (в зоне PbZ)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 8, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:05'), 8, True)
-        self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True)
-
+        # h1 h2 icmp, 
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:04'), 8, True)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:05'), 8, True)
+        # napt INT
+        #self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 0, True)
+        #self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 53, True)
         
-        # Правила для доступа к h3 и h4 (в зоне PrZ)
+        # h3 h4, 0, 53 udp
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 0, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 0, True)
-
-        # Запрет пингования хоста h2 (00:00:00:00:00:05)
-        #self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:05'), 8, False)
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 53, True) 
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 53, True)
+       # self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 40984, True) 
+        #self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 40984, True)
 
     def _handle_PacketIn(self, event):
         #log.debug("Пакет брандмауэра 2.")
