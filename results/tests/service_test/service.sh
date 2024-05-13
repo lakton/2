@@ -1,5 +1,5 @@
 m_util="/home/sdn/Desktop/mininet/util/m"
-test_dir="/home/sdn/Desktop/2/results/tests/service_test"
+test_dir="/home/sdn/Desktop/2/results/tests/service_test/"
 
 # Clear or create log files
 touch /home/sdn/Desktop/2/results/tests/service_test/resultservice.log

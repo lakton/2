@@ -1,7 +1,7 @@
 import os
 print('ANALYZER 4')
 
-file = open("/home/sdn/Desktop/2/results//tests/service_test/resultservice.log", "a")
+file = open("/home/sdn/Desktop/2/results/tests/service_test/resultservice.log", "a")
 file.write("\nips тест для заблокированных пакетов")
 try:
     if os.stat("/home/sdn/Desktop/2/results/tests/service_test/63.pcap").st_size > 24:
