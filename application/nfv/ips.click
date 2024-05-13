@@ -85,7 +85,7 @@ packres_sum :: Script(TYPE PASSIVE, return $(add $(pack_res_net.count) $(pack_re
 // arpreq_sum :: Script(TYPE PASSIVE, return $(add $(arp_req_ex.count) $(arp_req_in.count)))
 // arpres_sum :: Script(TYPE PASSIVE, return $(add $(arp_res_ex.count) $(arp_res_in.count)))
 
-DriverManager(wait , print > /home/sdn/Desktop/2/application/results/ips.report  "
+DriverManager(wait
                 print > ips.report "===============ips Report=================",
                 print >> ips.report "Input Packet rate (pps) : " $(inrate.run),
                 print >> ips.report "Output Packet rate (pps) : " $(outrate.run),
@@ -100,7 +100,7 @@ DriverManager(wait , print > /home/sdn/Desktop/2/application/results/ips.report 
                 print >> ips.report "Total # of ICMP packets : "$(icmp_count.count),
                 print >> ips.report "Total # of dropped packets : No dropped packets, malicious packets sent to insp",
                 print >> ips.report "=========================================",
-              " stop);
+                stop);
 
 //FORWARDER FROM INSIDE NETWORK
 src_lb -> in_eth2 -> pack_req_in -> Print(Ответ из внутренней) -> Queue -> [0]dst_net;

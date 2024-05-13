@@ -102,4 +102,4 @@ fr_int -> in_eth2 -> pack_req_in -> c_ex;
 c_ex[0] -> Print("Запрос DNS для внутреннего интерфейса") -> arp_req_in -> arpr_int[0] -> to_int; 
 c_ex[1] -> Print("ARP-ответ для внутреннего интерфейса") -> arp_res_in -> [1]arpq_int;
 c_ex[2] -> Print("Запрос DNS-пакета обработан и проверен заголовок IP") -> Strip(14) -> CheckIPHeader -> rewr[0] -> [0]arpq_ext -> to_ext;
-c_ex[3] -> Print("Удаление внутреннего пакета") -> drop_in -> Discard;
+c_ex[3] -> Print("Удаление внутреннего пакета") -> drop_in -> UnstripAnno() -> Discard;
