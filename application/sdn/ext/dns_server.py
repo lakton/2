@@ -1,34 +1,44 @@
-from scapy.all import DNS, DNSQR, DNSRR, IP, UDP, send, sniff
+from scapy.all import *
 
-def dns_responder(local_ip: str):
-    def forward_dns(orig_pkt: IP):
-        print(f"Forwarding DNS request for {orig_pkt[DNSQR].qname}")
-        response = sr1(
-            IP(dst='8.8.8.8') /
-            UDP(dport=53) /
-            DNS(rd=1, id=orig_pkt[DNS].id, qd=DNSQR(qname=orig_pkt[DNSQR].qname)),
-            verbose=0,
-        )
-        resp_pkt = IP(dst=orig_pkt[IP].src, src=local_ip) / UDP(dport=orig_pkt[UDP].sport, sport=53) / DNS()
-        resp_pkt[DNS] = response[DNS]
-        send(resp_pkt, verbose=0)
+DNSServerIP = "100.0.0.25"
+filter = "udp port 53 and ip dst " + DNSServerIP + " and not ip src " + DNSServerIP
 
-    def get_response(pkt: IP):
-        if DNS in pkt and pkt[DNS].opcode == 0 and pkt[DNS].ancount == 0:
-            if "sdnithub.ru" in pkt[DNSQR].qname.decode():
-                spoofed_resp = IP(dst=pkt[IP].src) / UDP(dport=pkt[UDP].sport) / \
-                              DNS(id=pkt[DNS].id, an=DNSRR(rrname=pkt[DNSQR].qname, rdata=local_ip))
-                send(spoofed_resp, verbose=0)
-                print(f"Spoofed DNS Response Sent: {pkt[IP].src}")
+def DNS_Responder(localIP):
+ 
+    def getResponse(pkt):
+ 
+        if DNS in pkt and pkt[DNS].opcode == 0 and pkt[DNS].ancount == 0 and pkt[IP].src != localIP:
+            if b"sdnithub1.ru" in pkt[DNSQR].qname:
+                spfResp = IP(dst=pkt[IP].src)\
+                    /UDP(dport=pkt[UDP].sport, sport=53)\
+                    /DNS(id=pkt[DNS].id,ancount=1,an=DNSRR(rrname=pkt[DNSQR].qname,rdata="100.0.0.20")\
+                    /DNSRR(rrname="sdnithub1.ru",rdata="100.0.0.20"))
+                send(spfResp, verbose=0)
+                return "Spoofed DNS Response Sent"
+                
+            if b"sdnithub2.ru" in pkt[DNSQR].qname:
+                spfResp = IP(dst=pkt[IP].src)\
+                    /UDP(dport=pkt[UDP].sport, sport=53)\
+                    /DNS(id=pkt[DNS].id,ancount=1,an=DNSRR(rrname=pkt[DNSQR].qname,rdata="100.0.0.21")\
+                    /DNSRR(rrname="sdnithub2.ru",rdata="100.0.0.21"))
+                send(spfResp, verbose=0)
+                return "Spoofed DNS Response Sent"
+
+            if b"sdnithub3.ru" in pkt[DNSQR].qname:
+                spfResp = IP(dst=pkt[IP].src)\
+                    /UDP(dport=pkt[UDP].sport, sport=53)\
+                    /DNS(id=pkt[DNS].id,ancount=1,an=DNSRR(rrname=pkt[DNSQR].qname,rdata="100.0.0.22")\
+                    /DNSRR(rrname="sdnithub3.ru",rdata="100.0.0.22"))
+                send(spfResp, verbose=0)
+                return "Spoofed DNS Response Sent"
+
             else:
-                forward_dns(pkt)
-
-    return get_response
-
-# Настройки для каждого DNS-сервера
-local_ips = ["100.0.0.20", "100.0.0.21", "100.0.0.22"]
-iface = "lb1-eth2"  # Или ваш сетевой интерфейс по умолчанию
-
-# Запуск DNS-серверов для каждого хоста
-for ip in local_ips:
-    sniff(filter="udp port 53", prn=dns_responder(ip), iface=iface)
+                #make DNS query, capturing the answer and send the answer
+                return forwardDNS(pkt)
+ 
+        else:
+            return False
+ 
+    return getResponse
+ 
+sniff(filter=filter, prn=DNS_Responder(DNSServerIP))
