@@ -178,7 +178,7 @@ class LearningFirewall (EventMixin):
             if packet.dst not in self.macToPort:
         # Выводим предупреждение о флуде только если флаг flood_warning_shown не установлен
                     if not flood_warning_shown:
-                        #flood("Адрес назначения %s неизвестен %s, %s -- флудим всем портам, кроме полученного" % (packet.dst, packet.src, dpidToStr(event.dpid)))
+                        flood((packet.dst, packet.src, dpidToStr(event.dpid)))
                         flood_warning_shown = True  # Устанавливаем флаг в True после вывода предупреждения о флуде
             else:
                 # installing flow
@@ -371,7 +371,7 @@ class LearningSwitch1 (EventMixin):
             if packet.dst not in self.macToPort:
         # Выводим предупреждение о флуде только если флаг flood_warning_shown не установлен
                     if not flood_warning_shown:
-                        #flood("Адрес назначения %s неизвестен %s, %s -- флудим всем портам, кроме полученного" % (packet.dst, packet.src, dpidToStr(event.dpid)))
+                        flood((packet.dst, packet.src, dpidToStr(event.dpid)))
                         flood_warning_shown = True  # Устанавливаем флаг в True после вывода предупреждения о флуде
             else:
                 # установка потока
