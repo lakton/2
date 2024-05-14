@@ -1,6 +1,7 @@
 
 DNS server DIG test : PASS
-WWW server DIG test : PASS
+WWW server curl test : PASS
+WWW LB round robin test : PASS
 ips тест для разрешённых пакетов
 ARP PING test         : PASS
 HTTP POST test        : PASS
