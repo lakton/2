@@ -1,10 +1,10 @@
 
-DNS server DIG test : FAIL
-WWW server DIG test : FAIL
+DNS server DIG test : PASS
+WWW server DIG test : PASS
 ips тест для разрешённых пакетов
 ARP PING test         : PASS
-HTTP POST test        : FAILКакая-то ошибка.. :(
+HTTP POST test        : PASS
+HTTP PUT (allowed packet) test : PASS
 ips тест для заблокированных пакетов
 HTTP PUT (blocked packet) test : PASS
 HTTP GET blocking test : PASS
-HTTP PUT (allowed packet) test : FAIL
