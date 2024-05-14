@@ -73,8 +73,8 @@ class LearningFirewall (EventMixin):
                     self.hold_down_expired = True
                     log.info("%s: Истек срок удержания флуда - флудим", event.dpid)
                 if message is not None:
-                    log.info(message)
-                msg.actions.append(of.ofp_action_output(port=of.OFPP_FLOOD))
+                    #log.info(message)
+                    msg.actions.append(of.ofp_action_output(port=of.OFPP_FLOOD))
             else:
                 pass
             msg.data = event.ofp
