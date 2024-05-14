@@ -95,29 +95,4 @@ c_ex[1] -> Print("Ответ ARP из внутренней сети") -> arp_res
 c_ex[2] -> Print("Получен IP-пакет из внутренней сети") -> Strip(14) -> CheckIPHeader -> rewr[0] -> [0]arpq_ext -> to_ext;
 c_ex[3] -> Print("DROP in") -> drop_in -> Discard;
 
-DriverManager(wait,  print > /home/sdn/Desktop/2/results/www.report "
-    
-    =================== Отчет HTTP Балансировщика ===================,
-
-    Общее количество запросов и ответов ARP:
-        - Запросы (внешние): $(arp_req_ex.count)
-        - Ответы (внешние): $(arp_res_ex.count)
-        - Запросы (внутренние): $(arp_req_in.count)
-        - Ответы (внутренние): $(arp_res_in.count)
-
-    Общее количество запросов и ответов IP пакетов:
-        - Запросы (внешние): $(pack_req_ex.count)
-        - Ответы (внешние): $(pack_res_ex.count)
-        - Запросы (внутренние): $(pack_req_in.count)
-        - Ответы (внутренние): $(pack_res_in.count)
-
-    Пакеты ICMP:
-        - Внешние: $(icmp_count.count)
-
-    Пакеты, отброшенные из-за ошибок:
-        - Ошибки внешних пакетов: $(drop_ex.count)
-        - Ошибки внутренних пакетов: $(drop_in.count)
-
-    ======================== Конец отчета ========================,
-
-",stop);
+DriverManager(wait, stop);

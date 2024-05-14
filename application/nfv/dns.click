@@ -88,30 +88,4 @@ c_ex[2] -> Print("Запрос DNS-пакета обработан и прове
 c_ex[3] -> Print("Удаление внутреннего пакета") -> drop_in -> Discard;
 
 
-DriverManager(wait, print > /home/sdn/Desktop/2/results/dns.report"
-
-    =================== Отчет DNS ===================,
-
-    Общее количество полученных и отправленных пакетов (pps):
-        - Входящие in 1: $(in_eth1.rate)
-        - Входящие in 2: $(in_eth2.rate)
-        - Исходящие out 1: $(out_eth1.rate)
-        - Исходящие out 2: $(out_eth1.rate)
-
-    Пакеты ARP:
-        - Запросы (внешние): $(arp_req_ex.count)
-        - Ответы (внешние): $(arp_res_ex.count)
-        - Запросы (внутренние): $(arp_req_in.count)
-        - Ответы (внутренние): $(arp_res_in.count)
-
-    Пакеты, отброшенные из-за ошибок:
-        - Ошибки внешних пакетов: $(drop_ex.count)
-        - Ошибки внешних IP-пакетов: $(drop_ex_ip.count)
-        - Ошибки внутренних пакетов: $(drop_in.count)
-
-    Пакеты ICMP:
-        - Всего: $(icmp_count.count)
-
-    ======================== Конец отчета ========================,
-
-",stop);
+DriverManager(wait, stop);

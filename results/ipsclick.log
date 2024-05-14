@@ -6456,11 +6456,3 @@ IP пакет обработан и направлен на второй эта�
 ARP запрос обработан и направлен на lb1:   42 | aecb5611 ce440000 00000004 08060001 08000604 00010000
 FromDevice(ips-eth2): recvfrom: Network is down
 FromDevice(ips-eth1): recvfrom: Network is down
-no 'getput' read handler
-no 'put' read handler
-no 'post' read handler
-no 'insert' read handler
-no 'update' read handler
-no 'delete' read handler
-no 'passs' read handler
-no 'logg' read handler

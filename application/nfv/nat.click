@@ -101,39 +101,4 @@ c_ip_ex[1] -> Print("Отбрасывается пакет, предназнач
 c_ip_ex[2] -> Print("Получен ICMP-пакет из внешней сети") -> icmp_in -> rewr_icmp[0] -> [0]arpq_ext -> to_ext;
 c_ip_ex[3] -> Print("Отбрасывается IP-пакет из внутренней сети") -> drop_in_ip -> Discard;
 
-DriverManager(wait, print > /home/sdn/Desktop/2/results/napt.report"
-
-    =================== Отчет NAPT ===================,
-
-    Общее количество полученных и отправленных пакетов (pps):
-        - Входящие in 1: $(in_eth1.rate)
-        - Входящие in 2: $(in_eth2.rate)
-        - Исходящие out 1: $(out_eth1.rate)
-        - Исходящие out 2: $(out_eth1.rate)
-
-    Пакеты ARP:
-        - Запросы (внешние): $(arp_req_ex.count)
-        - Ответы (внешние): $(arp_res_ex.count)
-        - Запросы (внутренние): $(arp_req_in.count)
-        - Ответы (внутренние): $(arp_res_in.count)
-
-    Общее количество запросов и ответов IP пакетов:
-        - Запросы (внешние): $(pack_req_ex.count)
-        - Ответы (внешние): $(pack_res_ex.count)
-        - Запросы (внутренние): $(pack_req_in.count)
-        - Ответы (внутренние): $(pack_res_in.count)
-
-    Пакеты ICMP:
-        - Внешние: $(icmp_ex.count)
-        - Внутренние: $(icmp_in.count)
-        - Всего: $(icmp_count.count)
-
-    Пакеты, отброшенные из-за ошибок:
-        - Ошибки внешних пакетов: $(drop_ex.count)
-        - Ошибки внешных IP-пакетов: $(drop_ex_ip.count)
-        - Ошибки внутренних пакетов: $(drop_in.count)
-        - Ошибки внутренних IP-пакетов: $(drop_in_ip.count)
-
-    ======================== Конец отчета ========================,
-
-",stop);
+DriverManager(wait, stop);
