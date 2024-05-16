@@ -374,7 +374,7 @@ class LearningSwitch1 (EventMixin):
             if packet.dst not in self.macToPort:
         # Выводим предупреждение о флуде только если флаг flood_warning_shown не установлен
                     if not flood_warning_shown:
-                        flood('Flood: dst: %s, src: %s, dpid: %s'(packet.dst, packet.src, dpidToStr(event.dpid)))
+                        flood('Flood: dst: %s, src: %s, dpid: %s' % packet.dst, packet.src, dpidToStr(event.dpid))
                         flood_warning_shown = True  # Устанавливаем флаг в True после вывода предупреждения о флуде
             else:
                 # установка потока
