@@ -21,7 +21,7 @@ log = core.getLogger()
 HARD_TIMEOUT = 30
 IDLE_TIMEOUT = 30
 
-flood_delay = 0
+flood_delay = 15
 i = 0
 #flag = 0
 
@@ -38,7 +38,7 @@ class LearningFirewall (EventMixin):
         self.listenTo(connection)
         self.firewall = {}#
         self.flag = 0
-        self.hold_down_expired = flood_delay == 0
+        self.hold_down_expired = flood_delay == 15
         self.stateful = {}#
         
     #   AddRule - метод для добавления правил брандмауэра в словарь.
@@ -321,7 +321,7 @@ class LearningSwitch1 (EventMixin):
         self.listenTo(connection)
         self.transparent = transparent
         self.firewall = {}
-        self.hold_down_expired = flood_delay == 0
+        self.hold_down_expired = flood_delay == 15
 
     def AddRule(self, dpidstr, dst=0, dst_port=0, value=True):
         self.firewall[(dpidstr, dst, dst_port, )] = value
