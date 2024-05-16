@@ -98,7 +98,6 @@ class LearningFirewall (EventMixin):
                 self.connection.send(msg)
         ipv6 = packet.find('ipv6')
         if ipv6 is not None:
-            log.debug("Найден IPv6-заголовок. Отбрасываем пакет.")
             drop()
             return
         # обновление сопоставления mac и порта
