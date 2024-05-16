@@ -105,8 +105,8 @@ class LearningFirewall (EventMixin):
         dpidstr = dpidToStr(event.connection.dpid)
         arp = packet.find('arp')
         if arp is not None:
-            print("Найден ARP-заголовок")
-            log.debug("%s"%arp.protodst)
+            #print("Найден ARP-заголовок")
+            #log.debug("%s"%arp.protodst)
             if arp.protodst in [IPAddr('100.0.0.20'), IPAddr('100.0.0.21'), IPAddr('100.0.0.22'), IPAddr('100.0.0.40'),
                                 IPAddr('100.0.0.41'), IPAddr('100.0.0.42'), IPAddr('100.0.0.30')]:
                 print("ARP пакеты на WEB и DNS-сервера недоступны.")
@@ -374,7 +374,7 @@ class LearningSwitch1 (EventMixin):
             if packet.dst not in self.macToPort:
         # Выводим предупреждение о флуде только если флаг flood_warning_shown не установлен
                     if not flood_warning_shown:
-                        flood((packet.dst, packet.src, dpidToStr(event.dpid)))
+                        flood('Flood: dst: %s, src: %s, dpid: %s'(packet.dst, packet.src, dpidToStr(event.dpid)))
                         flood_warning_shown = True  # Устанавливаем флаг в True после вывода предупреждения о флуде
             else:
                 # установка потока
