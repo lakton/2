@@ -33,16 +33,6 @@ icmp_count :: Counter;
 // service counter
 service_count :: Counter;
 
-//http counters
-getput :: Counter;
-post :: Counter;
-put :: Counter;
-delete :: Counter;
-update :: Counter;
-insert :: Counter;
-passs :: Counter;
-logg :: Counter;
-
 
 // Device declaration
 src_net :: FromDevice(ips-eth1, METHOD LINUX, SNIFFER false);

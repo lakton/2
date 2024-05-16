@@ -96,7 +96,11 @@ class LearningFirewall (EventMixin):
                 msg.buffer_id = event.ofp.buffer_id
                 msg.in_port = event.port
                 self.connection.send(msg)
-
+        ipv6 = packet.find('ipv6')
+        if ipv6 is not None:
+            log.debug("Найден IPv6-заголовок. Отбрасываем пакет.")
+            drop()
+            return
         # обновление сопоставления mac и порта
         self.macToPort[packet.src] = event.port
         dpidstr = dpidToStr(event.connection.dpid)
