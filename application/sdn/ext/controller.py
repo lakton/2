@@ -67,6 +67,8 @@ class LearningFirewall (EventMixin):
         packet = event.parse()
 
         def flood(message=None):
+            if packet.dst == "4a:1c:a8:0c:07:20":
+                return  # Если содержит, не флудим
             msg = of.ofp_packet_out()
             if time.time() - self.connection.connect_time >= flood_delay:
                 if self.hold_down_expired is False:
@@ -353,6 +355,8 @@ class LearningSwitch1 (EventMixin):
                 print("ARP-пакеты на WEB и DNS-сервера недоступны")
                 return
         def flood(message=None):
+            if packet.dst == "4a:1c:a8:0c:07:20":
+                return  # Если содержит, не флудим
             msg = of.ofp_packet_out()
             if time.time() - self.connection.connect_time >= flood_delay:
                 if self.hold_down_expired is False:
