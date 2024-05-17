@@ -208,7 +208,38 @@ class LearningFirewall1(LearningFirewall):
         super().__init__(connection, transparent)
         # Правила доступа к демилитаризованной зоне и частной зоне:
         # FW1 (Firewall 1) - 00-00-00-00-00-02
-        self.AddRule('00-00-00-00-00-02', None, 0, True)
+        #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
+        #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
+        self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
+        self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 8, True) 
+
+        # Разрешаем все порты и все адреса
+        self.AddRule('00-00-00-00-00-02', EthAddr('52:65:d5:28:5e:a0'), 0, True)  # sw1-ETH1
+        self.AddRule('00-00-00-00-00-02', EthAddr('e2:da:88:fa:72:ee'), 0, True)  # SW1-ETH2
+        self.AddRule('00-00-00-00-00-02', EthAddr('86:6a:14:0a:c9:b9'), 0, True)  # sw1-eth3
+        self.AddRule('00-00-00-00-00-02', EthAddr('9e:b2:23:b5:8c:16'), 0, True)  # sw2-eth1
+        self.AddRule('00-00-00-00-00-02', EthAddr('ee:e0:25:69:94:92'), 0, True)  # sw2-eth2
+        self.AddRule('00-00-00-00-00-02', EthAddr('ce:5e:c7:c2:e7:32'), 0, True)  # sw2-eth3
+        self.AddRule('00-00-00-00-00-02', EthAddr('fe:6c:82:23:90:4d'), 0, True)  # sw3-eth1
+        self.AddRule('00-00-00-00-00-02', EthAddr('9a:8c:40:13:e0:c3'), 0, True)  # sw3-eth2
+        self.AddRule('00-00-00-00-00-02', EthAddr('ce:58:2d:bd:ff:d5'), 0, True)  # sw3-eth3
+        self.AddRule('00-00-00-00-00-02', EthAddr('92:52:19:9b:2f:34'), 0, True)  # sw4-eth1
+        self.AddRule('00-00-00-00-00-02', EthAddr('c2:1c:cb:ed:17:92'), 0, True)  # sw4-eth2
+        self.AddRule('00-00-00-00-00-02', EthAddr('9e:e9:42:8e:2c:43'), 0, True)  # sw4-eth3
+        self.AddRule('00-00-00-00-00-02', EthAddr('42:96:71:8d:02:c7'), 0, True)  # sw4-eth4
+        self.AddRule('00-00-00-00-00-02', EthAddr('f2:76:22:fb:b0:2e'), 0, True)  # sw5-eth1
+        self.AddRule('00-00-00-00-00-02', EthAddr('d2:59:5c:99:e4:de'), 0, True)  # sw5-eth2
+        self.AddRule('00-00-00-00-00-02', EthAddr('06:87:b2:5d:54:44'), 0, True)  # sw5-eth3
+        self.AddRule('00-00-00-00-00-02', EthAddr('9e:7f:04:a6:23:f4'), 0, True)  # ips-eth1 (EXT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('76:db:ac:bc:f1:d2'), 0, True)  # ips-eth1 (INT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('ba:9b:db:bb:9e:e7'), 0, True)  # ips-eth3
+        self.AddRule('00-00-00-00-00-02', EthAddr('8a:11:96:8b:b0:e5'), 0, True)  # NAPT-ETH1 (EXT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True)  # NAPT-ETH2 (INT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 0, True)  # lb1-eth1 (dnslb EXT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('9a:c2:77:de:0f:6c'), 0, True)  # lb1-eth2 (dnslb INT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 0, True)  # lb2-eth1 (wwwlb EXT)
+        self.AddRule('00-00-00-00-00-02', EthAddr('3e:2a:d4:cf:8c:e3'), 0, True)  # lb2-eth2 (wwwlb INT)
+
         '''
         #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
         #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
@@ -256,7 +287,32 @@ class LearningFirewall2(LearningFirewall):
         super().__init__(connection, transparent)
         # Правила доступа к демилитаризованной зоне и частной зоне:
         # FW2 (Firewall 2) - 00-00-00-00-00-09
-        self.AddRule('00-00-00-00-00-09', None, 0, True)
+                # Разрешаем все порты и все адреса
+        self.AddRule('00-00-00-00-00-09', EthAddr('52:65:d5:28:5e:a0'), 0, True)  # sw1-ETH1
+        self.AddRule('00-00-00-00-00-09', EthAddr('e2:da:88:fa:72:ee'), 0, True)  # SW1-ETH2
+        self.AddRule('00-00-00-00-00-09', EthAddr('86:6a:14:0a:c9:b9'), 0, True)  # sw1-eth3
+        self.AddRule('00-00-00-00-00-09', EthAddr('9e:b2:23:b5:8c:16'), 0, True)  # sw2-eth1
+        self.AddRule('00-00-00-00-00-09', EthAddr('ee:e0:25:69:94:92'), 0, True)  # sw2-eth2
+        self.AddRule('00-00-00-00-00-09', EthAddr('ce:5e:c7:c2:e7:32'), 0, True)  # sw2-eth3
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:6c:82:23:90:4d'), 0, True)  # sw3-eth1
+        self.AddRule('00-00-00-00-00-09', EthAddr('9a:8c:40:13:e0:c3'), 0, True)  # sw3-eth2
+        self.AddRule('00-00-00-00-00-09', EthAddr('ce:58:2d:bd:ff:d5'), 0, True)  # sw3-eth3
+        self.AddRule('00-00-00-00-00-09', EthAddr('92:52:19:9b:2f:34'), 0, True)  # sw4-eth1
+        self.AddRule('00-00-00-00-00-09', EthAddr('c2:1c:cb:ed:17:92'), 0, True)  # sw4-eth2
+        self.AddRule('00-00-00-00-00-09', EthAddr('9e:e9:42:8e:2c:43'), 0, True)  # sw4-eth3
+        self.AddRule('00-00-00-00-00-09', EthAddr('42:96:71:8d:02:c7'), 0, True)  # sw4-eth4
+        self.AddRule('00-00-00-00-00-09', EthAddr('f2:76:22:fb:b0:2e'), 0, True)  # sw5-eth1
+        self.AddRule('00-00-00-00-00-09', EthAddr('d2:59:5c:99:e4:de'), 0, True)  # sw5-eth2
+        self.AddRule('00-00-00-00-00-09', EthAddr('06:87:b2:5d:54:44'), 0, True)  # sw5-eth3
+        self.AddRule('00-00-00-00-00-09', EthAddr('9e:7f:04:a6:23:f4'), 0, True)  # ips-eth1 (EXT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('76:db:ac:bc:f1:d2'), 0, True)  # ips-eth1 (INT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('ba:9b:db:bb:9e:e7'), 0, True)  # ips-eth3
+        self.AddRule('00-00-00-00-00-09', EthAddr('8a:11:96:8b:b0:e5'), 0, True)  # NAPT-ETH1 (EXT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('4a:1c:a8:0c:07:20'), 0, True)  # NAPT-ETH2 (INT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 0, True)  # lb1-eth1 (dnslb EXT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('9a:c2:77:de:0f:6c'), 0, True)  # lb1-eth2 (dnslb INT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('ae:cb:56:11:ce:44'), 0, True)  # lb2-eth1 (wwwlb EXT)
+        self.AddRule('00-00-00-00-00-09', EthAddr('3e:2a:d4:cf:8c:e3'), 0, True)  # lb2-eth2 (wwwlb INT)
         '''
         #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
         #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
