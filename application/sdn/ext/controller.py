@@ -208,7 +208,8 @@ class LearningFirewall1(LearningFirewall):
         super().__init__(connection, transparent)
         # Правила доступа к демилитаризованной зоне и частной зоне:
         # FW1 (Firewall 1) - 00-00-00-00-00-02
-        
+        self.AddRule('00-00-00-00-00-02', None, 0, True)
+        '''
         #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
         #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
         self.AddRule('00-00-00-00-00-02', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
@@ -245,7 +246,7 @@ class LearningFirewall1(LearningFirewall):
             # napt INT
         #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 8, True)
         #self.AddRule('00-00-00-00-00-02', EthAddr('4a:1c:a8:0c:07:20'), 0, True) 
-
+'''
     def _handle_PacketIn(self, event):
         super()._handle_PacketIn(event)
 
@@ -255,7 +256,8 @@ class LearningFirewall2(LearningFirewall):
         super().__init__(connection, transparent)
         # Правила доступа к демилитаризованной зоне и частной зоне:
         # FW2 (Firewall 2) - 00-00-00-00-00-09
-        
+        self.AddRule('00-00-00-00-00-09', None, 0, True)
+        '''
         #(dnslb EXT): fe:91:b3:92:f1:98 , 8 - icmp
         #(wwwlb EXT): ae:cb:56:11:ce:44 , 8 - icmp
         self.AddRule('00-00-00-00-00-09', EthAddr('fe:91:b3:92:f1:98'), 8, True) 
@@ -292,7 +294,7 @@ class LearningFirewall2(LearningFirewall):
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 0, True)
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:06'), 53, True) 
         self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:07'), 53, True)
-
+'''
 
     def _handle_PacketIn(self, event):
         #log.debug("Пакет брандмауэра 2.")
