@@ -18,13 +18,6 @@ def close_tcp_connection(src_ip, dst_ip, src_port, dst_port, interface):
 def run_tests():
     # Тест 1 и 2: POST запрос на sdnithub.com
     # (так как это фиктивный домен, используем фиктивный IP)
-    sdnithub_ip = "100.0.0.45"  # Фиктивный IP для sdnithub.com
-    http_post_req_sdnithub = Ether()/IP(src="100.0.0.10", dst=sdnithub_ip)/TCP(dport=80)/("POST / HTTP/1.1\r\nHost: sdnithub.com\r\n\r\n")
-    sendp(http_post_req_sdnithub, iface="h1-eth0")
-    time.sleep(1)
-    sendp(http_post_req_sdnithub, iface="h1-eth0")
-    time.sleep(1)
-    close_tcp_connection(sdnithub_ip, "100.0.0.10", 80, 80, "h1-eth0")
 
     # Тест 3, 4, 5: POST запросы на 100.0.0.45
     http_post_req = Ether()/IP(src="100.0.0.10", dst="100.0.0.45")/TCP(dport=80)/("POST / HTTP/1.1\r\nHost: 100.0.0.45\r\n\r\n")
@@ -33,7 +26,7 @@ def run_tests():
     sendp(http_post_req, iface="h1-eth0")
     time.sleep(1)
     sendp(http_post_req, iface="h1-eth0")
-    time.sleep(1)
+    time.sleep(1)q
     close_tcp_connection("100.0.0.45", "100.0.0.10", 80, 80, "h1-eth0")
 
     # Тест 6: POST с данными 'user=foo'
