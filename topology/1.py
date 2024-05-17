@@ -26,7 +26,7 @@ def run_tests():
     sendp(http_post_req, iface="h1-eth0")
     time.sleep(1)
     sendp(http_post_req, iface="h1-eth0")
-    time.sleep(1)q
+    time.sleep(1)
     close_tcp_connection("100.0.0.45", "100.0.0.10", 80, 80, "h1-eth0")
 
     # Тест 6: POST с данными 'user=foo'
