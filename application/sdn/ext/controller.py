@@ -214,6 +214,9 @@ class LearningFirewall1(LearningFirewall):
         self.AddRule('00-00-00-00-00-02', EthAddr('ae:cb:56:11:ce:44'), 8, True) 
 
         # Разрешаем все порты и все адреса
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:00'), 0, True)  # sw1-ETH1
+        self.AddRule('00-00-00-00-00-02', EthAddr('ff:ff:ff:ff:ff:ff'), 0, True)  # sw1-ETH1
+        self.AddRule('00-00-00-00-00-02', EthAddr('00:00:00:00:00:04'), 0, True)  # sw1-ETH1
         self.AddRule('00-00-00-00-00-02', EthAddr('52:65:d5:28:5e:a0'), 0, True)  # sw1-ETH1
         self.AddRule('00-00-00-00-00-02', EthAddr('e2:da:88:fa:72:ee'), 0, True)  # SW1-ETH2
         self.AddRule('00-00-00-00-00-02', EthAddr('86:6a:14:0a:c9:b9'), 0, True)  # sw1-eth3
@@ -288,6 +291,11 @@ class LearningFirewall2(LearningFirewall):
         # Правила доступа к демилитаризованной зоне и частной зоне:
         # FW2 (Firewall 2) - 00-00-00-00-00-09
                 # Разрешаем все порты и все адреса
+        self.AddRule('00-00-00-00-00-09', EthAddr('52:65:d5:28:5e:a0'), 0, True)  # sw1-ETH1
+        
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:00'), 0, True)  # sw1-ETH1
+        self.AddRule('00-00-00-00-00-09', EthAddr('ff:ff:ff:ff:ff:ff'), 0, True)  # sw1-ETH1
+        self.AddRule('00-00-00-00-00-09', EthAddr('00:00:00:00:00:04'), 0, True)  # sw1-ETH1
         self.AddRule('00-00-00-00-00-09', EthAddr('52:65:d5:28:5e:a0'), 0, True)  # sw1-ETH1
         self.AddRule('00-00-00-00-00-09', EthAddr('e2:da:88:fa:72:ee'), 0, True)  # SW1-ETH2
         self.AddRule('00-00-00-00-00-09', EthAddr('86:6a:14:0a:c9:b9'), 0, True)  # sw1-eth3
