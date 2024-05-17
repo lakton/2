@@ -10,14 +10,28 @@ def close_tcp_connection(src_ip, dst_ip, src_port, dst_port, interface):
     fin_pkt = Ether()/IP(src=src_ip, dst=dst_ip)/TCP(sport=src_port, dport=dst_port, flags='FA')
     sendp(fin_pkt, iface=interface)
     time.sleep(1)  # Задержка в 1 секунду для ожидания обработки пакета
+    
     ack_pkt = Ether()/IP(src=dst_ip, dst=src_ip)/TCP(sport=dst_port, dport=src_port, flags='A')
     sendp(ack_pkt, iface=interface)
     time.sleep(1)  # Задержка в 1 секунду для завершения соединения
 
+    fin_ack_pkt = Ether()/IP(src=dst_ip, dst=src_ip)/TCP(sport=dst_port, dport=src_port, flags='FA')
+    sendp(fin_ack_pkt, iface=interface)
+    time.sleep(1)  # Задержка в 1 секунду для ожидания обработки пакета
+
+    last_ack_pkt = Ether()/IP(src=src_ip, dst=dst_ip)/TCP(sport=src_port, dport=dst_port, flags='A')
+    sendp(last_ack_pkt, iface=interface)
+
 # Выполнение тестов
 def run_tests():
     # Тест 1 и 2: POST запрос на sdnithub.com
-    # (так как это фиктивный домен, используем фиктивный IP)
+    sdnithub_ip = "100.0.0.45"  # Фиктивный IP для sdnithub.com
+    http_post_req_sdnithub = Ether()/IP(src="100.0.0.10", dst=sdnithub_ip)/TCP(dport=80)/("POST / HTTP/1.1\r\nHost: sdnithub.com\r\n\r\n")
+    sendp(http_post_req_sdnithub, iface="h1-eth0")
+    time.sleep(1)
+    sendp(http_post_req_sdnithub, iface="h1-eth0")
+    time.sleep(1)
+    close_tcp_connection(sdnithub_ip, "100.0.0.10", 80, 80, "h1-eth0")
 
     # Тест 3, 4, 5: POST запросы на 100.0.0.45
     http_post_req = Ether()/IP(src="100.0.0.10", dst="100.0.0.45")/TCP(dport=80)/("POST / HTTP/1.1\r\nHost: 100.0.0.45\r\n\r\n")
