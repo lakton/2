@@ -189,7 +189,7 @@ class LearningFirewall (EventMixin):
                 # installing flow
                 outport = self.macToPort[packet.dst]
                 if outport == event.port:
-                    log.warning("От адреса %s -> на адрес %s на порт %s. Drop." %
+                    log.warning("От адреса %s -> на адрес %s на порт %s. Drop. DPID: %s" %
                                 (packet.src, packet.dst, outport), dpidToStr(event.dpid))
                     return
                 log.debug("Установка потока(flow) от %s.%i -> на %s.%i" % (packet.src, event.port, packet.dst, outport))
@@ -462,7 +462,7 @@ class LearningSwitch1 (EventMixin):
                 # установка потока
                 outport = self.macToPort[packet.dst]
                 if outport == event.port:
-                    log.warning("От адреса %s -> на адрес %s на порт %s. Drop." %
+                    log.warning("От адреса %s -> на адрес %s на порт %s. Drop. DPID: %s" %
                                 (packet.src, packet.dst, outport), dpidToStr(event.dpid))
                     return
                 log.debug("Установка потока(flow) от %s.%i -> %s.%i" % (packet.src, event.port, packet.dst, outport))
