@@ -18,8 +18,8 @@ http_request = (
 )
 
 # Отправка запроса
-http_request.show()
-
+sendp(http_request, iface="h1-eth0")
+time.sleep(5)
 # Симуляция ответа на HTTP POST-запрос
 http_response = (
     Ether(src="fe:91:b3:92:f1:98", dst="00:00:00:00:00:04")
@@ -33,4 +33,5 @@ http_response = (
 )
 
 # Отправка ответа
-http_response.show()
+# Отправка запроса
+sendp(http_response, iface="h1-eth0")
