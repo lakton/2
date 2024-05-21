@@ -4,7 +4,7 @@ import random
 
 # Функция для генерации случайного времени ожидания
 def random_sleep():
-    return random.randint(3000, 6000) / 1000  # Генерируем случайное число в секундах
+    return random.randint(1000, 6000) / 1000  # Генерируем случайное число в секундах
 
 # Данные для POST-запроса
 post_data = "user=foo"
@@ -24,7 +24,7 @@ http_request = (
 
 # Отправка запроса
 response_packet = srp1(http_request, iface="h1-eth0")  # Отправляем пакет и ожидаем ответа
-
+time.sleep(random_sleep())
 # Симуляция ответа на HTTP POST-запрос
 http_response = (
     Ether(src="fe:91:b3:92:f1:98", dst="00:00:00:00:00:04")
@@ -39,7 +39,7 @@ http_response = (
 
 # Отправка ответа
 sendp(http_response, iface="h1-eth0")
-
+time.sleep(random_sleep())
 # Завершение TCP-соединения путем отправки пакета с флагом RST
 tcp_reset_packet = IP(src="100.0.0.45", dst="100.0.0.10") / TCP(dport=80, sport=80, flags="R")
 send(tcp_reset_packet, iface="h1-eth0")
@@ -62,7 +62,7 @@ http_request = (
 
 # Отправка запроса
 response_packet = srp1(http_request, iface="h1-eth0")  # Отправляем пакет и ожидаем ответа
-
+time.sleep(random_sleep())
 # Симуляция ответа на HTTP POST-запрос
 http_response = (
     Ether(src="fe:91:b3:92:f1:98", dst="00:00:00:00:00:04")
@@ -77,7 +77,7 @@ http_response = (
 
 # Отправка ответа
 sendp(http_response, iface="h1-eth0")
-
+time.sleep(random_sleep())
 # Завершение TCP-соединения путем отправки пакета с флагом RST
 tcp_reset_packet = IP(src="100.0.0.45", dst="100.0.0.10") / TCP(dport=80, sport=80, flags="R")
 send(tcp_reset_packet, iface="h1-eth0")
