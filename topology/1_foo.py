@@ -38,4 +38,4 @@ http_response = (
 
 # Отправка ответа
 sendp(http_response, iface="h1-eth0")
-time.sleep(random_sleep())
+
