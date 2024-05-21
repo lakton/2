@@ -23,7 +23,7 @@ http_request = (
 )
 
 # Отправка запроса
-response_packet = srp1(http_request, iface="h1-eth0")  # Отправляем пакет и ожидаем ответа
+sendp(http_request, iface="h1-eth0")  # Отправляем пакет и ожидаем ответа
 time.sleep(random_sleep())
 # Симуляция ответа на HTTP POST-запрос
 http_response = (
@@ -61,7 +61,7 @@ http_request = (
 )
 
 # Отправка запроса
-response_packet = srp1(http_request, iface="h1-eth0")  # Отправляем пакет и ожидаем ответа
+sendp(http_request, iface="h1-eth0")  # Отправляем пакет и ожидаем ответа
 time.sleep(random_sleep())
 # Симуляция ответа на HTTP POST-запрос
 http_response = (
