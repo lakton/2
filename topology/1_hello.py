@@ -31,8 +31,7 @@ http_response = (
     / ("HTTP/1.1 200 OK\r\n"
        "Content-Type: text/html\r\n"
        f"Content-Length: {len(post_data)}\r\n"  # Длина ответа
-       "\r\n"
-       "Success")  # Простой текстовый ответ
+       "\r\n")  # Простой текстовый ответ
 )
 
 # Отправка ответа
