@@ -41,19 +41,3 @@ insp_request = (
 
 # Отправка запроса на INSP
 sendp(insp_request, iface="h1-eth0")
-time.sleep(random_sleep())
-
-# Симуляция отрицательного ответа от INSP на HTTP PUT-запрос
-http_response = (
-    Ether(src="00:00:00:00:00:08", dst="00:00:00:00:00:04")
-    / IP(src="100.0.0.30", dst="100.0.0.10")
-    / TCP(dport=80, sport=80, flags="RA")  # Устанавливаем флаг RST (отклонение соединения)
-    / ("HTTP/1.1 403 Forbidden\r\n"
-       "Content-Type: text/html\r\n"
-       "Content-Length: 0\r\n"
-       "\r\n")
-)
-
-# Отправка отрицательного ответа
-sendp(http_response, iface="h1-eth0")
-time.sleep(random_sleep())
