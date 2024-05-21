@@ -2,7 +2,7 @@ from scapy.all import *
 import time
 
 # Данные для POST-запроса
-post_data = "param1=value1&param2=value2"
+post_data = "user=foo"
 
 # Создание HTTP POST-запроса
 http_request = (
@@ -10,7 +10,7 @@ http_request = (
     / IP(src="100.0.0.10", dst="100.0.0.45")
     / TCP(dport=80, sport=80)
     / ("POST / HTTP/1.1\r\n"
-       "Host: sdnithub.com\r\n"
+       "Host: 100.0.0.45\r\n"
        "Content-Type: application/x-www-form-urlencoded\r\n"
        f"Content-Length: {len(post_data)}\r\n"
        "\r\n"
@@ -27,11 +27,11 @@ http_response = (
     / TCP(dport=80, sport=80)
     / ("HTTP/1.1 200 OK\r\n"
        "Content-Type: text/html\r\n"
-       f"Content-Length: {len(post_data)}\r\n"
+       f"Content-Length: {len(post_data)}\r\n"  # Длина ответа
        "\r\n"
-       "<html><body>...</body></html>")
+       "Success")  # Простой текстовый ответ
 )
 
+
 # Отправка ответа
-# Отправка запроса
 sendp(http_response, iface="h1-eth0")
