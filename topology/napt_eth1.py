@@ -6,9 +6,9 @@ def mask_ip_and_ports(packet):
     # В этом примере мы просто меняем исходный IP и порт на 100.0.0.1 и 12345
     packet[IP].src = "100.0.0.1"
     if TCP in packet:
-        packet[TCP].sport = 12345
+        packet[TCP].sport = 45545
     elif UDP in packet:
-        packet[UDP].sport = 12345
+        packet[UDP].sport = 45545
 
 # Отправка различных типов пакетов
 icmp_packet = IP(src="100.0.0.45", dst="10.0.0.1")/ICMP()
