@@ -23,7 +23,7 @@ mask_ip_and_ports(udp_packet)
 mask_ip_and_ports(malicious_tcp_packet)
 
 # Отправка пакетов
-send(icmp_packet, iface="napt-eth1")
-send(tcp_packet, iface="napt-eth1")
-send(udp_packet, iface="napt-eth1")
-send(malicious_tcp_packet, iface="napt-eth1")
+send(icmp_packet)
+send(tcp_packet)
+send(udp_packet)
+send(malicious_tcp_packet)
