@@ -1,7 +1,7 @@
 from scapy.all import IP, ICMP, send, sniff
 
 # Отправка ICMP пакета от внутреннего хоста
-internal_icmp_packet = IP(src="10.0.0.50", dst="8.8.8.8")/ICMP()
+internal_icmp_packet = IP(src="10.0.0.50", dst="100.0.0.10")/ICMP()
 send(internal_icmp_packet)
 
 # Функция для обработки захваченных пакетов
