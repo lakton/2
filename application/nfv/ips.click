@@ -27,9 +27,6 @@ arp_res_ex :: Counter;
 //arp_req_in :: Counter;
 //arp_res_in :: Counter;
 
-// icmp
-icmp_count :: Counter;
-
 // service counter
 service_count :: Counter;
 
