@@ -116,12 +116,10 @@ first_stage[3]
 //=======================================================
 second_stage[0]
         -> Print("Обработан ICMP пакет и направлен на lb1")
-	-> icmp_count
         -> Queue
         -> [2]dst_lb;
 second_stage[1]                 //HTTP
          -> Print("Обработан HTTP GET/PUT запрос и направлен на третий этап")
-         -> getput
          -> third_stage;
 second_stage[2]                 //HTTP
          -> Print("Обработан HTTP POST запрос и направлен на третий этап")
@@ -152,12 +150,10 @@ second_stage[8]
 //==========================================
 third_stage[0]
         -> Print("Обработан POST запрос и направлен на lb1")
-        -> post
         -> Queue
         -> [8]dst_lb;
 third_stage[1]
 	-> Print("Обработан PUT запрос и направлен на четвертый этап")
-        -> put
         -> fourth_stage;
 third_stage[2]
         -> Queue
@@ -165,27 +161,22 @@ third_stage[2]
 //=========================================
 fourth_stage[0]
         -> Print("Предотвращена попытка запроса на чтение пароля (cat /etc/passwd)")
-        -> passs
         -> Queue
         -> [3]dst_insp;
 fourth_stage[1]
         -> Print("Предотвращена попытка запроса на чтение логов (cat /var/log)")
-        -> logg
         -> Queue
         -> [4]dst_insp;
 fourth_stage[2]
         -> Print("Предотвращена попытка INSERT")
-        -> insert
         -> Queue
         -> [5]dst_insp;
 fourth_stage[3]
         -> Print("Предотвращена попытка UPDATE")
-        -> update
         -> Queue
         -> [6]dst_insp;
 fourth_stage[4]
         -> Print("Предотвращена попытка DELETE")
-        -> delete
         -> Queue
         -> [7]dst_insp;
 fourth_stage[5]
