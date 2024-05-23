@@ -3,7 +3,7 @@ from scapy.all import IP, ICMP, TCP, UDP, send
 # Функция для маскирования IP и портов
 def mask_ip_and_ports(packet):
     # Здесь вы можете добавить свою собственную логику маскирования
-    # В этом примере мы просто меняем исходный IP и порт на 100.0.0.1 и 12345
+    # В этом примере мы просто меняем исходный IP и порт на 100.0.0.1 и 45545
     packet[IP].src = "100.0.0.1"
     if TCP in packet:
         packet[TCP].sport = 45545
@@ -22,8 +22,8 @@ mask_ip_and_ports(tcp_packet)
 mask_ip_and_ports(udp_packet)
 mask_ip_and_ports(malicious_tcp_packet)
 
-# Отправка пакетов
-send(icmp_packet)
-send(tcp_packet)
-send(udp_packet)
-send(malicious_tcp_packet)
+# Отправка пакетов через интерфейс napt-eth1
+send(icmp_packet, iface="napt-eth1")
+send(tcp_packet, iface="napt-eth1")
+send(udp_packet, iface="napt-eth1")
+send(malicious_tcp_packet, iface="napt-eth1")
