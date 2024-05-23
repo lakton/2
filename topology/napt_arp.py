@@ -1,11 +1,11 @@
 from scapy.all import ARP, send, sniff, Ether
 
 # Вредоносный ARP-запрос, пытающийся подменить MAC-адрес 10.0.0.1
-malicious_arp_request = ARP(op=1, pdst="10.0.0.1", psrc="10.0.0.50", hwsrc="4a:1c:a8:0c:07:20")
+malicious_arp_request = ARP(op=1, pdst="10.0.0.1", psrc="10.0.0.50", hwsrc="66:00:00:00:00:06")
 send(malicious_arp_request)
 
 # Легитимный ARP-запрос от хоста 10.0.0.50 к хосту 10.0.0.1
-legitimate_arp_request = ARP(op=1, pdst="10.0.0.1", psrc="10.0.0.50", hwsrc="5a:1c:a8:0c:07:21")
+legitimate_arp_request = ARP(op=1, pdst="10.0.0.1", psrc="10.0.0.50", hwsrc="00:00:00:00:00:06")
 send(legitimate_arp_request)
 
 
