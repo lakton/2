@@ -11,10 +11,10 @@ def mask_ip_and_ports(packet):
         packet[UDP].sport = 45545
 
 # Отправка различных типов пакетов
-icmp_packet = IP(src="100.0.0.25", dst="10.0.0.1")/ICMP()
-tcp_packet = IP(src="100.0.0.45", dst="10.0.0.1")/TCP(dport=80)
-udp_packet = IP(src="100.0.0.25", dst="10.0.0.1")/UDP(dport=53)
-malicious_tcp_packet = IP(src="100.0.0.11", dst="10.0.0.1")/TCP(dport=10851)
+icmp_packet = IP(src="100.0.0.25", dst="100.0.0.1")/ICMP()
+tcp_packet = IP(src="100.0.0.45", dst="100.0.0.1")/TCP(dport=80)
+udp_packet = IP(src="100.0.0.25", dst="100.0.0.1")/UDP(dport=53)
+malicious_tcp_packet = IP(src="100.0.0.11", dst="100.0.0.1")/TCP(dport=10851)
 
 # Применяем маскирование к каждому пакету перед отправкой
 mask_ip_and_ports(icmp_packet)
